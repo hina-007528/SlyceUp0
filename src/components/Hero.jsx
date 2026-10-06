@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import bowlImg from '../assets/img/hero-bowl.webp';
+import phoneImg from '../assets/img/hero-phone.webp';
 
 export default function Hero() {
   const [hint, setHint] = useState('Be the first to try SlyceUp.');
@@ -24,8 +26,8 @@ export default function Hero() {
       
       <div className="art" aria-hidden="false">
         <div className="layer cast"></div>
-        <img className="bowl" src="/src/assets/img/hero-bowl.webp" width="900" height="842" alt="Bowl of ramen with shiitake, corn, nori, bok choy and a soft-boiled egg" fetchPriority="high" />
-        <img className="phone" src="/src/assets/img/hero-phone.webp" width="520" height="1080" alt="SlyceUp app showing a ramen meal: warm, comforting, with layered depth" fetchPriority="high" />
+        <img className="bowl" src={bowlImg} width="900" height="842" alt="Bowl of ramen with shiitake, corn, nori, bok choy and a soft-boiled egg" fetchPriority="high" />
+        <img className="phone" src={phoneImg} width="520" height="1080" alt="SlyceUp app showing a ramen meal: warm, comforting, with layered depth" fetchPriority="high" />
       </div>
       
       <div className="hero-copy">

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import logoImg from '../assets/img/logo.png';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,7 +17,7 @@ export default function Header() {
     <header className={`nav ${isStuck ? 'stuck' : ''}`} id="nav">
       <div className="in">
         <a className="logo" href="#top" aria-label="SlyceUp home">
-          <img src="/src/assets/img/logo.png" width="133" height="34" alt="SlyceUp" />
+          <img src={logoImg} width="133" height="34" alt="SlyceUp" />
         </a>
         <nav aria-label="Primary">
           <ul id="menu" className={isMenuOpen ? 'open' : ''}>

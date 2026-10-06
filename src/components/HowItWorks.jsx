@@ -1,4 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
+import imgCapture from '../assets/img/step-capture.webp';
+import imgUnderstand from '../assets/img/step-understand.webp';
+import imgLearn from '../assets/img/step-learn.webp';
 
 const content = [
   { 
@@ -6,7 +9,7 @@ const content = [
     titleMobile: 'A photo is enough to begin.', 
     lead: 'A photo is enough to begin. SlyceUp reads your meal just as it is \u2014 real, simple and in your everyday life.',
     alt: 'Camera screen framing a bowl of ramen',
-    img: '/src/assets/img/step-capture.webp',
+    img: imgCapture,
     label: 'Capture'
   },
   { 
@@ -14,7 +17,7 @@ const content = [
     titleMobile: 'Understand what shaped your meal.', 
     lead: 'See how food, preparation, context and you come together to form a personal reading.',
     alt: "Ramen meal detail: this meal's imprint and what shaped it",
-    img: '/src/assets/img/step-understand.webp',
+    img: imgUnderstand,
     label: 'Understand'
   },
   { 
@@ -22,7 +25,7 @@ const content = [
     titleMobile: 'See what changes over time.', 
     lead: 'SlyceUp notices your impact and patterns over time, helping you learn what works for you.',
     alt: 'Insights screen showing the food traditions behind your meals',
-    img: '/src/assets/img/step-learn.webp',
+    img: imgLearn,
     label: 'Learn'
   }
 ];

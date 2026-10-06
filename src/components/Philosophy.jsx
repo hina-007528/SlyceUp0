@@ -1,3 +1,5 @@
+import bowlImg from '../assets/img/philosophy-bowl.webp';
+
 export default function Philosophy() {
   return (
     <section className="philo" id="philosophy" aria-labelledby="ph-h2">
@@ -19,7 +21,7 @@ export default function Philosophy() {
 
       <div className="stage">
         <div className="layer cast"></div>
-        <img className="bowlp" src="/src/assets/img/philosophy-bowl.webp" width="900" height="772" alt="Bowl of ramen seen from above" loading="lazy" />
+        <img className="bowlp" src={bowlImg} width="900" height="772" alt="Bowl of ramen seen from above" loading="lazy" />
 
         {/* desktop lines (viewBox 100x75) */}
         <svg className="lines lg" viewBox="0 0 100 75" aria-hidden="true">
