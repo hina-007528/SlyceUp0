@@ -1,3 +1,4 @@
 - [Design constraints](design-constraints.md) — SlyceUp backgrounds must use independent responsive layers, never flattened Figma frame images.
 - [Browser reference QA](browser-reference-qa.md) — Linux Chromium scrollbar behavior can change mobile layout width during emulation.
 - [External builds](external-builds.md) — Replit-internal lockfile URLs can break Vercel and GitHub installs; audit registry portability before pushing.
+- [GitHub authorization](github-authorization.md) — managed API access and shell Git authorization are separate; a working connection need not be reconnected.
