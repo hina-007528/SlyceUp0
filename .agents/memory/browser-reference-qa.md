@@ -19,4 +19,4 @@ Allow rendered layout to settle after changing viewport dimensions before measur
 
 **Why:** Chromium returned the previous tablet frame's artwork bounds immediately after resizing across the desktop breakpoint, even though the settled desktop layout was correct.
 
-**How to apply:** Wait for rendering frames after a viewport resize before checking geometry. Do not compensate for transient measurements by changing the production layout.
+**How to apply:** Poll for settled geometry after resizing; rendering frames alone can still return stale bounds. Use fresh browser contexts at each viewport to confirm suspected failures before changing the production layout.
