@@ -10,7 +10,7 @@ export async function openBrowser(url) {
   const profile = await mkdtemp(join(tmpdir(), 'slyceup-browser-'));
   const port = 9400 + (process.pid % 500);
   const child = spawn(process.env.CHROMIUM_PATH || '/repl/tools/bin/chromium', [
-    '--headless=new', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu',
+    '--headless=new', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu', '--hide-scrollbars',
     `--remote-debugging-port=${port}`, `--user-data-dir=${profile}`,
     '--remote-allow-origins=*', 'about:blank',
   ], { stdio: ['ignore', 'ignore', 'pipe'] });
@@ -64,9 +64,10 @@ export async function openBrowser(url) {
   };
   const close = async () => {
     socket.close();
+    const exited = new Promise((resolve) => child.once('exit', resolve));
     child.kill();
-    await delay(250);
-    await rm(profile, { recursive: true, force: true });
+    await Promise.race([exited, delay(2000)]);
+    await rm(profile, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 });
   };
   try {
     await call('Page.enable');

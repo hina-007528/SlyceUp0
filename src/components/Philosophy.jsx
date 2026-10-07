@@ -1,4 +1,4 @@
-import bowlImg from '../assets/img/philosophy-bowl.webp';
+import bowlImg from '../assets/img/uploaded-philosophy-bowl.webp';
 
 export default function Philosophy() {
   return (
@@ -22,14 +22,14 @@ export default function Philosophy() {
 
       <div className="stage">
         <div className="layer cast"></div>
-        <img className="bowlp" src={bowlImg} width="900" height="772" alt="Bowl of ramen seen from above" loading="lazy" />
+        <img className="bowlp" src={bowlImg} width="850" height="730" alt="Bowl of ramen seen from above" loading="lazy" />
 
         {/* desktop lines (viewBox 100x75) */}
         <svg className="lines lg" viewBox="0 0 100 75" aria-hidden="true">
-          <path d="M 17.5 12.5 Q 25 12.5 30 19.5" /><circle cx="17.5" cy="12.5" r="0.9" />
-          <path d="M 75.6 13.2 Q 68 13.2 65.5 20" /><circle cx="75.6" cy="13.2" r="0.9" />
-          <path d="M 15 55.5 Q 22 55.5 29.5 50" /><circle cx="15" cy="55.5" r="0.9" />
-          <path d="M 77.6 56.6 Q 71 56.6 67 51" /><circle cx="77.6" cy="56.6" r="0.9" />
+          <path d="M17 9 Q22 9 28 15" /><circle cx="17" cy="9" r=".55" />
+          <path d="M76.5 10 Q70 10 64 17" /><circle cx="76.5" cy="10" r=".55" />
+          <path d="M12.4 54 Q17 54 22 50" /><circle cx="12.4" cy="54" r=".55" />
+          <path d="M80.4 55.8 Q74 55.8 67 51" /><circle cx="80.4" cy="55.8" r=".55" />
         </svg>
 
         {/* mobile + tablet lines (viewBox 100x95) */}

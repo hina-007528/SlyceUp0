@@ -14,3 +14,9 @@ Check original image dimensions before extracting individual objects. The image 
 **Why:** Preview-coordinate crops produced incorrect hero and desktop product assets until scaled against the source image dimensions.
 
 **How to apply:** Inspect the original dimensions and scale reference coordinates before cropping; visually verify the resulting asset itself, not only its file size or successful load.
+
+Treat the latest desktop and mobile screenshots as the primary visual source of truth, including when a supplied individual phone asset shows a different screen variant.
+
+**Why:** The user explicitly states that the latest Figma reference wins over conflicting implementation details.
+
+**How to apply:** Compare each screen variant to its corresponding desktop or mobile reference; do not assume that all uploaded phone cutouts are interchangeable.

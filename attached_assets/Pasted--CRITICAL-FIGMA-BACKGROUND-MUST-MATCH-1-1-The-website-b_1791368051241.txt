@@ -1,0 +1,61 @@
+### CRITICAL: FIGMA BACKGROUND MUST MATCH 1:1
+
+The website background must look **the same as the Figma background**, not just similar.
+
+Use the uploaded Figma screenshots/images as the **exact visual reference** and carefully reproduce every visible background detail, including:
+
+* All shapes
+* Decorative objects
+* Images/assets
+* Gradients
+* Colors
+* Opacity
+* Blur
+* Glow
+* Shadows
+* Curves
+* Waves
+* Textures
+* Masks
+* Layering
+* Depth
+* Positioning
+* Scale
+* Rotation
+* Spacing
+* Cropping
+* Overlapping elements
+
+**Do not simplify the Figma background. Do not replace it with a generic gradient. Do not create an approximate version.**
+
+I want the final website background to look **as close to a 1:1 visual copy of the Figma background as possible**.
+
+If the Figma background contains visual elements that can be extracted as individual assets, use those assets individually and recreate the remaining parts with CSS/SVG/HTML.
+
+The important requirement is:
+
+**Figma background appearance = website background appearance.**
+
+The implementation can be coded differently internally, but the **final visual result must match Figma**.
+
+Do NOT use the complete Figma screenshot as a flattened website background if the individual elements can be recreated/coded. Instead, reproduce the same visual appearance using separate layers/elements so the background remains responsive.
+
+### RESPONSIVE BACKGROUND MATCH
+
+The background must also match the corresponding Figma design at each breakpoint.
+
+Desktop → match desktop Figma background.
+
+Mobile → match mobile Figma background.
+
+Tablet/intermediate sizes → intelligently interpolate between the Figma layouts without breaking the composition.
+
+Do NOT simply scale the desktop background down to mobile.
+
+Do NOT stretch the background.
+
+Do NOT crop important visual elements incorrectly.
+
+Do NOT allow background elements to overlap or cover text/content.
+
+After implementation, compare the rendered website screenshot directly against the uploaded Figma screenshot and keep correcting the background until the visual difference is minimal.

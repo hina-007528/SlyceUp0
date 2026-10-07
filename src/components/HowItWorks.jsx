@@ -1,16 +1,17 @@
 import { useState } from 'react';
-import imgCapture from '../assets/img/figma-step-capture.webp';
-import imgUnderstand from '../assets/img/figma-step-understand.webp';
-import imgLearn from '../assets/img/figma-step-learn.webp';
+import imgCapture from '../assets/img/uploaded-capture.webp';
+import imgUnderstand from '../assets/img/uploaded-understand.webp';
+import imgLearn from '../assets/img/reference-learn.webp';
 import mobileCapture from '../assets/img/mobile-capture.webp';
 import mobileUnderstand from '../assets/img/mobile-understand.webp';
 import mobileLearn from '../assets/img/mobile-learn.webp';
+import clothImage from '../assets/img/cloth.png';
 
 const steps = [
   {
     title: 'Capture what you actually eat.',
     titleMobile: 'A photo\nis enough to begin.',
-    lead: 'A photo is enough to begin. SlyceUp reads your meal just as it is — real, simple and in your everyday life.',
+    lead: 'A photo is enough to begin. SlyceUp reads your meal\njust as it is — real, simple and in your everyday life.',
     caption: 'A photo is enough to begin.',
     alt: 'SlyceUp camera view framing a bowl of ramen',
     image: imgCapture,
@@ -20,7 +21,7 @@ const steps = [
   {
     title: 'Understand what shaped your meal.',
     titleMobile: 'Understand what\nshaped your meal.',
-    lead: 'See how food, preparation, context and you come together to form a personal reading.',
+    lead: 'See how food, preparation, context and you\ncome together to form a personal reading.',
     caption: 'See the imprint shaped by food, preparation, context and you.',
     alt: 'SlyceUp meal reading with context and details for ramen',
     image: imgUnderstand,
@@ -30,7 +31,7 @@ const steps = [
   {
     title: 'See what changes over time.',
     titleMobile: 'See what changes\nover time.',
-    lead: 'SlyceUp notices your impact and patterns over time, helping you learn what works for you.',
+    lead: 'SlyceUp notices your impact and patterns\nover time, helping you learn what works for you.',
     caption: 'Notice impact and patterns over time.',
     alt: 'SlyceUp insights screen showing meal patterns over time',
     image: imgLearn,
@@ -50,8 +51,7 @@ export default function HowItWorks() {
       <div className="layer rays" aria-hidden="true" />
       <div className="layer cast" aria-hidden="true" />
       <div className="layer glass" aria-hidden="true" />
-      <div className="layer napkin" aria-hidden="true" />
-      <div className="layer stick" aria-hidden="true" />
+      <img className="cloth-prop" src={clothImage} width="130" height="320" alt="" aria-hidden="true" />
 
       <div className="how-inner">
         <div className="phone-feature">

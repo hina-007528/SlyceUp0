@@ -1,1 +1,2 @@
 - [Design constraints](design-constraints.md) — SlyceUp backgrounds must use independent responsive layers, never flattened Figma frame images.
+- [Browser reference QA](browser-reference-qa.md) — Linux Chromium scrollbar behavior can change mobile layout width during emulation.
