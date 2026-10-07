@@ -14,3 +14,9 @@ Wait for external font stylesheets before waiting for font readiness in visual c
 **Why:** Font readiness can resolve before a stylesheet has introduced its font faces, leaving an early measurement in a fallback font even though the page has mounted.
 
 **How to apply:** Ensure font stylesheets have loaded, then await document font readiness before measuring typography or capturing reference screenshots.
+
+Allow rendered layout to settle after changing viewport dimensions before measuring container-query-based spacing.
+
+**Why:** Chromium returned the previous tablet frame's artwork bounds immediately after resizing across the desktop breakpoint, even though the settled desktop layout was correct.
+
+**How to apply:** Wait for rendering frames after a viewport resize before checking geometry. Do not compensate for transient measurements by changing the production layout.

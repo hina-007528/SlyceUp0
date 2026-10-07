@@ -142,8 +142,11 @@ test('tablet hero keeps desktop alignment and phone keeps a right margin', async
     await page.evaluate(gutter => {
       document.documentElement.style.scrollbarGutter = gutter;
     }, gutter);
-    for (const width of [360,393,430,768,820,900,1024,1280,1350,1351,1366,1440,1920]) {
+    for (const width of [360,393,430,768,820,900,901,1024,1050,1051,1280,1350,1351,1366,1440,1441,1920]) {
       await page.setViewportSize({width,height:747});
+      // Container-query layout can settle on the next render after a resize.
+      await page.evaluate(() => new Promise(resolve =>
+        requestAnimationFrame(() => requestAnimationFrame(resolve))));
       const layout = await page.evaluate(() => {
         const available = document.documentElement.clientWidth;
         const heading = document.querySelector('.hero h1');
@@ -160,7 +163,8 @@ test('tablet hero keeps desktop alignment and phone keeps a right margin', async
         };
       });
       expect(layout.overflow, `${width}px, gutter ${gutter}`).toBe(false);
-      expect(layout.gap, `${width}px phone margin, gutter ${gutter}`).toBeGreaterThanOrEqual(width > 760 ? 20 : 16);
+      const minimumGap = width >= 901 ? 32 : width > 760 ? 20 : 16;
+      expect(layout.gap, `${width}px phone margin, gutter ${gutter}`).toBeGreaterThanOrEqual(minimumGap);
       if (width >= 768 && width <= 900) {
         expect(layout.lines, `${width}px tablet heading, gutter ${gutter}`).toBe(2);
         expect(layout.copyRight).toBeLessThan(layout.phoneLeft);

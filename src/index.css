@@ -180,10 +180,10 @@ a { color: inherit; }
   .stage { width:70%; right:1%; }
   .node p { font-size:11px; }
 }
-@media (min-width:1350px) and (max-width:1440px) {
-  /* Measure the actual page width, excluding any native scrollbar gutter. */
+@media (min-width:901px) {
+  /* Keep the phone inside the hero's true layout width, including scrollbar gutters. */
   .hero { container-type:inline-size; }
-  .art { right:max(-2.5%, calc((var(--content) - 100cqw) / 2 + 28px)); }
+  .art { right:max(-2.5%, calc((100% - 100cqw) / 2 + 40px)); }
 }
 @media (max-width:1050px) and (min-width:901px) {
   .nav .in { gap:24px; }
