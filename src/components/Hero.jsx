@@ -6,15 +6,18 @@ import mobileFoliage from '../assets/img/hero-foliage-mobile.webp';
 
 export default function Hero() {
   const [hint, setHint] = useState('Be the first to try SlyceUp.');
+  const [isInvalid, setIsInvalid] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const emailField = e.target.email;
     if (!emailField.checkValidity() || !emailField.value) {
+      setIsInvalid(true);
       setHint('Please enter a valid email address.');
       emailField.focus();
       return;
     }
+    setIsInvalid(false);
     setHint("Early access sign-up isn't connected yet. Please check back soon.");
   };
 
@@ -47,7 +50,16 @@ export default function Hero() {
             <path d="m3.5 7 8.5 6 8.5-6"/>
           </svg>
           <label className="sr" htmlFor="email">Email address</label>
-          <input id="email" name="email" type="email" required autoComplete="email" placeholder="you@yourname.com" />
+          <input id="email" name="email" type="email" required autoComplete="email" placeholder="you@yourname.com"
+            aria-invalid={isInvalid}
+            aria-describedby={hint === 'Be the first to try SlyceUp.' ? undefined : 'hint'}
+            onChange={() => {
+              if (isInvalid) {
+                setIsInvalid(false);
+                setHint('Be the first to try SlyceUp.');
+              }
+            }}
+          />
           <button className="pill" type="submit">
             <span className="d b">Request early access</span>
             <span className="m b">Request</span>

@@ -37,9 +37,21 @@ export async function openBrowser(url) {
   let sequence = 0;
   const pending = new Map();
   const errors = [];
+  const networkFailures = [];
+  const requests = new Map();
   socket.addEventListener('message', ({ data }) => {
     const event = JSON.parse(data);
     if (event.method === 'Runtime.exceptionThrown') errors.push(event.params.exceptionDetails.text);
+    if (event.method === 'Runtime.consoleAPICalled' && event.params.type === 'error') {
+      errors.push(event.params.args.map(arg => arg.value ?? arg.description ?? '').join(' '));
+    }
+    if (event.method === 'Network.requestWillBeSent') requests.set(event.params.requestId, event.params.request.url);
+    if (event.method === 'Network.responseReceived' && event.params.response.status >= 400) {
+      networkFailures.push(`${event.params.response.status} ${event.params.response.url}`);
+    }
+    if (event.method === 'Network.loadingFailed' && !event.params.canceled && event.params.errorText !== 'net::ERR_ABORTED') {
+      networkFailures.push(`${event.params.errorText} ${requests.get(event.params.requestId) || event.params.requestId}`);
+    }
     if (event.id && pending.has(event.id)) {
       const { resolve, reject, timer } = pending.get(event.id);
       clearTimeout(timer);
@@ -72,16 +84,24 @@ export async function openBrowser(url) {
   try {
     await call('Page.enable');
     await call('Runtime.enable');
+    await call('Network.enable');
     await call('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
     await call('Page.navigate', { url });
     for (let attempt = 0; attempt < 100; attempt++) {
       if (await evaluate('document.querySelector("h1") !== null')) break;
       await delay(100);
     }
+    let stylesReady = false;
+    for (let attempt = 0; attempt < 100; attempt++) {
+      stylesReady = await evaluate('[...document.querySelectorAll("link[rel=stylesheet]")].every(link => link.sheet !== null)');
+      if (stylesReady) break;
+      await delay(100);
+    }
+    if (!stylesReady) throw new Error('Stylesheets did not finish loading.');
     await evaluate('document.fonts.ready.then(() => true)');
   } catch (error) {
     await close();
     throw error;
   }
-  return { call, evaluate, errors, close };
+  return { call, evaluate, errors, networkFailures, close };
 }

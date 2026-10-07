@@ -14,6 +14,7 @@ try {
   for (const [width, height] of viewports) {
     await browser.call('Emulation.setDeviceMetricsOverride', { width, height, deviceScaleFactor: 1, mobile: false });
     await delay(100);
+    await browser.evaluate('document.fonts.ready');
     for (let step = 0; step < 3; step++) {
     await browser.evaluate(`document.querySelectorAll(".step")[${step}].click()`);
     await delay(50);
@@ -42,6 +43,20 @@ try {
         .every(el=>{const r=el.getBoundingClientRect();return Math.abs((r.top+r.bottom)/2-center)<=1;});
     })()`);
     assert.equal(navbarCentered, true, `Navbar elements not vertically centered at ${width}×${height}`);
+    const pageFlow = await browser.evaluate(`(() => {
+      const sections=[...document.querySelectorAll('main > section')];
+      return sections.every((section,index)=>{
+        const r=section.getBoundingClientRect();
+        const copy=section.querySelector('.hero-copy,.philo-copy,.how-copy');
+        const children=copy ? [...copy.querySelectorAll('h1,h2,p,form,ol,button')] : [];
+        return (index===0 || r.top>=sections[index-1].getBoundingClientRect().bottom-1) &&
+          children.every(el=>{
+            const s=getComputedStyle(el),child=el.getBoundingClientRect();
+            return s.display==='none'||s.visibility==='hidden'||child.height===0||child.bottom<=r.bottom+1;
+          });
+      });
+    })()`);
+    assert.equal(pageFlow, true, `Overlapping sections or vertically clipped content at ${width}×${height}`);
     if (width >= 761 && width <= 1350) {
       const clearOfBowl = await browser.evaluate(`(() => {
         const bowl=document.querySelector('.bowlp').getBoundingClientRect();
@@ -157,11 +172,41 @@ try {
 
   await browser.evaluate('document.querySelector("#email").value="invalid"; document.querySelector("form").requestSubmit()');
   assert.match(await browser.evaluate('document.querySelector("#hint").textContent'), /valid email/);
+  assert.equal(await browser.evaluate('document.querySelector("#email").getAttribute("aria-invalid")'), 'true');
+  assert.equal(await browser.evaluate('document.querySelector("#email").getAttribute("aria-describedby")'), 'hint');
+  assert.equal(await browser.evaluate('document.activeElement.id'), 'email');
   await browser.evaluate('document.querySelector("#email").value="qa@example.com"; document.querySelector("form").requestSubmit()');
   assert.match(await browser.evaluate('document.querySelector("#hint").textContent'), /not.*connected|isn.t connected/);
+  assert.equal(await browser.evaluate('document.querySelector("#email").getAttribute("aria-invalid")'), 'false');
   console.log('PASS email validation and honest unconnected-signup state');
   assert.deepEqual(browser.errors, [], 'Browser runtime errors');
   console.log('PASS browser runtime checks');
+  for (const [width,height] of [[393,852],[768,523],[1024,697],[1440,747]]) {
+    await browser.call('Emulation.setDeviceMetricsOverride', {width,height,deviceScaleFactor:1,mobile:false});
+    for (let step=0;step<3;step++) {
+      await browser.evaluate(`document.querySelectorAll(".step")[${step}].click()`);
+      await delay(100);
+      for (const section of ['early','philosophy','how']) {
+        await browser.evaluate(`document.getElementById("${section}").scrollIntoView({behavior:"instant"})`);
+        await browser.evaluate(`Promise.all([...document.images].filter(img=>img.getBoundingClientRect().top<innerHeight&&img.getBoundingClientRect().bottom>0).map(img=>img.decode()))`);
+      }
+    }
+    const assets = await browser.evaluate(`(() => ({
+      broken:[...document.images].filter(img=>!img.complete||!img.naturalWidth).map(img=>img.currentSrc),
+      missingAlt:[...document.images].filter(img=>!img.hasAttribute('alt')).length,
+      badAnchors:[...document.querySelectorAll('a[href^="#"]')].filter(a=>!document.getElementById(a.getAttribute('href').slice(1))).length
+    }))()`);
+    assert.deepEqual(assets.broken, [], `Broken image at ${width}px`);
+    assert.equal(assets.missingAlt, 0, 'Images missing alternative text');
+    assert.equal(assets.badAnchors, 0, 'Broken navigation destination');
+  }
+  await browser.evaluate('document.fonts.ready');
+  for (const family of ['Newsreader','Inter','Manrope']) {
+    assert.equal(await browser.evaluate(`[...document.fonts].some(font=>font.family.includes(${JSON.stringify(family)})&&font.status==="loaded")`), true, `${family} font did not load`);
+  }
+  assert.deepEqual(browser.networkFailures, [], 'Failed asset or network requests');
+  assert.deepEqual(browser.errors, [], 'Browser errors during asset and step checks');
+  console.log('PASS all responsive image variants, alternative text, anchor targets, loaded fonts and network requests');
   if (captureVisuals) {
     for (const [name, group] of [
       ['mobile', captures.filter(x => x.width < 600)],
