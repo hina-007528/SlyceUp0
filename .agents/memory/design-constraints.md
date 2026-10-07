@@ -26,3 +26,9 @@ Mobile philosophy must keep the bowl and four nodes first, followed by the entir
 **Why:** The user explicitly requested the full copy below the diagram even though the supplied mobile image itself shows only the diagram.
 
 **How to apply:** Do not hide the philosophy copy on mobile to match an image-only reference; preserve all paragraphs, the divider, and the closing statement beneath the scene.
+
+Preserve the approved desktop philosophy composition when correcting tablet annotation spacing.
+
+**Why:** The user explicitly confirmed the 1440×747 layout is “perfect” and scoped the tablet correction to the right-side Preparation and You nodes.
+
+**How to apply:** Keep desktop and mobile unchanged for this correction; adapt the right annotation columns and their connectors within tablet-specific rules.

@@ -5,7 +5,7 @@ import { openBrowser, delay } from './browser-utils.mjs';
 const url = process.argv[2] || (process.env.REPLIT_DEV_DOMAIN && `https://${process.env.REPLIT_DEV_DOMAIN}`);
 if (!url) throw new Error('Pass the running app URL as the first argument.');
 const browser = await openBrowser(url);
-const viewports = [[320,800],[360,800],[375,812],[390,844],[393,852],[414,896],[430,932],[480,900],[540,900],[600,900],[768,1024],[820,1180],[834,1194],[900,1200],[1024,768],[1100,850],[1280,720],[1366,768],[1440,900],[1536,864],[1600,900],[1920,1080],[2560,1440]];
+const viewports = [[320,800],[360,800],[375,812],[390,844],[393,852],[414,896],[430,932],[480,900],[540,900],[600,900],[768,523],[768,1024],[820,1180],[834,1194],[900,1200],[1024,697],[1024,768],[1100,850],[1280,720],[1366,768],[1440,747],[1440,900],[1536,864],[1600,900],[1920,1080],[2560,1440]];
 const captureVisuals = process.argv.includes('--screenshots');
 const captures = [];
 if (captureVisuals) await mkdir('/tmp/slyceup-qa', { recursive: true });
@@ -34,6 +34,17 @@ try {
     assert.equal(result.croppedPhones, false, `Cropped primary phone at ${width}px`);
     }
     console.log(`PASS all three layouts at ${width}px`);
+    if (width >= 761 && width <= 1350) {
+      const clearOfBowl = await browser.evaluate(`(() => {
+        const bowl=document.querySelector('.bowlp').getBoundingClientRect();
+        return ['.n2','.n4'].every(selector=>{
+          const node=document.querySelector(selector).getBoundingClientRect();
+          return node.left>=bowl.right+8 && node.right<=innerWidth-8+.5;
+        });
+      })()`);
+      assert.equal(clearOfBowl, true, `Right philosophy nodes overlap the bowl or screen edge at ${width}×${height}`);
+      console.log(`PASS right philosophy node clearance at ${width}×${height}`);
+    }
     if (width <= 760) {
       const philosophy = await browser.evaluate(`(() => {
         const copy=document.querySelector('.philo-copy');

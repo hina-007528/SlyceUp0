@@ -312,8 +312,6 @@ a { color: inherit; }
   .philo-inner { min-height:700px; }
   .stage { top:15%; width:62%; right:1%; }
   .n1 { --x:0%; }
-  .n2 { --x:73%; }
-  .n4 { --x:74%; }
 }
 @media (min-width:761px) and (max-width:900px) {
   .hero-inner { min-height:760px; padding:150px 28px 60px; }
@@ -338,6 +336,11 @@ a { color: inherit; }
   .dots { margin:22px 7px 0; min-width:15px; }
   .how h2 { font-size:48px; line-height:1; }
   .lead { font-size:16px; line-height:24px; }
+}
+@media (min-width:761px) and (max-width:1350px) {
+  /* Keep the right annotations in their own bounded rail, clear of the bowl rim. */
+  .n2 { --x:79%; max-width:21%; }
+  .n4 { --x:82%; max-width:18%; }
 }
 @media (prefers-reduced-motion:reduce) {
   *,*::before,*::after { scroll-behavior:auto!important; animation:none!important; transition-duration:.01ms!important; }
