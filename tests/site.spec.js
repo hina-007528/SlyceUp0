@@ -134,3 +134,38 @@ test('direct section links settle at the requested section', async ({ page }) =>
       .toBeLessThanOrEqual(2);
   }
 });
+
+test('tablet hero keeps desktop alignment and phone keeps a right margin', async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(() => document.fonts.ready);
+  for (const gutter of ['auto','stable']) {
+    await page.evaluate(gutter => {
+      document.documentElement.style.scrollbarGutter = gutter;
+    }, gutter);
+    for (const width of [360,393,430,768,820,900,1024,1280,1350,1351,1366,1440,1920]) {
+      await page.setViewportSize({width,height:747});
+      const layout = await page.evaluate(() => {
+        const available = document.documentElement.clientWidth;
+        const heading = document.querySelector('.hero h1');
+        const phone = document.querySelector('.art .phone').getBoundingClientRect();
+        const copy = document.querySelector('.hero-copy').getBoundingClientRect();
+        const form = document.querySelector('.form').getBoundingClientRect();
+        return {
+          gap: available - phone.right,
+          phoneLeft: phone.left,
+          copyRight: copy.right,
+          lines: Math.round(heading.getBoundingClientRect().height / parseFloat(getComputedStyle(heading).lineHeight)),
+          formBottom: form.bottom,
+          overflow: document.documentElement.scrollWidth > available + 1,
+        };
+      });
+      expect(layout.overflow, `${width}px, gutter ${gutter}`).toBe(false);
+      expect(layout.gap, `${width}px phone margin, gutter ${gutter}`).toBeGreaterThanOrEqual(width > 760 ? 20 : 16);
+      if (width >= 768 && width <= 900) {
+        expect(layout.lines, `${width}px tablet heading, gutter ${gutter}`).toBe(2);
+        expect(layout.copyRight).toBeLessThan(layout.phoneLeft);
+        expect(layout.formBottom).toBeLessThan(523);
+      }
+    }
+  }
+});

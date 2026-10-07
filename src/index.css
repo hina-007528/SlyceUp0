@@ -169,7 +169,7 @@ a { color: inherit; }
   .nav .in { padding-inline:32px; }
   .hero-inner { padding-inline:32px; }
   .hero-copy { width:48%; max-width:48%; }
-  .art { width:52%; right:24px; }
+  .art { width:52%; right:28px; }
   .hero h1 { font-size:clamp(64px,6vw,80px); line-height:.98; }
   .hero .sub { font-size:clamp(22px,2vw,27px); line-height:1.22; }
   .philo-inner,.how-inner { padding-inline:36px; }
@@ -179,6 +179,11 @@ a { color: inherit; }
   .philo-copy .ph-desc-sub { font-size:18px; }
   .stage { width:70%; right:1%; }
   .node p { font-size:11px; }
+}
+@media (min-width:1350px) and (max-width:1440px) {
+  /* Measure the actual page width, excluding any native scrollbar gutter. */
+  .hero { container-type:inline-size; }
+  .art { right:max(-2.5%, calc((var(--content) - 100cqw) / 2 + 28px)); }
 }
 @media (max-width:1050px) and (min-width:901px) {
   .nav .in { gap:24px; }
@@ -310,12 +315,14 @@ a { color: inherit; }
   .n1 { --x:0%; }
 }
 @media (min-width:761px) and (max-width:900px) {
-  .hero-inner { min-height:760px; padding:150px 28px 60px; }
-  .hero-copy { width:48%; max-width:48%; }
-  .art { width:50%; right:24px; }
-  .hero h1 { font-size:clamp(56px,7vw,64px); line-height:.99; }
-  .hero .sub { font-size:20px; line-height:1.25; }
-  .form { width:100%; }
+  .hero-inner { min-height:min(760px,100svh); padding:142px 28px 48px; }
+  .hero-copy { width:52%; max-width:52%; }
+  .art { width:48%; right:28px; }
+  .hero .eyebrow { font-size:11px; line-height:1.35; letter-spacing:3px; white-space:nowrap; }
+  .hero .eyebrow::after { margin-top:12px; }
+  .hero h1 { max-width:100%; margin-top:17px; font-size:clamp(40px,5vw,45px); line-height:1.02; }
+  .hero .sub { margin-top:12px; font-size:19px; line-height:1.22; }
+  .form { width:100%; margin-top:28px; }
   .form .pill { padding-inline:15px; font-size:13px; }
   .philo-inner { min-height:690px; padding:92px 28px 46px; }
   .philo-copy { width:30%; }

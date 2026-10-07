@@ -44,3 +44,9 @@ Remove the mirror/glass background decorations from Philosophy and How It Works.
 **Why:** The user explicitly requested their removal, overriding those decorations in the visual references.
 
 **How to apply:** Do not restore decorative glass in either section when refining the design, including the mobile Philosophy pseudo-elements. This request does not remove the Hero glass or unrelated background objects.
+
+At 768px, keep the Hero's desktop-style side-by-side alignment and two-line headline. The Hero phone mockup must retain visible right-side breathing room at 100% browser zoom.
+
+**Why:** The user reported a three-line tablet heading and inconsistent phone clearance between Chrome and Opera, and asked for desktop-like tablet alignment.
+
+**How to apply:** Preserve the mobile image-first layout, and check phone clearance around responsive breakpoints with both overlay and reserved-space scrollbars.
