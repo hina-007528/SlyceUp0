@@ -34,6 +34,14 @@ try {
     assert.equal(result.croppedPhones, false, `Cropped primary phone at ${width}px`);
     }
     console.log(`PASS all three layouts at ${width}px`);
+    const navbarCentered = await browser.evaluate(`(() => {
+      const header=document.querySelector('header').getBoundingClientRect();
+      const center=(header.top+header.bottom)/2;
+      return [...document.querySelectorAll('.logo img,.nav .pill,.burger,.burger i,.nav ul a')]
+        .filter(el=>{const style=getComputedStyle(el);return style.display!=='none'&&style.visibility!=='hidden'&&el.getBoundingClientRect().height>0;})
+        .every(el=>{const r=el.getBoundingClientRect();return Math.abs((r.top+r.bottom)/2-center)<=1;});
+    })()`);
+    assert.equal(navbarCentered, true, `Navbar elements not vertically centered at ${width}×${height}`);
     if (width >= 761 && width <= 1350) {
       const clearOfBowl = await browser.evaluate(`(() => {
         const bowl=document.querySelector('.bowlp').getBoundingClientRect();

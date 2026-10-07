@@ -32,3 +32,9 @@ Preserve the approved desktop philosophy composition when correcting tablet anno
 **Why:** The user explicitly confirmed the 1440×747 layout is “perfect” and scoped the tablet correction to the right-side Preparation and You nodes.
 
 **How to apply:** Keep desktop and mobile unchanged for this correction; adapt the right annotation columns and their connectors within tablet-specific rules.
+
+Center the navbar logo, navigation text, CTA, and menu toggle vertically within the whole header at every screen size.
+
+**Why:** The user explicitly requested equal space above and below the navbar content, superseding the earlier reference’s bottom-heavy positioning.
+
+**How to apply:** Preserve the existing header dimensions but do not restore the older desktop/mobile top offsets when matching earlier screenshots.
