@@ -1,0 +1,972 @@
+You are taking over an existing website that was originally built from a Figma design.
+
+You are acting as a:
+
+* Senior Frontend Engineer
+* Senior UI/UX Engineer
+* Responsive Web Specialist
+* Motion Designer
+* Performance Engineer
+* Production QA Engineer
+
+The current implementation has been rejected by the client.
+
+The client's exact feedback is:
+
+“I need someone to build a launch ready website and not this. This is not responsive, no proper scroll experience, does not match the text layout, width is way off and Hina, I am looking for a more senior developer and you seems to not have that experience.”
+
+Treat this feedback seriously.
+
+DO NOT simply make a few CSS changes.
+
+DO NOT assume the current implementation is correct.
+
+Your responsibility is to inspect the existing implementation, understand the original Figma design, identify the structural problems, rebuild/fix the implementation where necessary, and test it thoroughly until it is genuinely launch-ready.
+
+============================================================
+
+1. FIRST: UNDERSTAND THE EXISTING PROJECT
+   ============================================================
+
+Before changing anything, inspect the entire existing codebase.
+
+Understand:
+
+* Framework
+* Build system
+* Routing
+* Component architecture
+* CSS architecture
+* Existing responsive system
+* Assets
+* Fonts
+* Images
+* Icons
+* Animations
+* Navbar
+* All 3 page sections
+* Background implementation
+* Scroll behavior
+* Existing breakpoints
+* Fixed/absolute positioning
+* Dependencies
+* Performance problems
+* Console errors
+* React warnings
+* Existing hacks/workarounds
+
+Do not immediately start changing CSS.
+
+First identify the ROOT CAUSES of the client's complaints.
+
+Create an internal understanding of:
+
+1. What is structurally wrong
+2. What is visually wrong
+3. What is responsive wrong
+4. What is causing the scroll problems
+5. What is causing width problems
+6. What is causing text-layout differences
+7. What can be fixed
+8. What should be rebuilt
+
+If the current structure is bad, refactor it instead of adding more CSS patches.
+
+============================================================
+2. FIGMA IS THE VISUAL SOURCE OF TRUTH
+======================================
+
+Use the connected Figma/MCP design as the primary visual reference.
+
+Inspect the Figma design carefully before rebuilding.
+
+Analyze:
+
+* Overall page structure
+* Navigation/header
+* All 3 sections
+* Typography
+* Font family
+* Font sizes
+* Font weights
+* Line heights
+* Letter spacing
+* Colors
+* Spacing
+* Borders
+* Border radius
+* Shadows
+* Gradients
+* Decorative elements
+* Illustrations
+* Images
+* Icons
+* Layer hierarchy
+* Z-index relationships
+* Section heights
+* Content widths
+* Text widths
+* Desktop layout
+* Mobile layout
+* Intermediate behavior
+* Animation opportunities
+
+The page contains:
+
+* One sticky navigation bar
+* Three main sections/portions
+
+Do not assume desktop and mobile are scaled versions of each other.
+
+The Figma design has different positioning, composition and visual behavior at different sizes.
+
+============================================================
+3. MOST IMPORTANT: FIX THE PAGE WIDTH
+=====================================
+
+The client specifically said:
+
+“width is way off”
+
+Treat this as one of the highest-priority problems.
+
+Establish a professional layout/container system.
+
+Do NOT use random fixed widths.
+
+Use a structure such as:
+
+Full-width section
+↓
+Responsive outer padding
+↓
+Centered content container
+↓
+Controlled max-width
+↓
+Section-specific layout
+
+Determine the actual values from the Figma design.
+
+The content must:
+
+* remain centered
+* have correct left/right margins
+* not become excessively wide on large screens
+* not become too narrow
+* not touch screen edges on mobile
+* not overflow
+* not create unexplained empty space
+
+Check especially:
+
+320px
+375px
+390px
+430px
+600px
+768px
+820px
+834px
+900px
+1024px
+1280px
+1366px
+1440px
+1536px
+1600px
+1920px
+2560px
+
+============================================================
+4. FIX THE TEXT LAYOUT
+======================
+
+The client specifically said:
+
+“does not match the text layout”
+
+Do not treat this as simply a font-size issue.
+
+Compare the Figma and implementation for:
+
+* heading width
+* paragraph width
+* text container width
+* line wrapping
+* font family
+* font weight
+* font size
+* line height
+* letter spacing
+* text alignment
+* spacing between heading and paragraph
+* spacing between paragraph and CTA
+* responsive typography
+
+The text should visually occupy the same composition as Figma.
+
+Do NOT use unnecessary <br> tags just to force line breaks.
+
+Use proper text container widths and responsive typography.
+
+Use clamp() where appropriate.
+
+Typography must adapt naturally across:
+
+mobile
+tablet
+laptop
+desktop
+large desktop
+
+============================================================
+5. RESPONSIVENESS — REBUILD IT PROPERLY
+=======================================
+
+The client said:
+
+“This is not responsive.”
+
+This means the existing responsive implementation is not acceptable.
+
+Do not only fix mobile.
+
+Build a complete responsive system.
+
+Test at:
+
+320px
+360px
+375px
+390px
+414px
+430px
+480px
+600px
+768px
+820px
+834px
+900px
+1024px
+1280px
+1366px
+1440px
+1536px
+1600px
+1920px
+2560px
+
+Check every viewport for:
+
+* horizontal overflow
+* clipped content
+* overlapping elements
+* broken positioning
+* text collisions
+* incorrect section heights
+* images extending outside sections
+* excessive whitespace
+* incorrect typography
+* broken navbar
+* broken buttons
+* background decorations covering content
+* animation problems
+
+============================================================
+6. DO NOT BUILD ONLY DESKTOP + MOBILE
+=====================================
+
+Do NOT use a simplistic:
+
+Desktop
++
+Mobile
+
+approach.
+
+The design needs:
+
+Mobile
+→ Large Mobile
+→ Tablet
+→ Large Tablet
+→ Small Laptop
+→ Laptop
+→ Desktop
+→ Large Desktop
+→ Ultra-wide
+
+Use modern CSS:
+
+* clamp()
+* min()
+* max()
+* minmax()
+* CSS Grid
+* Flexbox
+* container queries when useful
+* aspect-ratio
+* CSS custom properties
+* responsive units
+
+Avoid excessive fixed pixel values.
+
+============================================================
+7. DESKTOP AND MOBILE ARE DIFFERENT DESIGNS
+===========================================
+
+Respect the actual Figma compositions.
+
+If desktop has:
+
+* horizontal layouts
+* side illustrations
+* large decorative elements
+* large spacing
+* floating objects
+
+and mobile has:
+
+* stacked content
+* repositioned illustrations
+* different decorative placement
+* smaller spacing
+* different typography
+* different alignment
+
+implement those differences intentionally.
+
+DO NOT simply:
+
+transform: scale()
+
+the desktop design to fit mobile.
+
+That is not acceptable.
+
+============================================================
+8. TABLET / INTERMEDIATE RESPONSIVENESS
+=======================================
+
+This is extremely important.
+
+The website must look intentionally designed between the provided desktop and mobile references.
+
+At tablet/intermediate sizes:
+
+* prevent overlap
+* prevent clipping
+* maintain hierarchy
+* adjust typography
+* reposition decorations
+* resize images
+* modify gaps
+* modify section heights
+* modify navigation behavior
+* change layouts where necessary
+
+Do not wait until mobile before changing layout.
+
+============================================================
+9. STICKY NAVBAR
+================
+
+The navbar must be genuinely production-ready.
+
+Requirements:
+
+* position: sticky
+* top: 0
+* appropriate z-index
+* remains visible while scrolling
+* desktop responsive layout
+* mobile responsive layout
+* mobile menu where required
+* smooth transitions
+* keyboard accessible
+* focus states
+* correct background/overlay behavior
+
+The navbar must never:
+
+* cover content
+* jump during scrolling
+* create layout shifts
+* break on tablets
+* overlap mobile content
+
+If Figma shows a transparent/overlay navbar, implement that behavior correctly.
+
+============================================================
+10. FIX THE SCROLL EXPERIENCE
+=============================
+
+The client specifically mentioned:
+
+“no proper scroll experience”
+
+Audit the entire page.
+
+The page should feel natural and premium while scrolling.
+
+Check:
+
+* section transitions
+* section heights
+* navbar behavior
+* sticky positioning
+* overflow
+* nested scroll containers
+* horizontal scrolling
+* scrollbars
+* scroll-based animations
+* content reveal
+* spacing between sections
+* viewport-height sections
+
+DO NOT use aggressive scroll-jacking.
+
+Normal browser scrolling must remain natural.
+
+If scroll-based motion is used, it must be subtle and performant.
+
+The page should never feel:
+
+* stuck
+* jumpy
+* laggy
+* over-animated
+* disconnected between sections
+
+============================================================
+11. CRITICAL BACKGROUND REQUIREMENT
+===================================
+
+The Figma design contains background images.
+
+DO NOT use the complete Figma background images as actual website backgrounds.
+
+DO NOT do:
+
+background-image: url(full-background.png);
+
+DO NOT use:
+
+* full Figma screenshots
+* flattened section screenshots
+* complete background screenshots
+* screenshot overlays
+
+Instead, RECREATE the background as a responsive system of individual elements.
+
+The Figma background may contain:
+
+* shapes
+* gradients
+* glows
+* circles
+* lines
+* blobs
+* waves
+* particles
+* cards
+* decorative objects
+* illustrations
+* floating elements
+* abstract geometry
+* shadows
+* lighting effects
+
+These should be separate layers/components whenever possible.
+
+Use:
+
+* HTML
+* CSS
+* CSS gradients
+* pseudo-elements
+* SVG
+* React components
+* CSS transforms
+* clip-path
+* masks
+* filters
+* responsive positioning
+* CSS animations
+
+============================================================
+12. USE PROVIDED ASSETS INTELLIGENTLY
+=====================================
+
+If separate images/assets are provided for objects inside the Figma background, use them as individual elements.
+
+Do NOT combine them into one background image.
+
+Each important decorative element should be independently controllable.
+
+It should be possible to:
+
+* animate it
+* resize it
+* reposition it
+* hide it
+* change opacity
+* change rotation
+* change movement speed
+
+depending on viewport.
+
+Example architecture:
+
+Section
+├── Background
+│    ├── Gradient
+│    ├── Glow
+│    ├── Shape
+│    ├── Illustration
+│    └── Floating Objects
+│
+└── Content
+
+============================================================
+13. ANIMATED RESPONSIVE BACKGROUND
+==================================
+
+The background should feel premium and modern.
+
+Use subtle motion:
+
+* floating
+* slow movement
+* gradient movement
+* glow animation
+* subtle rotation
+* gentle scaling
+* opacity transitions
+* lightweight parallax
+* particles only if appropriate
+
+Animations must be:
+
+* smooth
+* subtle
+* responsive
+* GPU-friendly
+* lightweight
+* non-distracting
+
+Prefer CSS animations.
+
+Use JavaScript only where it provides real value.
+
+Respect:
+
+prefers-reduced-motion
+
+When reduced motion is enabled, provide a simplified/static experience.
+
+============================================================
+14. COMPONENT ARCHITECTURE
+==========================
+
+Use clean, reusable components.
+
+A reasonable structure could be:
+
+components/
+Navbar
+Page
+SectionOne
+SectionTwo
+SectionThree
+SectionOneBackground
+SectionTwoBackground
+SectionThreeBackground
+BackgroundDecorations
+AnimatedShape
+ResponsiveImage
+etc.
+
+Do not create one huge component.
+
+Do not duplicate the entire page for desktop and mobile.
+
+Reuse components and use responsive CSS wherever possible.
+
+============================================================
+15. CODE QUALITY
+================
+
+Write code like a senior engineer.
+
+Requirements:
+
+* clean
+* readable
+* maintainable
+* scalable
+* reusable
+* semantic
+* modular
+* no unnecessary duplication
+* no hacks
+* no random magic numbers
+* no excessive inline styles
+* no unnecessary !important
+* meaningful component names
+* meaningful CSS classes
+* reusable CSS variables
+* logical breakpoints
+
+Remove bad implementation patterns such as:
+
+* excessive absolute positioning
+* arbitrary negative margins
+* unnecessary transforms
+* fixed heights that break content
+* hardcoded line breaks
+* viewport-specific hacks
+* duplicated desktop/mobile markup
+* giant background images
+* JavaScript-based positioning when CSS is sufficient
+* CSS overrides fighting each other
+
+If a component requires many hacks to work, redesign the component structure.
+
+============================================================
+16. PERFORMANCE
+===============
+
+This must be launch-ready.
+
+Optimize:
+
+* JavaScript
+* images
+* animations
+* rendering
+* component re-renders
+* DOM complexity
+* dependencies
+* CSS
+* asset loading
+
+Use:
+
+* lazy loading
+* responsive image sizing
+* modern image formats
+* optimized assets
+* transform/opacity animations
+* code splitting when appropriate
+
+Avoid:
+
+* huge dependencies
+* huge background images
+* expensive filters
+* excessive blur
+* continuous expensive animations
+* layout-triggering animations
+* unnecessary JavaScript
+
+============================================================
+17. ACCESSIBILITY
+=================
+
+Implement:
+
+* semantic HTML
+* proper heading hierarchy
+* alt text
+* accessible buttons
+* keyboard navigation
+* visible focus states
+* accessible navigation
+* proper contrast
+* aria-label where needed
+* reduced-motion support
+* usable mobile touch targets
+
+============================================================
+18. VISUAL ACCURACY
+===================
+
+Compare the website directly against Figma.
+
+Check:
+
+* navbar height
+* content width
+* section heights
+* typography
+* text wrapping
+* spacing
+* alignment
+* image sizes
+* image positions
+* buttons
+* borders
+* shadows
+* gradients
+* background composition
+* decorative elements
+* responsive layout
+
+The goal is:
+
+Figma visual accuracy
++
+real responsive engineering
++
+production-quality implementation.
+
+Do not sacrifice maintainability for pixel-level hacks.
+
+============================================================
+19. FINAL QA — DO NOT SKIP THIS
+===============================
+
+After implementation, perform a complete visual QA pass.
+
+Test:
+
+MOBILE
+
+320 × 800
+360 × 800
+375 × 812
+390 × 844
+414 × 896
+430 × 932
+
+TABLET
+
+600 × 900
+768 × 1024
+820 × 1180
+834 × 1194
+900 × 1200
+1024 × 768
+
+DESKTOP
+
+1280 × 720
+1366 × 768
+1440 × 900
+1536 × 864
+1600 × 900
+1920 × 1080
+2560 × 1440
+
+At every size inspect:
+
+* page width
+* horizontal overflow
+* text wrapping
+* section height
+* content alignment
+* navbar
+* buttons
+* images
+* background
+* decorative elements
+* animation
+* scrolling
+* spacing
+
+============================================================
+20. AUTOMATED + MANUAL QA
+=========================
+
+Do not rely only on visual inspection.
+
+Run the project's available:
+
+* build
+* lint
+* type checks
+* tests
+
+Fix all relevant errors and warnings.
+
+Then perform visual/browser QA.
+
+Check the browser console for:
+
+* errors
+* warnings
+* failed assets
+* failed network requests
+* React warnings
+
+There should be no avoidable console errors.
+
+============================================================
+21. ITERATIVE DEVELOPMENT PROCESS
+=================================
+
+Do NOT stop after the first implementation.
+
+Work through these passes:
+
+PASS 1:
+Audit the existing code.
+
+PASS 2:
+Fix page/container architecture.
+
+PASS 3:
+Fix width and spacing.
+
+PASS 4:
+Fix typography and text layout.
+
+PASS 5:
+Fix desktop layout.
+
+PASS 6:
+Fix mobile layout.
+
+PASS 7:
+Fix tablet/intermediate layouts.
+
+PASS 8:
+Fix navbar.
+
+PASS 9:
+Fix scrolling.
+
+PASS 10:
+Fix backgrounds and decorative elements.
+
+PASS 11:
+Fix animations.
+
+PASS 12:
+Optimize performance.
+
+PASS 13:
+Accessibility review.
+
+PASS 14:
+Run build/lint/type checks.
+
+PASS 15:
+Visual QA at every required viewport.
+
+PASS 16:
+Fix everything discovered during QA.
+
+PASS 17:
+Perform one final complete review.
+
+============================================================
+22. DO NOT CLAIM SUCCESS TOO EARLY
+==================================
+
+Do not tell me:
+
+“Done”
+
+after making a few CSS changes.
+
+The project is only complete when:
+
+* the layout matches Figma
+* width is correct
+* text layout is correct
+* mobile works
+* tablet works
+* desktop works
+* large desktop works
+* scrolling feels natural
+* navbar works
+* backgrounds are responsive
+* animations are smooth
+* no horizontal overflow exists
+* no major console errors exist
+* build succeeds
+* responsive QA has been completed
+
+If something is still wrong, fix it.
+
+============================================================
+23. FINAL QUALITY BAR
+=====================
+
+The final website should look like it was built by:
+
+Senior Frontend Engineer
++
+Senior UI/UX Designer
++
+Motion Designer
++
+Performance Engineer
+
+It must NOT look like:
+
+* a basic Figma-to-code conversion
+* an AI-generated template
+* a static screenshot
+* a desktop layout squeezed into mobile
+* a page that only works at one resolution
+* a collection of CSS hacks
+
+It should feel:
+
+* premium
+* modern
+* polished
+* responsive
+* fast
+* interactive
+* visually accurate
+* smooth
+* accessible
+* maintainable
+* production-ready
+
+============================================================
+24. MOST IMPORTANT REQUIREMENTS
+===============================
+
+PRIORITY 1:
+Fix the actual layout architecture.
+
+PRIORITY 2:
+Match Figma content width and text layout.
+
+PRIORITY 3:
+Make the website genuinely responsive across ALL screen sizes.
+
+PRIORITY 4:
+Fix the scrolling experience.
+
+PRIORITY 5:
+Make the navbar properly sticky and responsive.
+
+PRIORITY 6:
+Rebuild background visuals as responsive individual elements rather than flattened background images.
+
+PRIORITY 7:
+Add subtle, professional animation.
+
+PRIORITY 8:
+Optimize performance.
+
+PRIORITY 9:
+Run complete QA.
+
+PRIORITY 10:
+Do not stop until the implementation is launch-ready.
+
+Start now by auditing the existing project and the Figma design.
+
+Do not rewrite everything blindly.
+
+First identify the structural problems, then fix the highest-impact problems in the correct order.
+
+Use professional senior-level engineering judgment throughout the entire process.
