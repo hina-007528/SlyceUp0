@@ -124,3 +124,13 @@ test('smooth anchor scrolling and glass-free section backgrounds', async ({ page
   await page.emulateMedia({ reducedMotion:'reduce' });
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
 });
+
+test('direct section links settle at the requested section', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion:'no-preference' });
+  for (const id of ['philosophy','how']) {
+    await page.goto(`/#${id}`);
+    await page.evaluate(() => document.fonts.ready);
+    await expect.poll(()=>page.locator(`#${id}`).evaluate(el=>Math.abs(el.getBoundingClientRect().top)))
+      .toBeLessThanOrEqual(2);
+  }
+});
