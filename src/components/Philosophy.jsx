@@ -7,16 +7,17 @@ export default function Philosophy() {
       <svg className="layer leafsh bot-l" viewBox="0 0 200 260" aria-hidden="true"><use href="#lf"/></svg>
       <div className="layer rays"></div>
       
+      <div className="philo-inner">
       <div className="philo-copy">
         <p className="eyebrow philo-eyebrow">OUR PHILOSOPHY</p>
-        <h2 id="ph-h2">Food is a<br />relationship.</h2>
-        <p>Ayurveda looks beyond<br />what is on the plate.</p>
-        <p>The same meal is shaped by<br />what it is, how it is prepared,<br />the context around it,<br />and you.</p>
+          <h2 id="ph-h2">Food is a relationship.</h2>
+          <p>Ayurveda looks beyond what is on the plate.</p>
+          <p>The same meal is shaped by what it is, how it is prepared, the context around it, and you.</p>
 
         <hr className="divider" />
 
-        <p className="ph-desc-sub">SlyceUp translates this ancient<br />wisdom into clear, personal<br />understanding for everyday life.</p>
-        <p className="ph-foot">SAME FOOD.<br />A DEEPER UNDERSTANDING.</p>
+          <p className="ph-desc-sub">SlyceUp translates this ancient wisdom into clear, personal understanding for everyday life.</p>
+          <p className="ph-foot">SAME FOOD. A DEEPER UNDERSTANDING.</p>
       </div>
 
       <div className="stage">
@@ -59,6 +60,7 @@ export default function Philosophy() {
           <b>You</b>
           <p>Your unique nature<br />(prakriti) and current<br />state shape how a meal<br />affects you.</p>
         </div>
+      </div>
       </div>
     </section>
   );

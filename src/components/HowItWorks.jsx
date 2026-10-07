@@ -1,130 +1,124 @@
-import { useState, useEffect, useRef } from 'react';
-import imgCapture from '../assets/img/step-capture.webp';
-import imgUnderstand from '../assets/img/step-understand.webp';
-import imgLearn from '../assets/img/step-learn.webp';
+import { useState } from 'react';
+import imgCapture from '../assets/img/figma-step-capture.webp';
+import imgUnderstand from '../assets/img/figma-step-understand.webp';
+import imgLearn from '../assets/img/figma-step-learn.webp';
+import mobileCapture from '../assets/img/mobile-capture.webp';
+import mobileUnderstand from '../assets/img/mobile-understand.webp';
+import mobileLearn from '../assets/img/mobile-learn.webp';
 
-const content = [
-  { 
-    titleDesktop: 'Capture what you actually eat.', 
-    titleMobile: 'A photo is enough to begin.', 
-    lead: 'A photo is enough to begin. SlyceUp reads your meal just as it is \u2014 real, simple and in your everyday life.',
-    alt: 'Camera screen framing a bowl of ramen',
-    img: imgCapture,
-    label: 'Capture'
+const steps = [
+  {
+    title: 'Capture what you actually eat.',
+    titleMobile: 'A photo\nis enough to begin.',
+    lead: 'A photo is enough to begin. SlyceUp reads your meal just as it is — real, simple and in your everyday life.',
+    caption: 'A photo is enough to begin.',
+    alt: 'SlyceUp camera view framing a bowl of ramen',
+    image: imgCapture,
+    mobileImage: mobileCapture,
+    label: 'Capture',
   },
-  { 
-    titleDesktop: 'Understand what shaped your meal.', 
-    titleMobile: 'Understand what shaped your meal.', 
+  {
+    title: 'Understand what shaped your meal.',
+    titleMobile: 'Understand what\nshaped your meal.',
     lead: 'See how food, preparation, context and you come together to form a personal reading.',
-    alt: "Ramen meal detail: this meal's imprint and what shaped it",
-    img: imgUnderstand,
-    label: 'Understand'
+    caption: 'See the imprint shaped by food, preparation, context and you.',
+    alt: 'SlyceUp meal reading with context and details for ramen',
+    image: imgUnderstand,
+    mobileImage: mobileUnderstand,
+    label: 'Understand',
   },
-  { 
-    titleDesktop: 'See what changes over time.', 
-    titleMobile: 'See what changes over time.', 
+  {
+    title: 'See what changes over time.',
+    titleMobile: 'See what changes\nover time.',
     lead: 'SlyceUp notices your impact and patterns over time, helping you learn what works for you.',
-    alt: 'Insights screen showing the food traditions behind your meals',
-    img: imgLearn,
-    label: 'Learn'
-  }
+    caption: 'Notice impact and patterns over time.',
+    alt: 'SlyceUp insights screen showing meal patterns over time',
+    image: imgLearn,
+    mobileImage: mobileLearn,
+    label: 'Learn',
+  },
 ];
 
 export default function HowItWorks() {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const boardRef = useRef(null);
-
-  useEffect(() => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        if (boardRef.current) boardRef.current.classList.add('ready');
-      });
-    });
-  }, []);
-
-  useEffect(() => {
-    let timer;
-    const reducedMotion = typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion:reduce)').matches : false;
-    
-    if (!reducedMotion && !isHovered) {
-      timer = setInterval(() => {
-        setActiveIdx(prev => (prev + 1) % 3);
-      }, 7000);
-    }
-    
-    return () => clearInterval(timer);
-  }, [isHovered]);
-
-  const activeContent = content[activeIdx];
-  const order = [0, 1, 2].filter(i => i !== activeIdx);
-  const positions = [0, 0, 0];
-  positions[activeIdx] = 0;
-  positions[order[0]] = 1;
-  positions[order[1]] = 2;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeStep = steps[activeIndex];
+  const otherSteps = steps.filter((_, index) => index !== activeIndex);
 
   return (
-    <section className="how" id="how" aria-labelledby="hh">
-      <div 
-        className="board" 
-        id="board" 
-        ref={boardRef}
-        onPointerEnter={() => setIsHovered(true)}
-        onPointerLeave={() => setIsHovered(false)}
-        onFocus={() => setIsHovered(true)}
-      >
-        <svg className="layer leafsh" viewBox="0 0 200 260" aria-hidden="true"><use href="#lf"/></svg>
-        <div className="layer rays"></div>
-        <div className="layer cast"></div>
-        <div className="layer glass"></div>
-        <div className="layer napkin"></div>
-        <div className="layer stick"></div>
-        <p className="hiw-label">HOW IT WORKS</p>
-        
-        <ol className="steps" aria-label="How it works">
-          {content.map((item, idx) => (
-            <li key={idx} className={idx < 2 ? "dots-container" : ""} style={idx < 2 ? { display: 'contents' } : {}}>
-              <button 
-                className="step" 
-                aria-current={activeIdx === idx} 
-                onClick={() => setActiveIdx(idx)}
-              >
-                <b>0{idx + 1}</b>{item.label}
-              </button>
-              {idx < 2 && <span className="dots" aria-hidden="true"></span>}
-            </li>
-          ))}
-        </ol>
+    <section className="how" id="how" aria-labelledby="how-heading">
+      <svg className="layer leafsh" viewBox="0 0 200 260" aria-hidden="true"><use href="#lf" /></svg>
+      <div className="layer rays" aria-hidden="true" />
+      <div className="layer cast" aria-hidden="true" />
+      <div className="layer glass" aria-hidden="true" />
+      <div className="layer napkin" aria-hidden="true" />
+      <div className="layer stick" aria-hidden="true" />
 
-        <h2 id="hh" aria-live="polite">
-          <span className="d">{activeContent.titleDesktop}</span>
-          <span className="m">{activeContent.titleMobile}</span>
-        </h2>
-        <p className="lead">{activeContent.lead}</p>
-        
-        {content.map((item, idx) => {
-          const pos = positions[idx];
-          const isCurrent = pos === 0;
-          return (
-            <button 
-              key={idx}
-              className="ph" 
-              data-pos={pos}
-              tabIndex={isCurrent ? -1 : 0}
-              aria-label={isCurrent ? `Current step ${idx + 1}` : `Show step ${idx + 1}: ${item.label}`}
-              onClick={() => setActiveIdx(idx)}
-            >
-              <img src={item.img} width="560" height="1212" alt={item.alt} loading="lazy" />
-            </button>
-          );
-        })}
+      <div className="how-inner">
+        <div className="phone-feature">
+          <picture className="main-phone" data-step={activeIndex}>
+            <source media="(max-width: 760px)" srcSet={activeStep.mobileImage} />
+            <img
+            src={activeStep.image}
+            width="280"
+            height="576"
+            alt={activeStep.alt}
+            key={activeStep.image}
+            loading="lazy"
+          />
+          </picture>
+        </div>
 
-        {content.map((item, idx) => (
-          <div key={`cap-${idx}`} className="cap" data-pos={positions[idx]} aria-hidden={positions[idx] === 0}>
-            <h3><i>0{idx + 1}</i>{item.label}</h3>
-            <p>{idx === 0 ? 'A photo is enough to begin.' : idx === 1 ? 'See the imprint shaped by food, preparation, context and you.' : 'Notice impact and patterns over time.'}</p>
+        <div className="how-copy">
+          <p className="hiw-label">How it works</p>
+          <ol className="steps" aria-label="How it works">
+            {steps.map((step, index) => (
+              <li key={step.label}>
+                <button
+                  className="step"
+                  type="button"
+                  aria-current={activeIndex === index ? 'step' : undefined}
+                  aria-pressed={activeIndex === index}
+                  onClick={() => setActiveIndex(index)}
+                >
+                  <b>0{index + 1}</b>
+                  {step.label}
+                </button>
+                {index < steps.length - 1 && <span className="dots" aria-hidden="true" />}
+              </li>
+            ))}
+          </ol>
+          <h2 id="how-heading" aria-live="polite">
+            <span className="desktop-title">{activeStep.title}</span>
+            <span className="mobile-title">{activeStep.titleMobile}</span>
+          </h2>
+          <p className="lead">{activeStep.lead}</p>
+
+          <div className="previews" aria-label="Explore the other steps">
+            {otherSteps.map((step) => {
+              const number = steps.indexOf(step);
+              return (
+                <button
+                  className="preview"
+                  type="button"
+                  key={step.label}
+                  onClick={() => setActiveIndex(number)}
+                  aria-label={`Show step ${number + 1}: ${step.label}. ${step.caption}`}
+                >
+                  <span className="preview-phone">
+                    <picture>
+                      <source media="(max-width: 760px)" srcSet={step.mobileImage} />
+                      <img src={step.image} width="280" height="576" alt="" loading="lazy" />
+                    </picture>
+                  </span>
+                  <span className="preview-caption">
+                    <strong><i>0{number + 1}</i>{step.label}</strong>
+                    <span>{step.caption}</span>
+                  </span>
+                </button>
+              );
+            })}
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );

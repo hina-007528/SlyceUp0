@@ -1,0 +1,1 @@
+- [Design constraints](design-constraints.md) — SlyceUp backgrounds must use independent responsive layers, never flattened Figma frame images.

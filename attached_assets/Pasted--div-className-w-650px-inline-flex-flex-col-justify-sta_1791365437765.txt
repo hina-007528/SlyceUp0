@@ -1,0 +1,26 @@
+<div className="w-[650px] inline-flex flex-col justify-start items-start gap-10">
+  <div className="self-stretch flex flex-col justify-start items-start gap-5">
+    <div className="self-stretch justify-start text-neutral-700 text-sm font-semibold font-['Inter'] tracking-[4.30px]">THE PHILOSOPHY BEHIND SLYCEUP</div>
+    <div className="w-14 h-[1.20px] bg-neutral-700/75" />
+    <div className="self-stretch flex flex-col justify-start items-start gap-5">
+      <div className="self-stretch h-40 relative">
+        <div className="w-[650px] left-0 top-0 absolute justify-start text-zinc-800 text-8xl font-normal font-['Newsreader'] leading-[83px]">See what your</div>
+        <div className="w-[650px] left-0 top-[83px] absolute justify-start text-zinc-800 text-8xl font-normal font-['Newsreader'] leading-[83px]">meal may reveal.</div>
+      </div>
+      <div className="w-[610px] justify-start text-neutral-700 text-3xl font-normal font-['Inter'] leading-8">Food, context, and timing shape<br/>how it may feel.</div>
+    </div>
+  </div>
+  <div className="w-[612px] flex flex-col justify-center items-start gap-3">
+    <div className="self-stretch h-14 pl-5 pr-1 py-1.5 bg-white/70 rounded-3xl outline outline-1 outline-offset-[-1px] outline-stone-300/60 inline-flex justify-between items-center">
+      <div className="w-52 flex justify-center items-center gap-4">
+        <div className="flex-1 self-stretch relative opacity-80 overflow-hidden">
+          <div className="w-4 h-3.5 left-[2.75px] top-[5.21px] absolute outline outline-2 outline-offset-[-0.95px] outline-gray-500" />
+          <div className="w-4 h-1.5 left-[2.75px] top-[7.29px] absolute outline outline-2 outline-offset-[-0.95px] outline-gray-500" />
+        </div>
+        <div className="justify-start text-gray-500 text-lg font-normal font-['Manrope']">you@yourname.com</div>
+      </div>
+      <div className="h-12 px-6 py-2.5 bg-red-400 rounded-3xl flex justify-center items-center gap-2.5">
+        <div className="text-center justify-start text-white text-base font-bold font-['Manrope'] leading-5">Request early access</div>
+      </div>
+    </div>
+...
