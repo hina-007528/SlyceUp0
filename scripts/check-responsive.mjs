@@ -34,6 +34,24 @@ try {
     assert.equal(result.croppedPhones, false, `Cropped primary phone at ${width}px`);
     }
     console.log(`PASS all three layouts at ${width}px`);
+    if (width <= 760) {
+      const philosophy = await browser.evaluate(`(() => {
+        const copy=document.querySelector('.philo-copy');
+        const r=copy.getBoundingClientRect(),stage=document.querySelector('.stage').getBoundingClientRect();
+        return {
+          visible:[...copy.querySelectorAll('h2,p')].every(el=>el.getBoundingClientRect().height>0),
+          belowDiagram:r.top>=stage.bottom,
+          contained:r.bottom<=document.querySelector('.philo').getBoundingClientRect().bottom,
+          text:copy.innerText
+        };
+      })()`);
+      assert.equal(philosophy.visible, true, `Mobile philosophy text hidden at ${width}px`);
+      assert.equal(philosophy.belowDiagram, true, `Mobile philosophy text must follow the diagram at ${width}px`);
+      assert.equal(philosophy.contained, true, `Mobile philosophy text extends beyond its section at ${width}px`);
+      for (const phrase of ['Food is a relationship.', 'Ayurveda looks beyond', 'The same meal is shaped', 'SlyceUp translates', 'SAME FOOD. A DEEPER UNDERSTANDING.']) {
+        assert.ok(philosophy.text.includes(phrase), `Missing mobile philosophy text: ${phrase}`);
+      }
+    }
     await browser.evaluate('document.getElementById("how").scrollIntoView({behavior:"instant"})');
     assert.equal(await browser.evaluate('document.querySelector(".steps").getBoundingClientRect().top >= document.querySelector("header").getBoundingClientRect().bottom'), true, `Steps hidden behind sticky header at ${width}px`);
     if (width === 1440 || width === 393) {

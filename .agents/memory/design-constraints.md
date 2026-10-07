@@ -20,3 +20,9 @@ Treat the latest desktop and mobile screenshots as the primary visual source of 
 **Why:** The user explicitly states that the latest Figma reference wins over conflicting implementation details.
 
 **How to apply:** Compare each screen variant to its corresponding desktop or mobile reference; do not assume that all uploaded phone cutouts are interchangeable.
+
+Mobile philosophy must keep the bowl and four nodes first, followed by the entire desktop “Food is a relationship” philosophy text, like the hero’s image-first/text-below order.
+
+**Why:** The user explicitly requested the full copy below the diagram even though the supplied mobile image itself shows only the diagram.
+
+**How to apply:** Do not hide the philosophy copy on mobile to match an image-only reference; preserve all paragraphs, the divider, and the closing statement beneath the scene.

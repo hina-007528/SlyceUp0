@@ -32,16 +32,16 @@ export default function Philosophy() {
           <path d="M80.4 55.8 Q74 55.8 67 51" /><circle cx="80.4" cy="55.8" r=".55" />
         </svg>
 
-        {/* mobile + tablet lines (viewBox 100x95) */}
-        <svg className="lines sm" viewBox="0 0 100 95" aria-hidden="true">
-          <path d="M 22 16 C 30 16 34 25 34 40" /><circle cx="22" cy="16" r="1.1" />
-          <path d="M 66 16 C 58 16 64 25 64 39" /><circle cx="66" cy="16" r="1.1" />
-          <path d="M 25 88 C 30 88 34 81 34 75" /><circle cx="25" cy="88" r="1.1" />
-          <path d="M 71 88 C 65 88 66 81 66 75" /><circle cx="71" cy="88" r="1.1" />
+        {/* Mobile diagram lines use the natural 393×363 composition. */}
+        <svg className="lines sm" viewBox="0 0 393 363" aria-hidden="true">
+          <path d="M111 55 C126 59 141 77 145 97" /><circle cx="111" cy="55" r="1.8" />
+          <path d="M274 54 C257 60 244 76 239 92" /><circle cx="274" cy="54" r="1.8" />
+          <path d="M97 287 C113 281 126 266 130 251" /><circle cx="97" cy="287" r="1.8" />
+          <path d="M292 287 C277 281 270 267 266 253" /><circle cx="292" cy="287" r="1.8" />
         </svg>
 
         <div className="node n1">
-          <span className="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 44V20M24 28c-9 0-13-5-13-13 9 0 13 5 13 13zM24 24c0-7 4-11 13-11 0 8-4 12-13 11" /></svg></span>
+          <span className="ico"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 44V20M24 28c-9 0-13-5-13-13 9 0 13 5 13 13zM24 24c0-7 4-11 13-11 0 8-4 12-13 11" /><path className="sprout-detail" d="M24 20c-7-1-10-5-10-11 7 0 10 4 10 11zM24 17c1-7 5-10 11-10 0 7-4 10-11 10zM24 35c-7 0-10-4-10-10 7 0 10 4 10 10zM24 31c1-7 5-10 11-10 0 7-4 10-11 10z" /></svg></span>
           <b>Food</b>
           <p>Its natural qualities<br />and how it combines<br />with other foods.</p>
         </div>

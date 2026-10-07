@@ -121,6 +121,7 @@ a { color: inherit; }
 .node { position:absolute; left:var(--x); top:var(--y); z-index:3; display:flex; flex-direction:column; align-items:flex-start; width:max-content; max-width:22%; }
 .node .ico { display:grid; place-items:center; width:clamp(36px,4.2cqw,48px); aspect-ratio:1; margin-bottom:8px; border-radius:50%; background:rgba(222,226,210,.63); }
 .node .ico svg { width:58%; fill:none; stroke:#344a3f; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+.node .ico svg .sprout-detail { display:none; }
 .node b { color:#323b34; font:400 clamp(17px,2.3cqw,24px)/1.08 var(--serif); }
 .node p { margin-top:7px; color:#77776e; font:400 14px/1.38 var(--sans); }
 .n1 { --x:7.5%; --y:8%; }.n2 { --x:78.5%; --y:8%; }.n3 { --x:5%; --y:72%; }.n4 { --x:82%; --y:72%; }
@@ -239,20 +240,31 @@ a { color: inherit; }
   .hint { margin:8px 0 0 8px; font-size:12px; }
   .hint-default { display:none; }
   .philo { background:radial-gradient(70% 50% at 49% 40%,rgba(255,250,239,.68),transparent 78%),linear-gradient(180deg,#f7efe5,#f5ebdf); }
-  .philo-inner { min-height:640px; height:min(100svh,852px); padding:0 0 24px; display:block; }
+  .philo-inner { min-height:0; height:auto; padding:84px 0 44px; display:flex; flex-direction:column; }
   .philo .top-r { width:43%; top:-2%; right:-10%; opacity:.28; }
   .philo .bot-l,.philo .napkin,.philo .stick { display:none; }
-  .stage { position:absolute; top:80px; right:auto; left:50%; transform:translateX(-50%); width:min(100%,393px); aspect-ratio:393/340; --bw:39%; --bl:50%; --bt:50%; }
-  .stage .bowlp { translate:-50% -50%; }
-  .stage .cast { left:15%; top:48%; width:70%; height:44%; }
+  .stage { position:relative; order:-1; top:auto; right:auto; left:auto; transform:none; width:min(100%,393px); aspect-ratio:393/363; margin:0 auto; --bw:53%; --bl:50%; --bt:50%; }
+  .stage::after { content:""; position:absolute; z-index:1; top:20%; right:-25px; width:54px; height:108px; border:1px solid rgba(153,151,119,.32); border-radius:45% 45% 27% 27%/11% 11% 9% 9%; background:linear-gradient(100deg,rgba(255,255,255,.65),rgba(186,180,137,.12) 25%,rgba(255,255,255,.38) 44%,rgba(255,235,190,.24) 76%,rgba(160,158,122,.18)); box-shadow:inset 2px 0 2px rgba(255,255,255,.72),inset -2px 0 3px rgba(115,118,93,.18),0 13px 22px rgba(120,90,40,.09); pointer-events:none; }
+  .stage::before { content:""; position:absolute; z-index:1; top:20%; right:-25px; width:54px; height:13px; border:1px solid rgba(139,143,102,.38); border-radius:50%; background:rgba(255,255,233,.28); pointer-events:none; }
+  .stage .bowlp { translate:-50% -50%; filter:drop-shadow(-13px 22px 21px rgba(90,60,25,.24)); }
+  .stage .cast { left:4%; top:50%; width:75%; height:48%; background:radial-gradient(closest-side,rgba(112,79,43,.28),transparent); }
   .lines.lg { display:none; }.lines.sm { display:block; }
-  .node { max-width:30%; align-items:center; text-align:center; }
+  .lines.sm path { stroke-width:1; }
+  .lines.sm circle { r:2.1; }
+  .node { max-width:30%; align-items:center; text-align:center; transform:translateX(-50%); }
   .node p { display:none; }
   .node .ico { width:30px; margin-bottom:2px; background:transparent; }
   .node .ico svg { width:100%; stroke-width:1.5; }
-  .node b { font-size:13px; line-height:1.08; }
-  .n1 { --x:12%; --y:6%; }.n2 { --x:71%; --y:6%; }.n3 { --x:10%; --y:72%; }.n4 { --x:78%; --y:72%; }
-  .philo-copy { display:none; }
+  .node .ico svg .sprout-detail { display:block; }
+  .node b { color:#3d4038; font-size:14px; line-height:1.08; }
+  .n1 { --x:21%; --y:6.3%; }.n2 { --x:78%; --y:8.5%; }.n3 { --x:18.5%; --y:74%; }.n4 { --x:80%; --y:74%; }
+  .philo-copy { display:block; width:min(100%,393px); margin:32px auto 0; padding:0 24px; }
+  .philo-copy .philo-eyebrow { margin:0 0 20px; font-size:11px; letter-spacing:3px; }
+  .philo h2 { max-width:100%; margin:0 0 18px; color:#123d36; font-size:48px; line-height:1.01; letter-spacing:-.035em; }
+  .philo-copy p { max-width:100%; margin:0 0 14px; color:#39423c; font:400 20px/1.32 var(--serif); }
+  .philo-copy .divider { margin:24px 0 20px; }
+  .philo-copy .ph-desc-sub { max-width:100%; font:400 20px/1.32 var(--serif); }
+  .philo-copy .ph-foot { margin:32px 0 0; color:#8a9483; font:500 11px/1.5 var(--sans); letter-spacing:2px; }
   .how { min-height:0; }
   .how .leafsh { width:45%; top:-2%; right:-12%; opacity:.3; }
   .how .glass { display:none; }
