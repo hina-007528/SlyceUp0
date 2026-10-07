@@ -96,7 +96,8 @@ test('smooth anchor scrolling and glass-free section backgrounds', async ({ page
   await page.setViewportSize({ width:1280, height:720 });
   await page.goto('/');
   await page.evaluate(() => document.fonts.ready);
-  expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('smooth');
+  await expect(page.locator('html')).toHaveClass(/lenis/);
+  expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
   const target=await page.locator('#how').evaluate(el=>el.getBoundingClientRect().top+scrollY);
   const positions=await page.evaluate(() => new Promise(resolve=>{
     const samples=[];
@@ -135,6 +136,40 @@ test('direct section links settle at the requested section', async ({ page }) =>
   }
 });
 
+test('full-page wheel easing, scroll limits and reduced-motion switching', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion:'no-preference' });
+  await page.setViewportSize({width:1280,height:720});
+  await page.goto('/');
+  await expect(page.locator('html')).toHaveClass(/lenis/);
+  await page.mouse.move(700,350);
+  await page.evaluate(() => {
+    window.wheelTrace = [];
+    const started = performance.now();
+    const sample = () => {
+      window.wheelTrace.push(scrollY);
+      if (performance.now() - started < 1000) requestAnimationFrame(sample);
+    };
+    requestAnimationFrame(sample);
+  });
+  await page.mouse.wheel(0,650);
+  await expect.poll(()=>page.evaluate(()=>Math.abs(scrollY-650))).toBeLessThanOrEqual(2);
+  const trace = await page.evaluate(()=>window.wheelTrace);
+  expect(new Set(trace.filter(y=>y>2&&y<648)).size).toBeGreaterThan(8);
+  await page.mouse.wheel(0,-200);
+  await expect.poll(()=>page.evaluate(()=>Math.abs(scrollY-450))).toBeLessThanOrEqual(2);
+  await page.mouse.wheel(0,10000);
+  await expect.poll(()=>page.evaluate(()=>Math.abs(
+    document.documentElement.scrollHeight-innerHeight-scrollY))).toBeLessThanOrEqual(2);
+  await page.mouse.wheel(0,-10000);
+  await expect.poll(()=>page.evaluate(()=>scrollY)).toBeLessThanOrEqual(2);
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await expect(page.locator('html')).not.toHaveClass(/lenis/);
+  await page.mouse.wheel(0,300);
+  await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(250);
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  await expect(page.locator('html')).toHaveClass(/lenis/);
+});
+
 test('tablet hero keeps desktop alignment and phone keeps a right margin', async ({ page }) => {
   await page.goto('/');
   await page.evaluate(() => document.fonts.ready);
@@ -147,6 +182,12 @@ test('tablet hero keeps desktop alignment and phone keeps a right margin', async
       // Container-query layout can settle on the next render after a resize.
       await page.evaluate(() => new Promise(resolve =>
         requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      const minimumGap = width >= 901 ? 32 : width > 760 ? 20 : 16;
+      await expect.poll(()=>page.evaluate(() =>
+        document.documentElement.clientWidth -
+        document.querySelector('.art .phone').getBoundingClientRect().right),
+      {message:`${width}px settled phone margin, gutter ${gutter}`})
+        .toBeGreaterThanOrEqual(minimumGap);
       const layout = await page.evaluate(() => {
         const available = document.documentElement.clientWidth;
         const heading = document.querySelector('.hero h1');
@@ -163,7 +204,6 @@ test('tablet hero keeps desktop alignment and phone keeps a right margin', async
         };
       });
       expect(layout.overflow, `${width}px, gutter ${gutter}`).toBe(false);
-      const minimumGap = width >= 901 ? 32 : width > 760 ? 20 : 16;
       expect(layout.gap, `${width}px phone margin, gutter ${gutter}`).toBeGreaterThanOrEqual(minimumGap);
       if (width >= 768 && width <= 900) {
         expect(layout.lines, `${width}px tablet heading, gutter ${gutter}`).toBe(2);

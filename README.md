@@ -40,6 +40,39 @@ Import `hina-007528/SlyceUp0` into Vercel and select the `main` production branc
 
 These settings are included in `vercel.json`. Vercel publishes the static output; no Replit server or secret is required for this version. Subsequent pushes can trigger automatic Vercel deployments once the repository is connected. GitHub Actions validates the code but does not itself publish to Vercel.
 
+## Docker
+
+The production image builds the Vite app with Node.js 24 and serves only the
+compiled static files through non-root Nginx. No Replit secrets are needed.
+The Docker build context excludes secrets, local dependencies, and uploaded
+reference images.
+
+On a machine with Docker and Docker Compose installed:
+
+```sh
+docker compose up --build -d
+```
+
+Open `http://localhost:8080`. Check container health and stop it with:
+
+```sh
+docker compose ps
+curl http://localhost:8080/health
+docker compose down
+```
+
+Alternatively, without Compose:
+
+```sh
+docker build -t slyceup .
+docker run --rm -p 8080:8080 --cap-drop ALL --security-opt no-new-privileges slyceup
+```
+
+Hashed assets are cached long-term; HTML is revalidated. Missing assets return
+404 rather than the SPA shell. GitHub Actions builds and smoke-tests the image
+when these files are pushed. Run Docker on your own machine or a Docker-capable
+host; Docker is not installed in this workspace.
+
 ## Current limitations
 
 Early-access signup is not connected to a waitlist. The form explicitly reports this rather than claiming submissions were saved.

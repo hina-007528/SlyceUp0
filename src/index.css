@@ -21,6 +21,8 @@
 }
 *, *::before, *::after { box-sizing: inherit; }
 html { scroll-behavior: smooth; }
+/* Lenis owns easing; native smooth scrolling must not compete with each frame. */
+html.lenis { scroll-behavior:auto; }
 body { margin: 0; min-width: 320px; min-height: 100vh; overflow-x: clip; background: var(--cream); }
 img { max-width: 100%; height: auto; display: block; }
 button, input { font: inherit; }

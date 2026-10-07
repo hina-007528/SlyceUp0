@@ -1,0 +1,40 @@
+name: Docker build and smoke test
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  container:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build production image
+        run: docker build --pull -t slyceup:test .
+      - name: Start non-root container
+        run: docker run -d --name slyceup-test --cap-drop ALL --security-opt no-new-privileges -p 8080:8080 slyceup:test
+      - name: Verify health, app, caching, and asset errors
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8080/health; then break; fi
+            sleep 1
+          done
+          test "$(curl -fsS http://127.0.0.1:8080/health)" = "ok"
+          test "$(docker exec slyceup-test id -u)" != "0"
+          curl -fsS http://127.0.0.1:8080/ | grep -q '<div id="root">'
+          curl -fsS http://127.0.0.1:8080/test-route | grep -q '<div id="root">'
+          curl -fsSI http://127.0.0.1:8080/index.html | grep -qi 'cache-control: no-cache'
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8080/assets/missing.js)" = "404"
+          css=$(curl -fsS http://127.0.0.1:8080/ | grep -oE '/assets/[^"]+\.css' | head -1)
+          curl -fsSI "http://127.0.0.1:8080$css" | grep -qi immutable
+      - name: Container logs
+        if: always()
+        run: docker logs slyceup-test || true
+      - name: Clean up
+        if: always()
+        run: docker rm -f slyceup-test || true

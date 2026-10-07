@@ -1,0 +1,17 @@
+# Only application build inputs enter the image; never secrets or local assets.
+**
+!Dockerfile
+!package.json
+!package-lock.json
+!index.html
+!vite.config.js
+!src/
+!src/**
+!public/
+!public/**
+!docker/
+!docker/nginx.conf
+**/.env
+**/.env.*
+**/*.pem
+**/*.key

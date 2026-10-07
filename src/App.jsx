@@ -4,8 +4,10 @@ import Hero from './components/Hero';
 import Philosophy from './components/Philosophy';
 import HowItWorks from './components/HowItWorks';
 import Sprites from './components/Sprites';
+import useSmoothScroll from './hooks/useSmoothScroll';
 
 function App() {
+  const scrollRef = useSmoothScroll();
   useEffect(() => {
     const initialHash = window.location.hash;
     if (!initialHash) return undefined;
@@ -14,11 +16,16 @@ function App() {
     document.fonts.ready.then(() => {
       // Do not interrupt a navigation or manual scroll while fonts are loading.
       if (!active || window.location.hash !== initialHash || Math.abs(window.scrollY - initialScroll) > 2) return;
-      // "auto" respects CSS smooth scrolling and the reduced-motion override.
-      document.getElementById(initialHash.slice(1))?.scrollIntoView({ behavior: 'auto' });
+      const target = document.getElementById(initialHash.slice(1));
+      if (!target) return;
+      if (scrollRef.current) {
+        scrollRef.current.resize();
+        scrollRef.current.scrollTo(window.scrollY + target.getBoundingClientRect().top);
+      }
+      else target.scrollIntoView({ behavior: 'auto' });
     });
     return () => { active = false; };
-  }, []);
+  }, [scrollRef]);
 
   return (
     <>
