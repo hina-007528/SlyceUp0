@@ -50,7 +50,6 @@ export default function HowItWorks() {
       <svg className="layer leafsh" viewBox="0 0 200 260" aria-hidden="true"><use href="#lf" /></svg>
       <div className="layer rays" aria-hidden="true" />
       <div className="layer cast" aria-hidden="true" />
-      <div className="layer glass" aria-hidden="true" />
       <img className="cloth-prop" src={clothImage} width="130" height="320" alt="" aria-hidden="true" />
 
       <div className="how-inner">

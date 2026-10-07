@@ -38,3 +38,9 @@ Center the navbar logo, navigation text, CTA, and menu toggle vertically within 
 **Why:** The user explicitly requested equal space above and below the navbar content, superseding the earlier reference’s bottom-heavy positioning.
 
 **How to apply:** Preserve the existing header dimensions but do not restore the older desktop/mobile top offsets when matching earlier screenshots.
+
+Remove the mirror/glass background decorations from Philosophy and How It Works.
+
+**Why:** The user explicitly requested their removal, overriding those decorations in the visual references.
+
+**How to apply:** Do not restore decorative glass in either section when refining the design, including the mobile Philosophy pseudo-elements. This request does not remove the Hero glass or unrelated background objects.

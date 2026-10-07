@@ -8,11 +8,25 @@ export default function Header() {
   const menuButtonRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsStuck(window.scrollY > 20);
+    let frame = 0;
+    let previousStuck = null;
+    const updateScrollState = () => {
+      frame = 0;
+      const nextStuck = window.scrollY > 20;
+      if (nextStuck !== previousStuck) {
+        previousStuck = nextStuck;
+        setIsStuck(nextStuck);
+      }
     };
+    const handleScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateScrollState);
+    };
+    updateScrollState();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   useEffect(() => {

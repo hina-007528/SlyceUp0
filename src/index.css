@@ -131,7 +131,6 @@ a { color: inherit; }
 .how::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg,rgba(241,224,204,.15),transparent 42%,rgba(255,252,245,.22)); }
 .how .leafsh { right:-4%; top:-12%; width:clamp(210px,20vw,320px); rotate:8deg; opacity:.18; z-index:1; }
 .how .rays { z-index:0; }
-.how .glass { z-index:1; left:0; top:17%; width:5%; height:19%; }
 .how .cloth-prop { position:absolute; z-index:1; left:-16px; bottom:-35px; width:clamp(135px,16vw,220px); height:clamp(270px,34vw,490px); object-fit:cover; object-position:center bottom; mask-image:linear-gradient(180deg,transparent,#000 12%),linear-gradient(90deg,#000 78%,transparent); mask-composite:intersect; filter:drop-shadow(12px 14px 16px rgba(85,64,40,.2)); pointer-events:none; }
 .how .cast { position:absolute; left:0; top:36%; z-index:0; width:46%; height:55%; clip-path:polygon(47% 0,100% 14%,72% 68%,0 100%,0 60%); background:linear-gradient(135deg,transparent,rgba(94,65,38,.23) 38%,transparent 92%); filter:blur(16px); }
 .how-inner { position:relative; z-index:3; width:min(100%,1440px); min-height:1030px; margin:auto; padding:120px 48px 48px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); column-gap:38px; }
@@ -244,8 +243,6 @@ a { color: inherit; }
   .philo .top-r { width:43%; top:-2%; right:-10%; opacity:.28; }
   .philo .bot-l,.philo .napkin,.philo .stick { display:none; }
   .stage { position:relative; order:-1; top:auto; right:auto; left:auto; transform:none; width:min(100%,393px); aspect-ratio:393/363; margin:0 auto; --bw:53%; --bl:50%; --bt:50%; }
-  .stage::after { content:""; position:absolute; z-index:1; top:20%; right:-25px; width:54px; height:108px; border:1px solid rgba(153,151,119,.32); border-radius:45% 45% 27% 27%/11% 11% 9% 9%; background:linear-gradient(100deg,rgba(255,255,255,.65),rgba(186,180,137,.12) 25%,rgba(255,255,255,.38) 44%,rgba(255,235,190,.24) 76%,rgba(160,158,122,.18)); box-shadow:inset 2px 0 2px rgba(255,255,255,.72),inset -2px 0 3px rgba(115,118,93,.18),0 13px 22px rgba(120,90,40,.09); pointer-events:none; }
-  .stage::before { content:""; position:absolute; z-index:1; top:20%; right:-25px; width:54px; height:13px; border:1px solid rgba(139,143,102,.38); border-radius:50%; background:rgba(255,255,233,.28); pointer-events:none; }
   .stage .bowlp { translate:-50% -50%; filter:drop-shadow(-13px 22px 21px rgba(90,60,25,.24)); }
   .stage .cast { left:4%; top:50%; width:75%; height:48%; background:radial-gradient(closest-side,rgba(112,79,43,.28),transparent); }
   .lines.lg { display:none; }.lines.sm { display:block; }
@@ -267,7 +264,6 @@ a { color: inherit; }
   .philo-copy .ph-foot { margin:32px 0 0; color:#8a9483; font:500 11px/1.5 var(--sans); letter-spacing:2px; }
   .how { min-height:0; }
   .how .leafsh { width:45%; top:-2%; right:-12%; opacity:.3; }
-  .how .glass { display:none; }
   .how .cloth-prop { left:-30px; bottom:-16px; width:clamp(130px,39vw,170px); height:240px; }
   .how .cast { top:47%; left:5%; width:90%; height:38%; }
   .how-inner { min-height:0; padding:116px 24px 20px; display:flex; flex-direction:column; align-items:stretch; }

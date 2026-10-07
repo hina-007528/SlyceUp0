@@ -90,3 +90,37 @@ test('keyboard menu, navigation and honest email validation', async ({ page }) =
   await expect(email).toHaveAttribute('aria-invalid','false');
   await expect(page.locator('#hint')).toContainText("isn't connected");
 });
+
+test('smooth anchor scrolling and glass-free section backgrounds', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion:'no-preference' });
+  await page.setViewportSize({ width:1280, height:720 });
+  await page.goto('/');
+  await page.evaluate(() => document.fonts.ready);
+  expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('smooth');
+  const target=await page.locator('#how').evaluate(el=>el.getBoundingClientRect().top+scrollY);
+  const positions=await page.evaluate(() => new Promise(resolve=>{
+    const samples=[];
+    const start=performance.now();
+    document.querySelector('.nav a[href="#how"]').click();
+    const sample=()=>{
+      samples.push(scrollY);
+      if (performance.now()-start<1000) requestAnimationFrame(sample);
+      else resolve(samples);
+    };
+    requestAnimationFrame(sample);
+  }));
+  expect(positions.some(y=>y>2&&y<target-2),'Scrolling should animate through intermediate positions').toBe(true);
+  await expect.poll(()=>page.evaluate(target=>Math.abs(scrollY-target),target)).toBeLessThanOrEqual(2);
+  await expect(page.locator('header')).toHaveClass(/stuck/);
+  for (const width of [393,1440]) {
+    await page.setViewportSize({width,height:852});
+    await expect(page.locator('#philosophy .glass, #how .glass')).toHaveCount(0);
+    expect(await page.locator('.stage').evaluate(el=>[
+      getComputedStyle(el,'::before').content,
+      getComputedStyle(el,'::after').content,
+    ])).toEqual(['none','none']);
+  }
+  await expect(page.locator('#early .glass')).toHaveCount(1);
+  await page.emulateMedia({ reducedMotion:'reduce' });
+  expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
+});

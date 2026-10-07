@@ -7,10 +7,15 @@ import Sprites from './components/Sprites';
 
 function App() {
   useEffect(() => {
+    const initialHash = window.location.hash;
+    if (!initialHash) return undefined;
+    const initialScroll = window.scrollY;
     let active = true;
     document.fonts.ready.then(() => {
-      if (!active || !window.location.hash) return;
-      document.getElementById(window.location.hash.slice(1))?.scrollIntoView({ behavior: 'instant' });
+      // Do not interrupt a navigation or manual scroll while fonts are loading.
+      if (!active || window.location.hash !== initialHash || Math.abs(window.scrollY - initialScroll) > 2) return;
+      // "auto" respects CSS smooth scrolling and the reduced-motion override.
+      document.getElementById(initialHash.slice(1))?.scrollIntoView({ behavior: 'auto' });
     });
     return () => { active = false; };
   }, []);
