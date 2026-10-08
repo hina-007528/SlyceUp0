@@ -14,8 +14,9 @@ export default function useSmoothScroll() {
         try {
           scrollRef.current = new Lenis({
             autoRaf: true,
-            lerp: 0.06,
-            wheelMultiplier: 0.75,
+            lerp: 0.035,
+            wheelMultiplier: 0.6,
+            touchMultiplier: 1,
             smoothWheel: true,
             syncTouch: false,
             overscroll: false,
@@ -45,7 +46,7 @@ export default function useSmoothScroll() {
       event.preventDefault();
       if (location.hash !== url.hash) history.pushState(null, '', url.hash);
       scrollRef.current.resize();
-      scrollRef.current.scrollTo(target);
+      scrollRef.current.scrollTo(target, { duration: 1.6, offset: -64, easing: t => 1 - Math.pow(1 - t, 3) });
     };
     document.addEventListener('click', navigate);
     // Browser history and same-document URL changes must replace any running
@@ -58,7 +59,7 @@ export default function useSmoothScroll() {
       if (target === null) return;
       // The browser has already moved for this hash. Rebase Lenis using the
       // actual position, not its still-running animation's older position.
-      const position = target === 0 ? 0 : scrollY + target.getBoundingClientRect().top;
+      const position = target === 0 ? 0 : scrollY + target.getBoundingClientRect().top - 64;
       scrollRef.current.stop();
       scrollRef.current.start();
       scrollRef.current.resize();

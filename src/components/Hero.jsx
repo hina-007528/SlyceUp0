@@ -26,51 +26,54 @@ export default function Hero() {
   return (
     <section className="hero" id="early" aria-labelledby="h1">
       <div className="hero-inner">
-      <div className="art" aria-label="A meal and SlyceUp meal-reading app">
-        <img className="bowl" src={bowlImg} width="1137" height="1052" alt="Bowl of ramen with shiitake, corn, nori, bok choy and a soft-boiled egg" fetchPriority="high" />
-        <img className="phone" src={phoneImg} width="674" height="1400" alt="SlyceUp meal reading for ramen, with context and personal insights" fetchPriority="high" />
-      </div>
-      
-      <div className="hero-copy">
-        <p className="eyebrow fx"><span className="d">The philosophy behind SlyceUp</span><span className="m">Reading your meal</span></p>
-        <h1 id="h1" className="fx">See what your<br className="desktop-break" /> meal may reveal.</h1>
-        <p className="sub fx"><span>Food, context, and timing shape</span><span>how it may feel.</span></p>
-        
-        <form className="form" id="form" noValidate onSubmit={handleSubmit}>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="3" y="5" width="18" height="14" rx="2"/>
-            <path d="m3.5 7 8.5 6 8.5-6"/>
-          </svg>
-          <label className="sr" htmlFor="email">Email address</label>
-          <input id="email" name="email" type="email" required autoComplete="email" placeholder="you@yourname.com"
-            aria-invalid={isInvalid}
-            aria-describedby={hint === 'Be the first to try SlyceUp.' ? undefined : 'hint'}
-            onChange={() => {
-              if (isInvalid) {
-                setIsInvalid(false);
-                setHint('Be the first to try SlyceUp.');
-              }
-            }}
-          />
-          <button className="pill" type="submit" disabled={!isReady}>
-            <span className="d b">Request early access</span>
-            <span className="m b">Request</span>
-          </button>
-        </form>
-        <p className={`hint ${hint === 'Be the first to try SlyceUp.' ? 'hint-default' : 'hint-response'}`} id="hint" aria-live="polite">{hint}</p>
-      </div>
-      </div>
-      <div className="benefits" aria-label="What SlyceUp helps you understand">
-        <div className="benefit-items">
-          <FeatureItem icon="meal" text="Real meals, real context" />
-          <FeatureItem icon="patterns" text="Understand patterns over time" />
-          <FeatureItem icon="balance" text="Insights for a more balanced you" />
+        <div className="art" aria-label="A meal and SlyceUp meal-reading app">
+          <img className="bowl" src={bowlImg} width="1137" height="1052" alt="Bowl of ramen with shiitake, corn, nori, bok choy and a soft-boiled egg" fetchPriority="high" />
+          <img className="phone" src={phoneImg} width="674" height="1400" alt="SlyceUp meal reading for ramen, with context and personal insights" fetchPriority="high" />
         </div>
+
+        <div className="hero-copy">
+          <p className="eyebrow fx"><span className="d">Reading your meal</span><span className="m">Reading your meal</span></p>
+          <h1 id="h1" className="fx">See what your<br className="desktop-break" /> meal may reveal.</h1>
+          <p className="sub fx"><span>Food, context, and timing shape</span><span>how it may feel.</span></p>
+
+          <form className="form" id="form" noValidate onSubmit={handleSubmit}>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="m3.5 7 8.5 6 8.5-6" />
+            </svg>
+            <label className="sr" htmlFor="email">Email address</label>
+            <input id="email" name="email" type="email" required autoComplete="email" placeholder="you@yourname.com"
+              aria-invalid={isInvalid}
+              aria-describedby={hint === 'Be the first to try SlyceUp.' ? undefined : 'hint'}
+              onChange={() => {
+                if (isInvalid) {
+                  setIsInvalid(false);
+                  setHint('Be the first to try SlyceUp.');
+                }
+              }}
+            />
+            <button className="pill" type="submit" disabled={!isReady}>
+              <span className="d b">Request early access</span>
+              <span className="m b">Request</span>
+            </button>
+          </form>
+          <p className={`hint ${hint === 'Be the first to try SlyceUp.' ? 'hint-default' : 'hint-response'}`} id="hint" aria-live="polite">{hint}</p>
+
+          <div className="benefits" aria-label="What SlyceUp helps you understand">
+            <div className="benefit-items">
+              <FeatureItem icon="meal" text={<>Real meals,<br />real context</>} />
+              <FeatureItem icon="patterns" text={<>Understand<br />patterns over time</>} />
+              <FeatureItem icon="balance" text={<>Insights for<br />a more balanced<br />you</>} />
+            </div>
+          </div>
+        </div>
+
         <div className="hero-caption" aria-label="Meals mean more with context">
           <span className="caption-line" aria-hidden="true"></span>
           <span className="caption-text fx">MEALS MEAN MORE WITH CONTEXT</span>
           <span className="caption-line" aria-hidden="true"></span>
         </div>
+
       </div>
     </section>
   );

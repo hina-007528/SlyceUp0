@@ -30,8 +30,8 @@ export default function useTextFade(scrollRef) {
           // Subtract the previous drift so the transform never feeds into itself.
           const previousShift = parseFloat(element.style.getPropertyValue('--fx-shift')) || 0;
           const distance = bounds.top - previousShift + bounds.height / 2 - halfHeight;
-          const opacity = Math.max(0, 1 - Math.pow(Math.abs(distance) / halfHeight, 3));
-          const shift = Math.max(-halfHeight * 0.06, Math.min(halfHeight * 0.06, distance * 0.06));
+          const opacity = Math.max(0, 1 - Math.pow(Math.abs(distance) / (halfHeight * 1.1), 2.1));
+          const shift = Math.max(-halfHeight * 0.08, Math.min(halfHeight * 0.08, distance * 0.08));
           element.style.setProperty('--fx-opacity', opacity.toFixed(4));
           element.style.setProperty('--fx-shift', `${shift.toFixed(2)}px`);
         }

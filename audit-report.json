@@ -1,0 +1,153 @@
+[
+  {
+    "iw": 280,
+    "sw": 280,
+    "overflows": [
+      {
+        "sel": "img.bowl",
+        "reasons": [
+          "left:-59"
+        ]
+      }
+    ]
+  },
+  {
+    "iw": 320,
+    "sw": 320,
+    "overflows": [
+      {
+        "sel": "img.bowl",
+        "reasons": [
+          "left:-67"
+        ]
+      }
+    ]
+  },
+  {
+    "iw": 360,
+    "sw": 360,
+    "overflows": [
+      {
+        "sel": "img.bowl",
+        "reasons": [
+          "left:-76"
+        ]
+      }
+    ]
+  },
+  {
+    "iw": 375,
+    "sw": 375,
+    "overflows": [
+      {
+        "sel": "img.bowl",
+        "reasons": [
+          "left:-79"
+        ]
+      }
+    ]
+  },
+  {
+    "iw": 390,
+    "sw": 390,
+    "overflows": [
+      {
+        "sel": "img.bowl",
+        "reasons": [
+          "left:-82"
+        ]
+      }
+    ]
+  },
+  {
+    "iw": 414,
+    "sw": 414,
+    "overflows": [
+      {
+        "sel": "img.bowl",
+        "reasons": [
+          "left:-87"
+        ]
+      }
+    ]
+  },
+  {
+    "iw": 430,
+    "sw": 430,
+    "overflows": [
+      {
+        "sel": "img.bowl",
+        "reasons": [
+          "left:-90"
+        ]
+      }
+    ]
+  },
+  {
+    "iw": 600,
+    "sw": 600,
+    "overflows": [
+      {
+        "sel": "img.bowl",
+        "reasons": [
+          "left:-83"
+        ]
+      }
+    ]
+  },
+  {
+    "iw": 768,
+    "sw": 768,
+    "overflows": []
+  },
+  {
+    "iw": 820,
+    "sw": 820,
+    "overflows": []
+  },
+  {
+    "iw": 912,
+    "sw": 912,
+    "overflows": []
+  },
+  {
+    "iw": 1024,
+    "sw": 1024,
+    "overflows": []
+  },
+  {
+    "iw": 1180,
+    "sw": 1180,
+    "overflows": []
+  },
+  {
+    "iw": 1280,
+    "sw": 1280,
+    "overflows": []
+  },
+  {
+    "iw": 1366,
+    "sw": 1366,
+    "overflows": []
+  },
+  {
+    "iw": 1440,
+    "sw": 1440,
+    "overflows": []
+  },
+  {
+    "iw": 1536,
+    "sw": 1536,
+    "overflows": []
+  },
+  {
+    "iw": 1920,
+    "sw": 1920,
+    "overflows": []
+  },
+  {
+    "iw": 2560,
+    "sw": 2560,
+    "overflows": []
+  }
+]

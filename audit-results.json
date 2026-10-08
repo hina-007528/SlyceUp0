@@ -1,0 +1,251 @@
+[
+  {
+    "vp": {
+      "width": 280,
+      "height": 800
+    },
+    "scrollW": 280,
+    "innerW": 280,
+    "isOverflowing": false,
+    "issues": [
+      {
+        "selector": "img.bowl",
+        "right": 128.796875,
+        "left": -58.796875,
+        "width": 187.59375
+      }
+    ]
+  },
+  {
+    "vp": {
+      "width": 320,
+      "height": 800
+    },
+    "scrollW": 320,
+    "innerW": 320,
+    "isOverflowing": false,
+    "issues": [
+      {
+        "selector": "img.bowl",
+        "right": 147.203125,
+        "left": -67.1875,
+        "width": 214.390625
+      }
+    ]
+  },
+  {
+    "vp": {
+      "width": 360,
+      "height": 800
+    },
+    "scrollW": 360,
+    "innerW": 360,
+    "isOverflowing": false,
+    "issues": [
+      {
+        "selector": "img.bowl",
+        "right": 165.59375,
+        "left": -75.59375,
+        "width": 241.1875
+      }
+    ]
+  },
+  {
+    "vp": {
+      "width": 375,
+      "height": 800
+    },
+    "scrollW": 375,
+    "innerW": 375,
+    "isOverflowing": false,
+    "issues": [
+      {
+        "selector": "img.bowl",
+        "right": 172.5,
+        "left": -78.75,
+        "width": 251.25
+      }
+    ]
+  },
+  {
+    "vp": {
+      "width": 390,
+      "height": 800
+    },
+    "scrollW": 390,
+    "innerW": 390,
+    "isOverflowing": false,
+    "issues": [
+      {
+        "selector": "img.bowl",
+        "right": 179.40625,
+        "left": -81.890625,
+        "width": 261.296875
+      }
+    ]
+  },
+  {
+    "vp": {
+      "width": 414,
+      "height": 800
+    },
+    "scrollW": 414,
+    "innerW": 414,
+    "isOverflowing": false,
+    "issues": [
+      {
+        "selector": "img.bowl",
+        "right": 190.4375,
+        "left": -86.9375,
+        "width": 277.375
+      }
+    ]
+  },
+  {
+    "vp": {
+      "width": 430,
+      "height": 800
+    },
+    "scrollW": 430,
+    "innerW": 430,
+    "isOverflowing": false,
+    "issues": [
+      {
+        "selector": "img.bowl",
+        "right": 197.796875,
+        "left": -90.296875,
+        "width": 288.09375
+      }
+    ]
+  },
+  {
+    "vp": {
+      "width": 600,
+      "height": 800
+    },
+    "scrollW": 600,
+    "innerW": 600,
+    "isOverflowing": false,
+    "issues": []
+  },
+  {
+    "vp": {
+      "width": 768,
+      "height": 1024
+    },
+    "scrollW": 768,
+    "innerW": 768,
+    "isOverflowing": false,
+    "issues": []
+  },
+  {
+    "vp": {
+      "width": 820,
+      "height": 1024
+    },
+    "scrollW": 820,
+    "innerW": 820,
+    "isOverflowing": false,
+    "issues": []
+  },
+  {
+    "vp": {
+      "width": 912,
+      "height": 1024
+    },
+    "scrollW": 912,
+    "innerW": 912,
+    "isOverflowing": false,
+    "issues": []
+  },
+  {
+    "vp": {
+      "width": 1024,
+      "height": 768
+    },
+    "scrollW": 1024,
+    "innerW": 1024,
+    "isOverflowing": false,
+    "issues": []
+  },
+  {
+    "vp": {
+      "width": 1180,
+      "height": 800
+    },
+    "scrollW": 1180,
+    "innerW": 1180,
+    "isOverflowing": false,
+    "issues": []
+  },
+  {
+    "vp": {
+      "width": 1280,
+      "height": 800
+    },
+    "scrollW": 1280,
+    "innerW": 1280,
+    "isOverflowing": false,
+    "issues": []
+  },
+  {
+    "vp": {
+      "width": 1366,
+      "height": 768
+    },
+    "scrollW": 1366,
+    "innerW": 1366,
+    "isOverflowing": false,
+    "issues": []
+  },
+  {
+    "vp": {
+      "width": 1440,
+      "height": 900
+    },
+    "scrollW": 1440,
+    "innerW": 1440,
+    "isOverflowing": false,
+    "issues": []
+  },
+  {
+    "vp": {
+      "width": 1536,
+      "height": 864
+    },
+    "scrollW": 1536,
+    "innerW": 1536,
+    "isOverflowing": false,
+    "issues": []
+  },
+  {
+    "vp": {
+      "width": 1920,
+      "height": 1080
+    },
+    "scrollW": 1920,
+    "innerW": 1920,
+    "isOverflowing": false,
+    "issues": []
+  },
+  {
+    "vp": {
+      "width": 2560,
+      "height": 1440
+    },
+    "scrollW": 2560,
+    "innerW": 2560,
+    "isOverflowing": false,
+    "issues": []
+  },
+  {
+    "vp": {
+      "width": 3440,
+      "height": 1440
+    },
+    "scrollW": 3440,
+    "innerW": 3440,
+    "isOverflowing": false,
+    "issues": []
+  }
+]
