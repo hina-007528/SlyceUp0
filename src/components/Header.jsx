@@ -12,7 +12,7 @@ export default function Header() {
     let previousStuck = null;
     const updateScrollState = () => {
       frame = 0;
-      const nextStuck = window.scrollY > 20;
+      const nextStuck = window.scrollY > (previousStuck ? 8 : 24);
       if (nextStuck !== previousStuck) {
         previousStuck = nextStuck;
         setIsStuck(nextStuck);
@@ -49,30 +49,32 @@ export default function Header() {
   }, [isMenuOpen]);
 
   return (
-    <header className={`nav ${isStuck ? 'stuck' : ''}`} id="nav" ref={headerRef}>
-      <div className="in">
-        <a className="logo" href="#top" aria-label="SlyceUp home">
-          <img src={logoImg} width="133" height="34" alt="SlyceUp" />
-        </a>
-        <nav aria-label="Primary navigation">
-          <ul id="menu" className={isMenuOpen ? 'open' : ''}>
-            <li><a href="#philosophy" onClick={() => setIsMenuOpen(false)}>SlyceUp Philosophy</a></li>
-            <li><a href="#how" onClick={() => setIsMenuOpen(false)}>How it works</a></li>
-            <li><a href="#early" onClick={() => setIsMenuOpen(false)}>For early users</a></li>
-          </ul>
-        </nav>
-        <a className="pill" href="#early">Request early access</a>
-        <button
-          ref={menuButtonRef}
-          className="burger"
-          aria-expanded={isMenuOpen}
-          aria-controls="menu"
-          aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-          onClick={() => setIsMenuOpen((open) => !open)}
-        >
-          <i></i>
-        </button>
-      </div>
-    </header>
+    <div className="header-slot">
+      <header className={`nav ${isStuck ? 'stuck' : ''}`} id="nav" ref={headerRef}>
+        <div className="in">
+          <a className="logo" href="#top" aria-label="SlyceUp home">
+            <img src={logoImg} width="133" height="34" alt="SlyceUp" />
+          </a>
+          <nav aria-label="Primary navigation">
+            <ul id="menu" className={isMenuOpen ? 'open' : ''}>
+              <li><a href="#philosophy" onClick={() => setIsMenuOpen(false)}>SlyceUp Philosophy</a></li>
+              <li><a href="#how" onClick={() => setIsMenuOpen(false)}>How it works</a></li>
+              <li><a href="#early" onClick={() => setIsMenuOpen(false)}>For early users</a></li>
+            </ul>
+          </nav>
+          <a className="pill" href="#early">Request early access</a>
+          <button
+            ref={menuButtonRef}
+            className="burger"
+            aria-expanded={isMenuOpen}
+            aria-controls="menu"
+            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            onClick={() => setIsMenuOpen((open) => !open)}
+          >
+            <i></i>
+          </button>
+        </div>
+      </header>
+    </div>
   );
 }

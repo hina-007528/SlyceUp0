@@ -9,14 +9,22 @@ export default function useSmoothScroll() {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const configure = () => {
       scrollRef.current?.destroy();
-      scrollRef.current = motion.matches ? null : new Lenis({
-        autoRaf: true,
-        lerp: 0.085,
-        smoothWheel: true,
-        syncTouch: false,
-        overscroll: false,
-        prevent: (node) => node.matches?.('input, textarea, select, [data-native-scroll]'),
-      });
+      scrollRef.current = null;
+      if (!motion.matches) {
+        try {
+          scrollRef.current = new Lenis({
+            autoRaf: true,
+            lerp: 0.08,
+            smoothWheel: true,
+            syncTouch: false,
+            overscroll: false,
+            prevent: (node) => node.matches?.('input, textarea, select, [data-native-scroll], [data-lenis-prevent]'),
+          });
+        } catch (error) {
+          console.warn('Smooth scrolling unavailable; using native scrolling.', error);
+        }
+      }
+      window.dispatchEvent(new CustomEvent('lenis:change', { detail: scrollRef.current }));
     };
     configure();
     motion.addEventListener('change', configure);

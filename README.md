@@ -11,6 +11,12 @@ npm run dev
 
 ## Verification
 
+Development and production both serve pre-rendered landing-page HTML, which
+React hydrates when JavaScript runs. Content, fonts, images and native navigation
+remain available if JavaScript is disabled or the app bundle fails to load.
+Interactive step controls and the form are enabled only after hydration; the
+early-access form still explicitly reports that sign-up is not connected.
+
 ```sh
 npm run lint
 npm run build
@@ -26,6 +32,32 @@ On Replit, the system Chromium is used automatically. Downloaded Playwright Fire
 node scripts/check-firefox.mjs https://your-running-development-site
 node scripts/check-responsive.mjs https://your-running-development-site --screenshots
 ```
+
+The upgrade tests cover every requested width from 280–2560px in portrait and
+landscape, all three step states, 44px controls, 200% zoom-equivalent reflow,
+header size restoration without section movement, bidirectional text fades,
+reduced motion, native inner scrolling, and JavaScript/Lenis/effect failures.
+Zoom-equivalent reflow is not a substitute for testing real browser toolbar zoom
+or every physical device.
+
+## Approved scroll upgrade
+
+The original top-of-page desktop scene, fonts, copy and images remain unchanged.
+The background is `#f7f2e6`; the bowl and hero phone remain static. A three-column
+feature strip and caption sit beneath the hero scene. The existing header shrinks
+from 64px to 56px within a reserved sticky slot, restoring its size at the top.
+
+New layout and motion rules are isolated in `src/scroll-upgrade.css`. The only
+existing styling-rule changes for this upgrade are removing competing native
+smooth scrolling and restricting the existing hover effects to hover-capable
+devices. Additive overrides adjust narrow-screen type/spacing, safe-area padding
+and minimum touch targets only where needed.
+
+Lenis uses one active instance with `lerp: 0.08` and native touch scrolling.
+`useTextFade` progressively enhances `.fx` text without affecting header, forms
+or images. The top-of-page appearance stays unchanged; reduced motion or effect
+failure restores fully visible, untransformed text. Native scrolling handles a
+Lenis initialization failure.
 
 ## Vercel
 

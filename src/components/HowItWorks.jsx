@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useClientReady from '../hooks/useClientReady';
 import imgCapture from '../assets/img/uploaded-capture.webp';
 import imgUnderstand from '../assets/img/uploaded-understand.webp';
 import imgLearn from '../assets/img/insights-phone.webp';
@@ -39,6 +40,7 @@ const steps = [
 ];
 
 export default function HowItWorks() {
+  const isReady = useClientReady();
   const [activeIndex, setActiveIndex] = useState(0);
   const activeStep = steps[activeIndex];
   const otherSteps = steps.filter((_, index) => index !== activeIndex);
@@ -61,11 +63,12 @@ export default function HowItWorks() {
         </div>
 
         <div className="how-copy">
-          <p className="hiw-label">How it works</p>
+          <p className="hiw-label fx">How it works</p>
           <ol className="steps" aria-label="How it works">
             {steps.map((step, index) => (
               <li key={step.label}>
                 <button
+                  disabled={!isReady}
                   className="step"
                   type="button"
                   aria-current={activeIndex === index ? 'step' : undefined}
@@ -79,17 +82,18 @@ export default function HowItWorks() {
               </li>
             ))}
           </ol>
-          <h2 id="how-heading" aria-live="polite">
+          <h2 id="how-heading" className="fx" aria-live="polite">
             <span className="desktop-title">{activeStep.title}</span>
             <span className="mobile-title">{activeStep.titleMobile}</span>
           </h2>
-          <p className="lead">{activeStep.lead}</p>
+          <p className="lead fx">{activeStep.lead}</p>
 
           <div className="previews" aria-label="Explore the other steps">
             {otherSteps.map((step) => {
               const number = steps.indexOf(step);
               return (
                 <button
+                  disabled={!isReady}
                   className="preview"
                   type="button"
                   key={step.label}

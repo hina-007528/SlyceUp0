@@ -5,9 +5,15 @@ import Philosophy from './components/Philosophy';
 import HowItWorks from './components/HowItWorks';
 import Sprites from './components/Sprites';
 import useSmoothScroll from './hooks/useSmoothScroll';
+import useTextFade from './hooks/useTextFade';
 
 function App() {
   const scrollRef = useSmoothScroll();
+  useTextFade(scrollRef);
+  useEffect(() => {
+    document.documentElement.classList.add('js');
+    return () => document.documentElement.classList.remove('js');
+  }, []);
   useEffect(() => {
     const initialHash = window.location.hash;
     if (!initialHash) return undefined;

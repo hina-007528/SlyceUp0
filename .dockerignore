@@ -9,6 +9,8 @@
 !src/**
 !public/
 !public/**
+!scripts/
+!scripts/prerender.mjs
 !docker/
 !docker/nginx.conf
 **/.env

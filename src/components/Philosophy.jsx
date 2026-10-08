@@ -4,16 +4,16 @@ export default function Philosophy() {
   return (
     <section className="philo" id="philosophy" aria-labelledby="ph-h2">
       <div className="philo-inner">
-      <div className="philo-copy">
-        <p className="eyebrow philo-eyebrow">OUR PHILOSOPHY</p>
-          <h2 id="ph-h2">Food is a relationship.</h2>
-          <p>Ayurveda looks beyond <br />what is on the plate.</p>
-          <p>The same meal is shaped by <br />what it is, how it is prepared, <br />the context around it, <br />and you.</p>
+        <div className="philo-copy">
+          <p className="eyebrow philo-eyebrow fx">OUR PHILOSOPHY</p>
+          <h2 id="ph-h2" className="fx">Food is a relationship.</h2>
+          <p className="fx">Ayurveda looks beyond <br />what is on the plate.</p>
+          <p className="fx">The same meal is shaped by <br />what it is, how it is prepared, <br />the context around it, <br />and you.</p>
 
         <hr className="divider" />
 
-          <p className="ph-desc-sub">SlyceUp translates this ancient <br />wisdom into clear, personal <br />understanding for everyday life.</p>
-          <p className="ph-foot">SAME FOOD. <br />A DEEPER UNDERSTANDING.</p>
+          <p className="ph-desc-sub fx">SlyceUp translates this ancient <br />wisdom into clear, personal <br />understanding for everyday life.</p>
+          <p className="ph-foot fx">SAME FOOD. <br />A DEEPER UNDERSTANDING.</p>
       </div>
 
       <div className="stage">

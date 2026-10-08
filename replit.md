@@ -17,7 +17,9 @@ Three sections: meal reading, philosophy, and the Capture / Understand / Learn s
 
 Keep Philosophy and How It Works slightly compact overall, including typography, imagery, spacing and section heights, while preserving readable mobile copy and the complete content.
 
-Full Figma frames must **not** be used as page backgrounds. The latest direction is a uniform `#f7f2e6` page with only individual bowl and phone-frame assets: no decorative leaves, glass, fabric, lighting or textured backgrounds. Hero bowl and phone must remain static. Keep the compact navbar sticky, and preserve Lenis scrolling with natural touch and reduced-motion support.
+Full Figma frames must **not** be used as page backgrounds. The latest direction is a uniform `#f7f2e6` page with only individual bowl and phone-frame assets: no decorative leaves, glass, fabric, lighting or textured backgrounds. Hero bowl and phone must remain static. Keep the navbar's original 64px top-of-page size and shrink to 56px on scroll inside a reserved sticky slot. Preserve Lenis scrolling with natural touch and reduced-motion support.
+
+The approved scroll upgrade adds the three-feature/caption strip beneath the unchanged hero scene. Scroll-linked `.fx` text effects must leave the top-of-page design unchanged and be disabled for reduced motion. Keep all text visible by default; JavaScript and Lenis failure must preserve readable content and native navigation. Pre-rendered HTML is required in both development and production.
 
 The live Figma file required sign-in during implementation. The supplied desktop/mobile exports were used as the visual references. Individual phone objects were extracted from those exports; `scripts/extract-design-assets.mjs` reproduces those extractions from the original files in `attached_assets/`. Bowls use the supplied transparent object assets.
 

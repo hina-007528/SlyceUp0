@@ -127,7 +127,7 @@ test('smooth anchors, flat backgrounds, static hero and compact sticky navigatio
       height:el.getBoundingClientRect().height,
       top:el.getBoundingClientRect().top,
       position:getComputedStyle(el).position,
-    }))).toEqual({height:64,top:0,position:'sticky'});
+    }))).toEqual({height:56,top:0,position:'sticky'});
     expect(await page.locator('.stage').evaluate(el=>[
       getComputedStyle(el,'::before').content,
       getComputedStyle(el,'::after').content,

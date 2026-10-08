@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import bowlImg from '../assets/img/uploaded-hero-bowl.webp';
 import phoneImg from '../assets/img/uploaded-hero-phone.webp';
+import FeatureItem from './FeatureItem';
+import useClientReady from '../hooks/useClientReady';
 
 export default function Hero() {
   const [hint, setHint] = useState('Be the first to try SlyceUp.');
   const [isInvalid, setIsInvalid] = useState(false);
+  const isReady = useClientReady();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!isReady) return;
     const emailField = e.target.email;
     if (!emailField.checkValidity() || !emailField.value) {
       setIsInvalid(true);
@@ -28,9 +32,9 @@ export default function Hero() {
       </div>
       
       <div className="hero-copy">
-        <p className="eyebrow"><span className="d">The philosophy behind SlyceUp</span><span className="m">Reading your meal</span></p>
-        <h1 id="h1">See what your<br className="desktop-break" /> meal may reveal.</h1>
-        <p className="sub"><span>Food, context, and timing shape</span><span>how it may feel.</span></p>
+        <p className="eyebrow fx"><span className="d">The philosophy behind SlyceUp</span><span className="m">Reading your meal</span></p>
+        <h1 id="h1" className="fx">See what your<br className="desktop-break" /> meal may reveal.</h1>
+        <p className="sub fx"><span>Food, context, and timing shape</span><span>how it may feel.</span></p>
         
         <form className="form" id="form" noValidate onSubmit={handleSubmit}>
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -48,13 +52,25 @@ export default function Hero() {
               }
             }}
           />
-          <button className="pill" type="submit">
+          <button className="pill" type="submit" disabled={!isReady}>
             <span className="d b">Request early access</span>
             <span className="m b">Request</span>
           </button>
         </form>
         <p className={`hint ${hint === 'Be the first to try SlyceUp.' ? 'hint-default' : 'hint-response'}`} id="hint" aria-live="polite">{hint}</p>
       </div>
+      </div>
+      <div className="benefits" aria-label="What SlyceUp helps you understand">
+        <div className="benefit-items">
+          <FeatureItem icon="meal" text="Real meals, real context" />
+          <FeatureItem icon="patterns" text="Understand patterns over time" />
+          <FeatureItem icon="balance" text="Insights for a more balanced you" />
+        </div>
+        <div className="hero-caption" aria-label="Meals mean more with context">
+          <span className="caption-line" aria-hidden="true"></span>
+          <span className="caption-text fx">MEALS MEAN MORE WITH CONTEXT</span>
+          <span className="caption-line" aria-hidden="true"></span>
+        </div>
       </div>
     </section>
   );
