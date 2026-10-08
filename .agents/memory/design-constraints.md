@@ -21,11 +21,11 @@ Mobile philosophy must keep the bowl and four nodes first, followed by the entir
 
 **How to apply:** Do not hide the philosophy copy on mobile to match an image-only reference; preserve all paragraphs, the divider, and the closing statement beneath the scene.
 
-Preserve the approved desktop philosophy composition when correcting tablet annotation spacing.
+Preserve the Philosophy annotation arrangement when correcting tablet spacing or compacting the sections.
 
-**Why:** The user explicitly confirmed the 1440×747 layout is “perfect” and scoped the tablet correction to the right-side Preparation and You nodes.
+**Why:** The user approved the desktop diagram arrangement and scoped the earlier tablet correction to the right-side Preparation and You nodes. They subsequently requested slightly smaller overall second and third sections, not a new diagram arrangement.
 
-**How to apply:** Keep desktop and mobile unchanged for this correction; adapt the right annotation columns and their connectors within tablet-specific rules.
+**How to apply:** For tablet annotation corrections, adjust the right columns and connectors within tablet-specific rules. For overall section sizing requests, preserve the diagram relationships and mobile image-first flow while compacting the layout.
 
 Center the navbar logo, navigation text, CTA, and menu toggle vertically within the whole header at every screen size.
 

@@ -200,6 +200,29 @@ test('full-page wheel easing, scroll limits and reduced-motion switching', async
   await expect(page.locator('html')).toHaveClass(/lenis/);
 });
 
+test('second and third sections remain compact and readable', async ({ page }) => {
+  await page.setViewportSize({width:1440,height:900});
+  await page.goto('/');
+  await page.evaluate(()=>document.fonts.ready);
+  const desktop = await page.evaluate(()=>({
+    philosophyHeight:document.querySelector('.philo-inner').getBoundingClientRect().height,
+    howHeight:document.querySelector('.how-inner').getBoundingClientRect().height,
+    philosophyTitle:parseFloat(getComputedStyle(document.querySelector('.philo h2')).fontSize),
+    howTitle:parseFloat(getComputedStyle(document.querySelector('.how h2')).fontSize),
+  }));
+  expect(desktop.philosophyHeight).toBeLessThan(810);
+  expect(desktop.howHeight).toBeLessThan(1030);
+  expect(desktop.philosophyTitle).toBeLessThan(74);
+  expect(desktop.howTitle).toBeLessThan(66);
+  await page.setViewportSize({width:393,height:852});
+  await expect.poll(()=>page.locator('.stage').evaluate(el=>
+    el.getBoundingClientRect().width)).toBeLessThan(393);
+  expect(await page.locator('.philo-copy p:not(.eyebrow):not(.ph-foot)').evaluateAll(elements=>
+    Math.min(...elements.map(el=>parseFloat(getComputedStyle(el).fontSize))))).toBeGreaterThanOrEqual(18);
+  await expect.poll(()=>page.locator('.phone-feature').evaluate(el=>
+    el.getBoundingClientRect().height)).toBeLessThan(355);
+});
+
 test('tablet hero keeps desktop alignment and phone keeps a right margin', async ({ page }) => {
   await page.goto('/');
   await page.evaluate(() => document.fonts.ready);
