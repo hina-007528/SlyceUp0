@@ -218,9 +218,44 @@ test('second and third sections remain compact and readable', async ({ page }) =
   await expect.poll(()=>page.locator('.stage').evaluate(el=>
     el.getBoundingClientRect().width)).toBeLessThan(393);
   expect(await page.locator('.philo-copy p:not(.eyebrow):not(.ph-foot)').evaluateAll(elements=>
-    Math.min(...elements.map(el=>parseFloat(getComputedStyle(el).fontSize))))).toBeGreaterThanOrEqual(18);
+    Math.min(...elements.map(el=>parseFloat(getComputedStyle(el).fontSize))))).toBeGreaterThanOrEqual(14);
   await expect.poll(()=>page.locator('.phone-feature').evaluate(el=>
     el.getBoundingClientRect().height)).toBeLessThan(355);
+});
+
+test('Philosophy copy follows the compact reference wrapping', async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(()=>document.fonts.ready);
+  for (const width of [393,820,1440]) {
+    await page.setViewportSize({width,height:900});
+    await expect.poll(()=>page.locator('.philo h2').evaluate(el=>
+      parseFloat(getComputedStyle(el).fontSize))).toBeLessThanOrEqual(48);
+    const layout=await page.locator('.philo-copy').evaluate(copy=>{
+      const lineCount=el=>{
+        const rows=new Set();
+        const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);
+        let node;
+        while ((node=walker.nextNode())) {
+          for (const word of node.textContent.matchAll(/\S+/g)) {
+            const range=document.createRange();
+            range.setStart(node,word.index);
+            range.setEnd(node,word.index+word[0].length);
+            rows.add(Math.round(range.getBoundingClientRect().top));
+          }
+        }
+        return rows.size;
+      };
+      const paragraphs=copy.querySelectorAll('p:not(.eyebrow):not(.ph-foot)');
+      return {
+        heading:lineCount(copy.querySelector('h2')),
+        paragraphs:[...paragraphs].map(lineCount),
+        footer:lineCount(copy.querySelector('.ph-foot')),
+        width:Math.max(...[...paragraphs].map(el=>el.getBoundingClientRect().width)),
+      };
+    });
+    expect(layout).toEqual({heading:2,paragraphs:[2,4,3],footer:2,width:expect.any(Number)});
+    expect(layout.width).toBeLessThanOrEqual(210);
+  }
 });
 
 test('tablet hero keeps desktop alignment and phone keeps a right margin', async ({ page }) => {

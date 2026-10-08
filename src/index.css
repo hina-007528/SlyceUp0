@@ -78,15 +78,15 @@ a { color: inherit; }
 /* Philosophy: compact editorial statement balanced by a generous annotated food image. */
 .philo { position:relative; isolation:isolate; overflow:clip; background:#f3e8dd; }
 .philo-inner { position:relative; width:min(100%,1440px); min-height:clamp(645px,51.75vw,745px); margin-inline:auto; padding:75px 62px 55px; }
-.philo-copy { position:relative; z-index:4; width:380px; }
-.philo-eyebrow { margin-bottom:18px; color:#848a7d; font:500 11px/1.4 var(--sans); letter-spacing:3px; }
+.philo-copy { position:relative; z-index:4; width:260px; }
+.philo-eyebrow { margin-bottom:18px; color:#85877b; font:400 9px/1.4 var(--serif); letter-spacing:2.4px; }
 .philo-eyebrow::after { display:none; }
-.philo h2 { max-width:8em; color:#123d36; font-size:68px; letter-spacing:-.035em; line-height:.99; margin:0 0 24px; }
-.philo-copy p { max-width:285px; margin:0 0 14px; color:#39423c; font:400 22px/1.3 var(--serif); }
-.philo-copy .philo-eyebrow { max-width:none; margin-bottom:27px; font:500 11px/1.4 var(--sans); }
+.philo h2 { max-width:260px; color:#202d27; font-size:47px; letter-spacing:-.035em; line-height:.99; margin:0 0 18px; }
+.philo-copy p { max-width:195px; margin:0 0 11px; color:#42453f; font:400 15.5px/1.25 var(--serif); }
+.philo-copy .philo-eyebrow { max-width:none; margin-bottom:18px; font:400 9px/1.4 var(--serif); letter-spacing:2.4px; }
 .philo-copy .divider { width:42px; height:0; margin:21px 0 18px; border:0; border-top:2px solid #bb6337; }
-.philo-copy .ph-desc-sub { max-width:280px; font:400 20px/1.3 var(--serif); }
-.philo-copy .ph-foot { margin-top:37px; color:#8a9483; font:500 11px/1.5 var(--sans); letter-spacing:2px; text-transform:uppercase; }
+.philo-copy .ph-desc-sub { max-width:195px; font:400 13.5px/1.25 var(--serif); }
+.philo-copy .ph-foot { max-width:195px; margin-top:37px; color:#85877b; font:400 8.5px/1.45 var(--serif); letter-spacing:2px; text-transform:uppercase; }
 .stage { --bw:52.3%; --bl:19.1%; --bt:47%; position:absolute; z-index:2; top:7%; right:1%; width:62%; aspect-ratio:1.34; container-type:inline-size; }
 .stage .bowlp { position:absolute; left:var(--bl); top:var(--bt); width:var(--bw); translate:0 -50%; filter:drop-shadow(0 24px 25px rgba(90,60,25,.26)); animation:float 14s ease-in-out infinite; }
 .lines { position:absolute; inset:0; width:100%; height:100%; overflow:visible; pointer-events:none; }
@@ -143,10 +143,10 @@ a { color: inherit; }
   .hero h1 { font-size:clamp(64px,6vw,80px); line-height:.98; }
   .hero .sub { font-size:clamp(22px,2vw,27px); line-height:1.22; }
   .philo-inner,.how-inner { padding-inline:36px; }
-  .philo-copy { width:calc(28% + 8px); }
-  .philo h2 { font-size:clamp(48px,4.85vw,65px); }
-  .philo-copy p { font-size:19px; }
-  .philo-copy .ph-desc-sub { font-size:18px; }
+  .philo-copy { width:260px; }
+  .philo h2 { font-size:47px; }
+  .philo-copy p { font-size:15.5px; }
+  .philo-copy .ph-desc-sub { font-size:13.5px; }
   .stage { width:65%; right:1%; }
   .node p { font-size:11px; }
 }
@@ -164,8 +164,8 @@ a { color: inherit; }
   .hero-copy { max-width:55%; }
   .hero h1 { font-size:clamp(58px,6vw,68px); line-height:.98; }
   .hero .sub { font-size:22px; }
-  .philo-copy { width:30%; }
-  .philo h2 { font-size:43px; }
+   .philo-copy { width:260px; }
+   .philo h2 { font-size:47px; }
   .how-inner { column-gap:18px; }
   .phone-feature .main-phone { width:clamp(202px,25vw,276px); }
   .how h2 { font-size:52px; line-height:1; }
@@ -224,12 +224,12 @@ a { color: inherit; }
   .node b { color:#3d4038; font-size:14px; line-height:1.08; }
   .n1 { --x:21%; --y:6.3%; }.n2 { --x:78%; --y:8.5%; }.n3 { --x:18.5%; --y:74%; }.n4 { --x:80%; --y:74%; }
   .philo-copy { display:block; width:min(100%,393px); margin:27px auto 0; padding:0 24px; }
-  .philo-copy .philo-eyebrow { margin:0 0 20px; font-size:11px; letter-spacing:3px; }
-  .philo h2 { max-width:100%; margin:0 0 16px; color:#123d36; font-size:44px; line-height:1.01; letter-spacing:-.035em; }
-  .philo-copy p { max-width:100%; margin:0 0 12px; color:#39423c; font:400 19px/1.32 var(--serif); }
+  .philo-copy .philo-eyebrow { margin:0 0 18px; font-size:9px; letter-spacing:2.4px; }
+  .philo h2 { max-width:260px; margin:0 0 18px; color:#202d27; font-size:47px; line-height:.99; letter-spacing:-.035em; }
+  .philo-copy p { max-width:195px; margin:0 0 11px; color:#42453f; font:400 15.5px/1.25 var(--serif); }
   .philo-copy .divider { margin:20px 0 17px; }
-  .philo-copy .ph-desc-sub { max-width:100%; font:400 19px/1.32 var(--serif); }
-  .philo-copy .ph-foot { margin:28px 0 0; color:#8a9483; font:500 11px/1.5 var(--sans); letter-spacing:2px; }
+  .philo-copy .ph-desc-sub { max-width:195px; font:400 13.5px/1.25 var(--serif); }
+  .philo-copy .ph-foot { max-width:195px; margin:28px 0 0; color:#85877b; font:400 8.5px/1.45 var(--serif); letter-spacing:2px; }
   .how { min-height:0; }
   .how-inner { min-height:0; padding:106px 24px 18px; display:flex; flex-direction:column; align-items:stretch; }
   .how-copy { display:contents; }
@@ -285,10 +285,10 @@ a { color: inherit; }
   .form { width:100%; margin-top:28px; }
   .form .pill { padding-inline:15px; font-size:13px; }
   .philo-inner { min-height:690px; padding:92px 28px 46px; }
-  .philo-copy { width:30%; }
-  .philo h2 { font-size:39px; }
-  .philo-copy p { font-size:17px; }
-  .philo-copy .ph-desc-sub { font-size:16px; }
+   .philo-copy { width:260px; }
+   .philo h2 { font-size:47px; }
+   .philo-copy p { font-size:15.5px; }
+   .philo-copy .ph-desc-sub { font-size:13.5px; }
   .stage { top:16%; width:61%; right:1%; --bw:57.5%; --bl:16.5%; }
   .node p { font-size:10px; }
   .how-inner { min-height:828px; padding:103px 28px 35px; grid-template-columns:.9fr 1.1fr; column-gap:17px; }
