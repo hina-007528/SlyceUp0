@@ -199,7 +199,7 @@ a {
 
 .nav ul {
   display: flex;
-  gap: 20px;
+  gap: 32px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -243,7 +243,7 @@ a {
   width: min(100%, var(--content));
   min-height: min(900px, 100vh);
   margin-inline: auto;
-  padding: 210px 0 40px;
+  padding: 210px 0 80px;
 }
 
 .hero-copy {
@@ -360,7 +360,7 @@ a {
   position: absolute;
   left: 6%;
   top: 14.6%;
-  width: 63%;
+  width: 70%;
   opacity: .78;
   filter: brightness(1.04) saturate(.94) drop-shadow(0 24px 26px rgba(81, 53, 25, .25));
 }
@@ -392,7 +392,7 @@ a {
   width: min(100%, 1440px);
   min-height: clamp(645px, 51.75vw, 745px);
   margin-inline: auto;
-  padding: 50px 62px 30px;
+  padding: 75px 62px 55px;
 }
 
 .philo-copy {
@@ -982,7 +982,7 @@ a {
     flex-direction: column;
     gap: 0;
     width: 100%;
-    padding: 6px 16px;
+    padding: 9px 20px;
     border: 1px solid rgba(105, 96, 77, .14);
     border-radius: 16px;
     background: rgba(250, 245, 235, .97);
@@ -993,11 +993,6 @@ a {
     transition: opacity .2s, transform .2s, visibility .2s;
   }
 
-  .nav ul li {
-    margin: 0;
-    padding: 0;
-  }
-
   .nav ul.open {
     visibility: visible;
     opacity: 1;
@@ -1005,12 +1000,8 @@ a {
   }
 
   .nav ul a {
-    display: block;
-    padding: 4px 6px;
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.2;
-    min-height: auto !important;
+    padding: 14px 2px;
+    font-size: 15px;
   }
 
   .nav .pill {
@@ -1543,43 +1534,28 @@ a {
 
   .stage {
     top: 15%;
-    width: 60%;
+    width: 54%;
     right: 1%;
   }
 
   .n1 {
-    --x: 7.5%;
-  }
-
-  .n1 p {
-    max-width: 82px;
-  }
-}
-
-@media (min-width:600px) and (max-width:850px) {
-  .art .bowl {
-    left: 16%;
-    width: 52%;
-  }
-
-  .n1 p {
-    max-width: 65px;
+    --x: 0%;
   }
 }
 
 @media (min-width:761px) and (max-width:900px) {
   .hero-inner {
     min-height: min(540px, 100svh);
-    padding: 90px 28px 32px;
+    padding: 90px 28px 48px;
   }
 
   .hero-copy {
-    width: 46%;
-    max-width: 46%;
+    width: 52%;
+    max-width: 52%;
   }
 
   .art {
-    width: 56%;
+    width: 48%;
     right: 28px;
   }
 
@@ -1596,25 +1572,27 @@ a {
 
   .hero h1 {
     max-width: 100%;
-    margin-top: 14px;
-    font-size: clamp(32px, 4.2vw, 38px);
+    margin-top: 17px;
+    font-size: clamp(40px, 5vw, 45px);
     line-height: 1.02;
   }
 
   .hero .sub {
-    margin-top: 10px;
-    font-size: 16px;
+    margin-top: 12px;
+    font-size: 19px;
     line-height: 1.22;
   }
 
   .form {
     width: 100%;
     margin-top: 14px;
+    height: 40px;
   }
 
   .form .pill {
     padding-inline: 15px;
     font-size: 13px;
+    min-height: 40px;
   }
 
   .philo-inner {
@@ -1640,9 +1618,9 @@ a {
 
   .stage {
     top: 16%;
-    width: 61%;
+    width: 55%;
     right: 1%;
-    --bw: 46%;
+    --bw: 44%;
     --bl: 22%;
   }
 
@@ -1729,19 +1707,4 @@ body,
 .philo,
 .how {
   background-color: var(--cream);
-}
-
-@media (min-width: 1024px) {
-  .philo-inner {
-    max-width: 1150px;
-    padding-left: 0;
-  }
-}
-
-@media (min-width: 1180px) {
-  .nav .in,
-  .hero-inner,
-  .philo-inner {
-    max-width: 1150px;
-  }
 }
