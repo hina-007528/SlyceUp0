@@ -77,6 +77,4 @@ host; Docker is not installed in this workspace.
 
 Early-access signup is not connected to a waitlist. The form explicitly reports this rather than claiming submissions were saved.
 
-Decorative backgrounds and hero floating animations are intentionally removed.
-Product imagery and the philosophy diagram remain independently responsive;
-each section is sized for one screen at normal phone, tablet, and desktop sizes.
+Some glass, linen, lighting, and shadows remain coded approximations rather than a verified pixel-identical Figma reconstruction. Background objects remain independent responsive layers, not flattened screenshots.

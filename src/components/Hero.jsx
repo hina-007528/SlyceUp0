@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import bowlImg from '../assets/img/slyceup-hero-bowl.webp';
-import phoneImg from '../assets/img/slyceup-hero-phone.webp';
+import bowlImg from '../assets/img/uploaded-hero-bowl.webp';
+import phoneImg from '../assets/img/uploaded-hero-phone.webp';
+import desktopFoliage from '../assets/img/hero-foliage-desktop.webp';
+import mobileFoliage from '../assets/img/hero-foliage-mobile.webp';
 
 export default function Hero() {
   const [hint, setHint] = useState('Be the first to try SlyceUp.');
@@ -21,15 +23,25 @@ export default function Hero() {
 
   return (
     <section className="hero" id="early" aria-labelledby="h1">
+      <div className="layer rays"></div>
+      <picture className="layer plant" aria-hidden="true">
+        <source media="(max-width:760px)" srcSet={mobileFoliage} />
+        <img src={desktopFoliage} width="159" height="113" alt="" />
+      </picture>
+      <div className="layer glass" aria-hidden="true" />
+      <div className="layer napkin"></div>
+      <div className="layer stripe"></div>
+      
       <div className="hero-inner">
       <div className="art" aria-label="A meal and SlyceUp meal-reading app">
-        <img className="bowl" src={bowlImg} width="1206" height="1135" alt="Bowl of ramen with shiitake, corn, nori, bok choy and a soft-boiled egg" fetchPriority="high" />
-        <img className="phone" src={phoneImg} width="825" height="1765" alt="SlyceUp meal reading for ramen, with context and personal insights" fetchPriority="high" />
+        <div className="layer cast"></div>
+        <img className="bowl" src={bowlImg} width="1137" height="1052" alt="Bowl of ramen with shiitake, corn, nori, bok choy and a soft-boiled egg" fetchPriority="high" />
+        <img className="phone" src={phoneImg} width="674" height="1400" alt="SlyceUp meal reading for ramen, with context and personal insights" fetchPriority="high" />
       </div>
       
       <div className="hero-copy">
-        <p className="eyebrow">Reading your meal</p>
-        <h1 id="h1"><span>See what your</span><span>meal may reveal.</span></h1>
+        <p className="eyebrow"><span className="d">The philosophy behind SlyceUp</span><span className="m">Reading your meal</span></p>
+        <h1 id="h1">See what your<br className="desktop-break" /> meal may reveal.</h1>
         <p className="sub"><span>Food, context, and timing shape</span><span>how it may feel.</span></p>
         
         <form className="form" id="form" noValidate onSubmit={handleSubmit}>
@@ -55,22 +67,6 @@ export default function Hero() {
         </form>
         <p className={`hint ${hint === 'Be the first to try SlyceUp.' ? 'hint-default' : 'hint-response'}`} id="hint" aria-live="polite">{hint}</p>
       </div>
-
-      <div className="benefits" aria-label="SlyceUp benefits">
-        <div className="benefit">
-          <span className="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 13h16a8 8 0 0 1-16 0Z"/><path d="M7 9c1-2 2-3 4-4M12 9c1-2 2-3 4-4M7 17v2m5-2v2m5-2v2"/></svg></span>
-          <span>Real meals, real context</span>
-        </div>
-        <div className="benefit">
-          <span className="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.7-7 10-7 10Z"/><path d="M8 12h2l1.2-2.3 1.8 4 1.2-1.7H17"/></svg></span>
-          <span>Understand patterns over time</span>
-        </div>
-        <div className="benefit">
-          <span className="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18h16M6 16l3-4 3 2 5-7 2 2"/><path d="M17 7h2v2"/></svg></span>
-          <span>Insights for a more balanced you</span>
-        </div>
-      </div>
-      <p className="hero-caption">MEALS MEAN MORE WITH CONTEXT</p>
       </div>
     </section>
   );

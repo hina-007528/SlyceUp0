@@ -1,7 +1,11 @@
 import { useState } from 'react';
-import imgCapture from '../assets/img/slyceup-capture.webp';
-import imgUnderstand from '../assets/img/slyceup-understand.webp';
-import imgLearn from '../assets/img/slyceup-learn.webp';
+import imgCapture from '../assets/img/uploaded-capture.webp';
+import imgUnderstand from '../assets/img/uploaded-understand.webp';
+import imgLearn from '../assets/img/reference-learn.webp';
+import mobileCapture from '../assets/img/mobile-capture.webp';
+import mobileUnderstand from '../assets/img/mobile-understand.webp';
+import mobileLearn from '../assets/img/mobile-learn.webp';
+import clothImage from '../assets/img/cloth.png';
 
 const steps = [
   {
@@ -11,9 +15,7 @@ const steps = [
     caption: 'A photo is enough to begin.',
     alt: 'SlyceUp camera view framing a bowl of ramen',
     image: imgCapture,
-    mobileImage: imgCapture,
-    width: 722,
-    height: 1702,
+    mobileImage: mobileCapture,
     label: 'Capture',
   },
   {
@@ -23,9 +25,7 @@ const steps = [
     caption: 'See the imprint shaped by food, preparation, context and you.',
     alt: 'SlyceUp meal reading with context and details for ramen',
     image: imgUnderstand,
-    mobileImage: imgUnderstand,
-    width: 787,
-    height: 1635,
+    mobileImage: mobileUnderstand,
     label: 'Understand',
   },
   {
@@ -35,9 +35,7 @@ const steps = [
     caption: 'Notice impact and patterns over time.',
     alt: 'SlyceUp insights screen showing meal patterns over time',
     image: imgLearn,
-    mobileImage: imgLearn,
-    width: 852,
-    height: 1791,
+    mobileImage: mobileLearn,
     label: 'Learn',
   },
 ];
@@ -49,14 +47,19 @@ export default function HowItWorks() {
 
   return (
     <section className="how" id="how" aria-labelledby="how-heading">
+      <svg className="layer leafsh" viewBox="0 0 200 260" aria-hidden="true"><use href="#lf" /></svg>
+      <div className="layer rays" aria-hidden="true" />
+      <div className="layer cast" aria-hidden="true" />
+      <img className="cloth-prop" src={clothImage} width="130" height="320" alt="" aria-hidden="true" />
+
       <div className="how-inner">
         <div className="phone-feature">
           <picture className="main-phone" data-step={activeIndex}>
             <source media="(max-width: 760px)" srcSet={activeStep.mobileImage} />
             <img
             src={activeStep.image}
-            width={activeStep.width}
-            height={activeStep.height}
+            width="280"
+            height="576"
             alt={activeStep.alt}
             key={activeStep.image}
             loading="lazy"
@@ -103,7 +106,7 @@ export default function HowItWorks() {
                   <span className="preview-phone">
                     <picture>
                       <source media="(max-width: 760px)" srcSet={step.mobileImage} />
-                      <img src={step.image} width={step.width} height={step.height} alt="" loading="lazy" />
+                      <img src={step.image} width="280" height="576" alt="" loading="lazy" />
                     </picture>
                   </span>
                   <span className="preview-caption">
