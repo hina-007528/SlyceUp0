@@ -29,7 +29,7 @@ export default function Hero() {
       
       <div className="hero-copy">
         <p className="eyebrow">Reading your meal</p>
-        <h1 id="h1">See what your meal may reveal.</h1>
+        <h1 id="h1"><span>See what your</span><span>meal may reveal.</span></h1>
         <p className="sub"><span>Food, context, and timing shape</span><span>how it may feel.</span></p>
         
         <form className="form" id="form" noValidate onSubmit={handleSubmit}>

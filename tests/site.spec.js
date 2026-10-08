@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 
 const sizes = [
-  [360,800], [393,852], [430,932], [768,523], [820,1180],
+  [320,740], [360,800], [390,844], [393,852], [412,915], [430,932], [768,523], [820,1180],
   [1024,697], [1280,720], [1366,768], [1440,747], [1536,864],
-  [1600,900], [1920,1080], [2560,1440],
+  [1440,900], [1440,1024], [1600,900], [1672,941], [1920,1080], [2560,1440],
 ];
 
 test('responsive layout, typography, assets and step states', async ({ page }) => {
@@ -64,6 +64,82 @@ test('responsive layout, typography, assets and step states', async ({ page }) =
     expect(await page.evaluate(family=>[...document.fonts].some(f=>f.family.includes(family)&&f.status==='loaded'),family)).toBe(true);
   }
   expect(failures).toEqual([]);
+});
+
+test('reference-aligned headlines, vertical preview cards and one continuous background', async ({ page }) => {
+  await page.goto('/');
+  for (const [width,height] of [[320,740],[393,852],[768,523],[1366,768],[1440,1024]]) {
+    await page.setViewportSize({width,height});
+    await page.evaluate(()=>document.fonts.ready);
+    for(let step=0;step<3;step++) {
+      await page.locator('.step').nth(step).click();
+      await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+      const layout=await page.evaluate(()=>{
+        const hero=document.querySelector('.hero');
+        const headline=document.querySelector('.hero h1');
+        const actualLines=Math.round(headline.getBoundingClientRect().height/parseFloat(getComputedStyle(headline).lineHeight));
+        const previews=[...document.querySelectorAll('.preview')].map(el=>{
+          const image=el.querySelector('.preview-phone').getBoundingClientRect();
+          const caption=el.querySelector('.preview-caption').getBoundingClientRect();
+          const card=el.getBoundingClientRect();
+          return {
+            upright:image.height>image.width*1.6,
+            captionBelow:caption.top>=image.bottom-1,
+            contentFits:caption.left>=card.left-1&&caption.right<=card.right+1,
+          };
+        });
+        return {
+          lines:actualLines,
+          background:getComputedStyle(hero).backgroundColor,
+          colors:[...document.querySelectorAll('body,main>section')].map(el=>getComputedStyle(el).backgroundColor),
+          previews,
+          imagesFirst:innerWidth>760||document.querySelector('.hero-copy').getBoundingClientRect().top>=document.querySelector('.art').getBoundingClientRect().bottom-1,
+        };
+      });
+      expect(layout.lines,`Two-line reference headline at ${width}px`).toBe(2);
+      expect(layout.colors.every(color=>color===layout.background),'All sections share the Hero color').toBe(true);
+      expect(layout.imagesFirst).toBe(true);
+      expect(layout.previews,`Portrait preview cards with captions below at ${width}px, step ${step}`).toEqual([
+        {upright:true,captionBelow:true,contentFits:true},
+        {upright:true,captionBelow:true,contentFits:true},
+      ]);
+    }
+  }
+});
+
+test('short screens retain all text and rapid navigation settles without stale scroll easing', async ({ page }) => {
+  await page.goto('/');
+  for(const [width,height] of [[320,568],[393,667],[760,600],[761,600],[900,600],[901,600],[932,430]]) {
+    await page.setViewportSize({width,height});
+    await page.evaluate(()=>document.fonts.ready);
+    for(let step=0;step<3;step++) {
+      await page.locator('.step').nth(step).click();
+      const overflow=await page.evaluate(()=>{
+        const available=document.documentElement.clientWidth;
+        return {
+          horizontal:document.documentElement.scrollWidth>available+1,
+          text:[...document.querySelectorAll('h1,h2,.philo-copy,.lead,.preview-caption,.form')].filter(el=>{
+            const r=el.getBoundingClientRect();
+            return r.width>0&&(r.left< -1||r.right>available+1||el.scrollWidth>el.clientWidth+2);
+          }).map(el=>el.className||el.tagName),
+        };
+      });
+      expect(overflow,`Readable, unclipped content at ${width}×${height}, step ${step}`).toEqual({horizontal:false,text:[]});
+    }
+  }
+  await page.setViewportSize({width:1366,height:768});
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  await page.goto('/');
+  await expect(page.locator('html')).toHaveClass(/lenis/);
+  await page.evaluate(()=>document.querySelector('.nav a[href="#how"]').click());
+  await page.waitForTimeout(100);
+  await page.evaluate(()=>document.querySelector('.nav a[href="#philosophy"]').click());
+  await expect.poll(()=>page.locator('#philosophy').evaluate(el=>Math.abs(el.getBoundingClientRect().top))).toBeLessThanOrEqual(2);
+  await page.evaluate(()=>{location.hash='how';});
+  await page.evaluate(()=>{location.hash='early';});
+  await expect.poll(()=>page.locator('#early').evaluate(el=>Math.abs(el.getBoundingClientRect().top))).toBeLessThanOrEqual(2);
+  await page.waitForTimeout(250);
+  expect(await page.evaluate(()=>scrollY)).toBeLessThanOrEqual(2);
 });
 
 test('keyboard menu, navigation and honest email validation', async ({ page }) => {
