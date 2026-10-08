@@ -44,7 +44,7 @@ test('responsive layout, typography, assets and step states', async ({ page }) =
             }),
           mobileCopy:innerWidth>760||(
             document.querySelector('.philo-copy').getBoundingClientRect().top>=document.querySelector('.stage').getBoundingClientRect().bottom&&
-            document.querySelector('.philo-copy').innerText.includes('SAME FOOD. A DEEPER UNDERSTANDING.')
+             document.querySelector('.philo-copy').innerText.replace(/\s+/g,' ').includes('SAME FOOD. A DEEPER UNDERSTANDING.')
           ),
         };
       });
@@ -221,6 +221,20 @@ test('second and third sections remain compact and readable', async ({ page }) =
     Math.min(...elements.map(el=>parseFloat(getComputedStyle(el).fontSize))))).toBeGreaterThanOrEqual(18);
   await expect.poll(()=>page.locator('.phone-feature').evaluate(el=>
     el.getBoundingClientRect().height)).toBeLessThan(355);
+});
+
+test('Philosophy copy follows the reference line breaks', async ({ page }) => {
+  await page.goto('/');
+  const paragraphs=page.locator('.philo-copy p:not(.eyebrow)');
+  await expect(paragraphs.nth(0)).toHaveText('Ayurveda looks beyond what is on the plate.');
+  const expected=[
+    ['Ayurveda looks beyond','what is on the plate.'],
+    ['The same meal is shaped by','what it is, how it is prepared,','the context around it,','and you.'],
+    ['SlyceUp translates this ancient','wisdom into clear, personal','understanding for everyday life.'],
+    ['SAME FOOD.','A DEEPER UNDERSTANDING.'],
+  ];
+  expect(await paragraphs.evaluateAll(elements=>elements.map(el=>el.innerText.split('\n').map(line=>line.trim()))))
+    .toEqual(expected);
 });
 
 test('tablet hero keeps desktop alignment and phone keeps a right margin', async ({ page }) => {

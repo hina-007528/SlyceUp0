@@ -38,3 +38,9 @@ At 768px, keep the Hero's desktop-style side-by-side alignment and two-line head
 **Why:** The user requested desktop-like tablet alignment and repeatedly clarified that the desktop phone needs visible right-side background space without reducing browser zoom.
 
 **How to apply:** Preserve the mobile image-first layout, and check phone clearance around responsive breakpoints with both overlay and reserved-space scrollbars.
+
+When matching Philosophy copy to reference line groupings, change only the line breaks.
+
+**Why:** The user explicitly requested matching words per line without changing sizing or other design details.
+
+**How to apply:** Preserve the existing typography, paragraph widths, spacing, images and section dimensions; do not resize the design to achieve the requested wrapping.
