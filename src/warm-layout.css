@@ -1,0 +1,192 @@
+/* Warm editorial surface + restrained desktop fit adjustments for SlyceUp. */
+:root {
+  --bg: #f7f2e6;
+  --bg-soft: #fbf8f0;
+  --bg-deep: #efe8d8;
+  --bg-line: rgba(60, 50, 30, .10);
+  --space-1: clamp(4px, .5vw, 8px);
+  --space-2: clamp(8px, 1vw, 12px);
+  --space-3: clamp(12px, 1.5vw, 20px);
+  --space-4: clamp(16px, 2vw, 32px);
+  --space-5: clamp(24px, 3.5vw, 56px);
+  --space-6: clamp(40px, 6vw, 96px);
+  --space-7: clamp(64px, 9vw, 160px);
+  --warm-gutter: clamp(24px, 2.5vw, 40px);
+  --warm-section-gutter: clamp(24px, 2.5vw, 36px);
+}
+
+body {
+  background-color: var(--bg);
+}
+
+/* The sticky slot grows with the header; its matching negative margin keeps
+   the page's existing section start in place while the row stays centered. */
+.header-slot {
+  --header-height: 76px;
+  --header-scrolled-height: 68px;
+}
+
+.header-slot .nav .in {
+  align-items: center;
+}
+
+.hero {
+  background-color: var(--bg);
+  background-image: radial-gradient(
+    60% 50% at 50% 0%,
+    #fbf8f0 0%,
+    rgba(247, 242, 230, 0) 70%
+  );
+}
+
+.philo {
+  background-color: var(--bg);
+  background-image: linear-gradient(
+    180deg,
+    var(--bg) 0%,
+    var(--bg-soft) var(--space-6),
+    var(--bg-soft) calc(100% - var(--space-6)),
+    var(--bg) 100%
+  );
+}
+
+.how {
+  background-color: var(--bg);
+  background-image: linear-gradient(
+    180deg,
+    var(--bg) 0%,
+    var(--bg) calc(100% - var(--space-7)),
+    var(--bg-deep) 100%
+  );
+}
+
+/* Keep the existing form silhouette while giving its surface a warm,
+   understated hairline and the requested low-elevation shadow. */
+.form {
+  border-color: var(--bg-line);
+  background: var(--bg-soft);
+  box-shadow: 0 1px 2px rgba(60, 50, 30, .06), 0 8px 24px rgba(60, 50, 30, .05);
+}
+
+@media (min-width: 901px) {
+  .hero-inner {
+    width: min(calc(100% - 2 * var(--warm-gutter)), 1216px);
+  }
+
+  .philo-inner,
+  .how-inner {
+    width: min(calc(100% - 2 * var(--warm-section-gutter)), 1368px);
+  }
+
+  .hero h1 {
+    font-size: 81.7px;
+    line-height: 78.85px;
+  }
+
+  .hero .sub {
+    font-size: 26.6px;
+    line-height: 32.3px;
+  }
+
+  .philo h2 {
+    font-size: 64.6px;
+  }
+
+  .philo-copy p {
+    font-size: 20.9px;
+  }
+
+  .philo-copy .ph-desc-sub {
+    font-size: 19px;
+  }
+
+  .phone-feature .main-phone {
+    width: calc(clamp(225px, 25.2vw, 363px) * .95);
+  }
+
+  .how h2 {
+    font-size: 57.95px;
+    line-height: 55.1px;
+  }
+
+  .lead {
+    font-size: 18.05px;
+    line-height: 27.55px;
+  }
+
+  .preview-phone {
+    width: min(100%, 156px);
+    height: clamp(184px, 23.56vw, 262px);
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1350px) {
+  .hero h1 {
+    font-size: clamp(60.8px, 5.7vw, 76px);
+    line-height: .98;
+  }
+
+  .hero .sub {
+    font-size: clamp(20.9px, 1.9vw, 25.65px);
+    line-height: 1.22;
+  }
+
+  .philo h2 {
+    font-size: clamp(45.6px, 4.6vw, 61.75px);
+  }
+
+  .philo-copy p {
+    font-size: 18.05px;
+  }
+
+  .philo-copy .ph-desc-sub {
+    font-size: 17.1px;
+  }
+
+  .node p {
+    font-size: 10.45px;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1050px) {
+  .hero h1 {
+    font-size: clamp(55.1px, 5.7vw, 64.6px);
+  }
+
+  .hero .sub {
+    font-size: 20.9px;
+  }
+
+  .philo h2 {
+    font-size: 40.85px;
+  }
+
+  .phone-feature .main-phone {
+    width: calc(clamp(202px, 25vw, 276px) * .95);
+  }
+
+  .how h2 {
+    font-size: 49.4px;
+    line-height: 1;
+  }
+
+  .lead {
+    font-size: 18.05px;
+    line-height: 27.55px;
+  }
+}
+
+@media (max-width: 900px) {
+  .header-slot {
+    --header-height: 72px;
+    --header-scrolled-height: 64px;
+  }
+}
+
+@media (max-width: 760px) {
+  /* scroll-upgrade.css contains a 56px stuck-height declaration at this
+     breakpoint; retain the requested 64px mobile scrolled header. */
+  .header-slot .nav.stuck {
+    height: 64px;
+  }
+}

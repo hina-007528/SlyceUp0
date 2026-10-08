@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const widths = [280,320,360,390,414,600,768,820,1024,1280,1440,1920,2560];
+const widths = [280,320,360,390,414,600,768,820,1024,1280,1366,1440,1920,2560];
 const inspectLayout = () => {
   const width = document.documentElement.clientWidth;
   const visible = el => {
@@ -125,28 +125,63 @@ test('desktop header matches the requested top spacing and themed scrollbar', as
       scrollbarColor:getComputedStyle(document.documentElement).scrollbarColor,
     };
   })).toEqual({
-    height:56,rowWidth:1280,rowHeight:56,logo:[168,44],gap:'48px',
+    height:76,rowWidth:1280,rowHeight:76,logo:[168,44],gap:'48px',
     linksGap:'32px',ctaHeight:48,scrollbarColor:'rgb(138, 148, 131) rgb(247, 242, 230)',
   });
+});
+
+test('warm tints keep the header and foreground palette, with more equal navbar padding', async ({page}) => {
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.goto('/');
+  for(const width of [280,393,820,1024,1440,2560]) {
+    await page.setViewportSize({width,height:900});
+    await page.evaluate(()=>window.scrollTo(0,0));
+    expect(await page.locator('header').evaluate(el=>el.getBoundingClientRect().height)).toBe(width>900?76:72);
+    expect(await page.locator('header').evaluate(el=>getComputedStyle(el).backgroundColor)).toBe('rgb(247, 242, 230)');
+    expect(await page.locator('.form').evaluate(el=>getComputedStyle(el).backgroundColor)).toBe('rgb(251, 248, 240)');
+    for(const selector of width>900?['.logo img','.nav .pill','.nav ul a']:['.logo img','.burger']) {
+      expect(await page.locator(selector).first().evaluate(el=>{
+        const nav=el.closest('header').getBoundingClientRect(), r=el.getBoundingClientRect();
+        return Math.abs((r.top-nav.top)-(nav.bottom-r.bottom));
+      })).toBeLessThan(1);
+    }
+    await page.evaluate(()=>window.scrollTo(0,150));
+    await expect(page.locator('header')).toHaveClass(/stuck/);
+    expect(await page.locator('header').evaluate(el=>el.getBoundingClientRect().height)).toBe(width>900?68:64);
+  }
+  expect(await page.locator(':root').evaluate(el=>['--bg','--bg-soft','--bg-deep'].map(v=>getComputedStyle(el).getPropertyValue(v).trim())))
+    .toEqual(['#f7f2e6','#fbf8f0','#efe8d8']);
+  expect(await page.locator('.philo h2').evaluate(el=>getComputedStyle(el).color)).toBe('rgb(18, 61, 54)');
+  expect(await page.locator('.nav .pill').evaluate(el=>getComputedStyle(el).backgroundColor)).toBe('rgb(255, 104, 90)');
+});
+
+test('desktop typography is modestly smaller while mobile type and image-first layout stay intact', async ({page})=>{
+  await page.goto('/');
+  for(const [width,heroSize,philoSize,howSize] of [[1024,58.368,40.85,49.4],[1280,72.96,58.88,57.95],[1440,81.7,64.6,57.95],[2560,81.7,64.6,57.95],[393,48,44,26]]) {
+    await page.setViewportSize({width,height:900});
+    for(const [selector,size] of [['.hero h1',heroSize],['.philo h2',philoSize],['.how h2',howSize]]) {
+      await expect.poll(()=>page.locator(selector).evaluate(el=>parseFloat(getComputedStyle(el).fontSize))).toBeCloseTo(size,1);
+    }
+  }
 });
 
 test('header shrinks smoothly, restores at top and never moves section layout', async ({page}) => {
   await page.emulateMedia({reducedMotion:'no-preference'});
   await page.goto('/');
   await expect(page.locator('header')).not.toHaveClass(/stuck/);
-  await expect.poll(() => page.locator('header').evaluate(el=>el.getBoundingClientRect().height)).toBe(56);
+  await expect.poll(() => page.locator('header').evaluate(el=>el.getBoundingClientRect().height)).toBe(76);
   const positions = () => [...document.querySelectorAll('.hero-inner,.philo-inner,.how-inner')]
     .map(el=>Math.round((el.getBoundingClientRect().top+scrollY)*100)/100);
   const before = await page.evaluate(positions);
   expect(await page.locator('header').evaluate(el=>getComputedStyle(el).transitionDuration)).toContain('0.4s');
   await page.evaluate(() => window.scrollTo(0,350));
   await expect(page.locator('header')).toHaveClass(/stuck/);
-  await expect.poll(() => page.locator('header').evaluate(el=>el.getBoundingClientRect().height)).toBe(48);
-  expect(await page.locator('.header-slot').evaluate(el=>el.getBoundingClientRect().height)).toBe(56);
+  await expect.poll(() => page.locator('header').evaluate(el=>el.getBoundingClientRect().height)).toBe(68);
+  expect(await page.locator('.header-slot').evaluate(el=>el.getBoundingClientRect().height)).toBe(76);
   expect(await page.evaluate(positions)).toEqual(before);
   expect(await page.locator('header').evaluate(el=>getComputedStyle(el).backgroundColor)).toBe('rgb(247, 242, 230)');
   await page.evaluate(() => window.scrollTo(0,0));
-  await expect.poll(() => page.locator('header').evaluate(el=>el.getBoundingClientRect().height)).toBe(56);
+  await expect.poll(() => page.locator('header').evaluate(el=>el.getBoundingClientRect().height)).toBe(76);
   expect(await page.evaluate(positions)).toEqual(before);
 });
 

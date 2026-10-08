@@ -43,14 +43,20 @@ or every physical device.
 ## Approved scroll upgrade
 
 The original top-of-page desktop scene, fonts, copy and images remain unchanged.
-The background is `#f7f2e6`; the bowl and hero phone remain static. A three-column
+The base background is `#f7f2e6`, with subtle same-hue section layers and one
+hero radial light. The header remains exactly `#f7f2e6`.
+The bowl and hero phone remain static. A three-column
 feature strip and caption sit beneath the hero scene. The existing header shrinks
-from 56px to 48px on desktop, and 64px to 56px on mobile/tablet, within a reserved
-sticky slot. The desktop row uses the requested logo and navigation spacing.
+from 76px to 68px on desktop, and 72px to 64px on mobile/tablet, within a reserved
+sticky slot. Extra vertical space surrounds the unchanged logo and buttons.
+The desktop row uses the requested logo and navigation spacing.
 All three feature points remain side-by-side on phones, with responsive sizes.
 The native scrollbar uses the page's cream and muted-green palette.
 
-New layout and motion rules are isolated in `src/scroll-upgrade.css`. The only
+Layout and motion rules are isolated in `src/scroll-upgrade.css`; the latest
+warm backgrounds and modest desktop sizing overrides are in `src/warm-layout.css`.
+Changed values, contrast audit limitations, and undo instructions are in
+`docs/warm-layout-update.md`. The only
 existing styling-rule changes for this upgrade are removing competing native
 smooth scrolling and restricting the existing hover effects to hover-capable
 devices. Additive overrides adjust narrow-screen type/spacing, safe-area padding

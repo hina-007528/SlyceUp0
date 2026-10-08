@@ -1,5 +1,5 @@
 - [Design constraints](design-constraints.md) — reference priorities, asset extraction and approved responsive alignment; current background direction lives in replit.md.
-- [Browser reference QA](browser-reference-qa.md) — Linux Chromium scrollbar behavior can change mobile layout width during emulation.
+- [Browser reference QA](browser-reference-qa.md) — mobile scrollbar gutters and delayed responsive/font measurements can cause false layout failures.
 - [External builds](external-builds.md) — Replit-internal lockfile URLs can break Vercel and GitHub installs; audit registry portability before pushing.
 - [GitHub authorization](github-authorization.md) — managed API access and shell Git authorization are separate; a working connection need not be reconnected.
 - [Smooth-scroll restoration](smooth-scroll-restoration.md) — cancel existing easing before rebasing to native fragment navigation; equal-target updates may leave old animations running.

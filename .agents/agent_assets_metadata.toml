@@ -1,0 +1,16 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "OE5Tt4wi9ZlrAM0BS-VWG"
+uri = "file://docs/warm-layout-update.md"
+type = "text"
+title = "Warm layout: change list, contrast report and undo guide"
+description = "Every changed file and overridden value, existing contrast failures, verification scope, and instructions for restoring the previous layout."
+logical_id = "f10b9d5c-d0d3-4a42-a6c0-6cb55c238a6f"
+content_hash = "sha256:bf37e1e348556c9e34e3edead72130c896feecdb6bdd0582a8d8e94042732599"
+size = 7874
+mtime_ms = 1791446438994
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:f0e325ae-0f04-4860-aba1-37563297717d/f10b9d5c-d0d3-4a42-a6c0-6cb55c238a6f/705b6a81-d76e-4940-ace3-19759ad05c27"
+storage_version_token = "1791446554833303"
+content_type = "text/markdown"

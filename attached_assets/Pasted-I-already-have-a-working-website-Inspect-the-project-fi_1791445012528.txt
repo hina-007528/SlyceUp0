@@ -1,0 +1,38 @@
+I already have a working website. Inspect the project first and tell me which files you will change. Then fix spacing, widths and responsiveness only.
+
+DO NOT CHANGE
+- Colors, fonts, logo, images, copy, section order, or visual style. If a change might alter how an existing element looks, stop and ask me first.
+- Create a git branch or backup first. Add new CSS (a new file or a marked block) instead of rewriting existing rules. Don't delete or rename classes, IDs, or components. No global resets and no CSS framework.
+
+1. WIDTH SYSTEM (every screen)
+- Page container: width: 100%; max-width: 1280px (use 1440px for wide layouts); margin-inline: auto; side padding clamp(16px, 5vw, 80px). Full-bleed backgrounds and images may span the full screen, while their content stays inside the container.
+- Replace fixed pixel widths with width: 100% plus max-width, %, fr units, or min() / clamp(). Examples: width: min(100%, 1280px); cards use minmax(min(100%, 280px), 1fr).
+- Text blocks: max-width 65ch for body copy, about 20ch to 24ch for large headings. Centered content stays centered.
+- Images and videos: max-width: 100%; height: auto; use aspect-ratio and object-fit.
+- Set box-sizing: border-box on the elements you touch, and make sure nothing is wider than the viewport. No horizontal scroll at any width.
+- Large screens (1920px to 2560px+): content stays centered and capped, with no stretched text or tiny-looking layouts. Small screens (280 to 320px): everything stacks into one column with no clipped text.
+
+2. SPACING SYSTEM
+- Define tokens as CSS variables and use them everywhere instead of random values:
+  --space-1: clamp(4px, 0.5vw, 8px)
+  --space-2: clamp(8px, 1vw, 12px)
+  --space-3: clamp(12px, 1.5vw, 20px)
+  --space-4: clamp(16px, 2vw, 32px)
+  --space-5: clamp(24px, 3.5vw, 56px)
+  --space-6: clamp(40px, 6vw, 96px)
+  --space-7: clamp(64px, 9vw, 160px)
+- Section vertical padding: --space-6 to --space-7. Gaps between heading, text and buttons: --space-3 to --space-4. Grid and card gaps: --space-4. Use the same rhythm in every section.
+
+3. TYPOGRAPHY SIZING
+- Fluid type with clamp(): h1 clamp(2rem, 5vw + 1rem, 4.5rem); h2 clamp(1.625rem, 3vw + 1rem, 3rem); body clamp(1rem, 0.4vw + 0.9rem, 1.125rem).
+- Line-height 1.1 to 1.2 for headings and 1.5 to 1.7 for body. Use text-wrap: balance on headings and text-wrap: pretty on paragraphs. Body text is at least 14px on mobile. Long words wrap (overflow-wrap: anywhere).
+
+4. RESPONSIVE RULES
+- Mobile-first, with breakpoints near 480, 768, 1024, 1280 and 1536px. Prefer flexible grids (repeat(auto-fit, minmax(min(100%, 280px), 1fr))) over fixed column counts.
+- Use min-height, not fixed heights. Use 100svh/dvh instead of 100vh. Respect safe-area insets.
+- Touch targets at least 44x44px. Hover effects only inside @media (hover: hover).
+
+5. VERIFY
+- Test at 280, 320, 360, 390, 414, 600, 768, 820, 1024, 1280, 1366, 1440, 1920 and 2560px, in portrait and landscape, and at 200% browser zoom, in Chrome, Edge, Firefox, Safari and Samsung Internet.
+- To find overflow, temporarily add * { outline: 1px solid red } and look for anything wider than the screen, then remove it.
+- At the end, list every file changed, every rule that replaced an existing value, and how to undo everything (git revert or delete the branch).

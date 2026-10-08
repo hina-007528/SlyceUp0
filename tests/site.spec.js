@@ -91,7 +91,7 @@ test('keyboard menu, navigation and honest email validation', async ({ page }) =
   await expect(page.locator('#hint')).toContainText("isn't connected");
 });
 
-test('smooth anchors, flat backgrounds, static hero and compact sticky navigation', async ({ page }) => {
+test('smooth anchors, warm backgrounds, static hero and padded sticky navigation', async ({ page }) => {
   await page.emulateMedia({ reducedMotion:'no-preference' });
   await page.setViewportSize({ width:1280, height:720 });
   await page.goto('/');
@@ -120,14 +120,19 @@ test('smooth anchors, flat backgrounds, static hero and compact sticky navigatio
       elements.map(el => ({
         color:getComputedStyle(el).backgroundColor,
         image:getComputedStyle(el).backgroundImage,
-      })))).toEqual(Array(6).fill({color:'rgb(247, 242, 230)',image:'none'}));
+      })))).toEqual([
+        ...Array(3).fill({color:'rgb(247, 242, 230)',image:'none'}),
+        {color:'rgb(247, 242, 230)',image:expect.stringContaining('radial-gradient')},
+        {color:'rgb(247, 242, 230)',image:expect.stringContaining('linear-gradient')},
+        {color:'rgb(247, 242, 230)',image:expect.stringContaining('linear-gradient')},
+      ]);
     expect(await page.locator('.hero .bowl, .hero .phone').evaluateAll(elements =>
       elements.map(el=>getComputedStyle(el).animationName))).toEqual(['none','none']);
     await expect.poll(()=>page.locator('header').evaluate(el=>({
       height:el.getBoundingClientRect().height,
       top:el.getBoundingClientRect().top,
       position:getComputedStyle(el).position,
-    }))).toEqual({height:width>900?48:56,top:0,position:'sticky'});
+    }))).toEqual({height:width>900?68:64,top:0,position:'sticky'});
     expect(await page.locator('.stage').evaluate(el=>[
       getComputedStyle(el,'::before').content,
       getComputedStyle(el,'::after').content,
