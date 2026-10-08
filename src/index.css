@@ -1722,7 +1722,14 @@ body,
 @media (min-width: 1180px) {
   .nav .in,
   .hero-inner,
-  .philo-inner {
+  .philo-inner,
+  .how-inner {
     max-width: 1150px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .phone-feature {
+    padding-left: 0;
   }
 }
