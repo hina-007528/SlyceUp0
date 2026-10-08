@@ -120,7 +120,7 @@ test('smooth anchors, flat backgrounds, static hero and compact sticky navigatio
       elements.map(el => ({
         color:getComputedStyle(el).backgroundColor,
         image:getComputedStyle(el).backgroundImage,
-      })))).toEqual(Array(6).fill({color:'rgb(243, 232, 221)',image:'none'}));
+      })))).toEqual(Array(6).fill({color:'rgb(247, 242, 230)',image:'none'}));
     expect(await page.locator('.hero .bowl, .hero .phone').evaluateAll(elements =>
       elements.map(el=>getComputedStyle(el).animationName))).toEqual(['none','none']);
     expect(await page.locator('header').evaluate(el=>({

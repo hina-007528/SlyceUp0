@@ -1,0 +1,44 @@
+I already have a working website. Inspect the project first and tell me which files you will change. Then do the 4 tasks below.
+
+DESIGN SAFETY (highest priority)
+- First create a git branch or backup (e.g. `git checkout -b scroll-upgrade`).
+- My current design is the source of truth. Do not change colors, fonts, logo, images, copy, section order, radius, shadows, or visual style. At the top of the page on desktop, everything must look identical to now, except the new hero strip.
+- Add new CSS (a new file or a clearly marked block) instead of editing existing rules. If a rule must change, change the minimum and list it. Don't delete or rename existing classes, IDs, or components.
+- No global resets, no CSS framework, no base font-size change.
+- If a change might alter the look of an existing element, stop and ask me first.
+- Never hide content: if a script or animation fails, everything stays visible and usable.
+
+1. RESPONSIVENESS (all devices, all browsers)
+- Cover small Android phones (320px), iPhone, Samsung, Pixel, foldables (280px folded), iPad and Android tablets (portrait and landscape), laptops, desktops, Chromebooks, and 2560px ultrawide. Support Chrome, Edge, Firefox, Safari, and Samsung Internet.
+- Check 280, 320, 360, 390, 414, 600, 768, 820, 1024, 1280, 1440, 1920 and 2560px, in both orientations, and at 200% zoom.
+- Use clamp() for type and spacing, max-width containers with side padding, and wrapping flex/grid. No fixed pixel widths, horizontal scroll, overlapping, or clipped text.
+- Consistent spacing scale. Images and videos use aspect-ratio and max-width: 100%, with srcset where possible.
+- Touch targets at least 44px. Hover effects only inside @media (hover: hover). Use 100svh/dvh instead of 100vh. Respect safe-area insets.
+
+2. HEADER: shrink on scroll (like https://shrink-nav.webflow.io/)
+- Keep my existing header exactly the same: same background color, logo, fonts, links, buttons. Do not create a new header.
+- On scroll down, it becomes sticky and smoothly shrinks (less padding, slightly smaller logo, tighter nav spacing). Background color unchanged: no glass, no gradient. A very subtle shadow is fine.
+- At the top, it restores the exact original size.
+- 300-500ms ease-out. No flicker, layout shift, or content jump (reserve the header's height). Use a passive scroll listener with requestAnimationFrame, or an IntersectionObserver, to toggle one class.
+- Works on desktop, tablet and mobile, and keeps a usable hamburger menu.
+
+3. HERO BOTTOM STRIP (I will upload the hero image)
+Under the hero, add a feature row and a caption row, both responsive, with no fixed pixel widths:
+- 3 items in a row, gap about 26px. Make a reusable FeatureItem: a column with gap 18px containing a 48px circle (background rgba(223,233,220,0.86)) with a 32px icon, and text (Manrope 16px, weight 400, line-height 22px, color rgba(49,52,58,0.86)).
+  Texts: "Real meals, real context" / "Understand patterns over time" / "Insights for a more balanced you".
+- On mobile, the items wrap or stack, centered.
+- Caption row: a 1px line (rgba(41,48,53,0.48)), the text "MEALS MEAN MORE WITH CONTEXT" (Manrope 9px, weight 500, letter-spacing 2.6px, color #717880, centered), and a matching line. Lines are flex: 1 with max-width 108px. On narrow screens, the text may wrap and the lines shrink.
+
+4. SMOOTH SCROLL AND TEXT FADE
+- Add Lenis (https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js, or `npm i lenis` if there is a bundler). Create it once, globally: new Lenis({ lerp: 0.08 }), driven by requestAnimationFrame.
+- CSS: .lenis.lenis-smooth { scroll-behavior: auto !important; }. Remove any existing "scroll-behavior: smooth" or other smooth-scroll library. Anchor links use lenis.scrollTo().
+- Add a reusable class .fx on the main headings, paragraphs and text blocks. Not on the header, nav, footer, or fixed or sticky elements.
+- On each Lenis scroll event, run update(): for each .fx, measure its center's distance from the viewport middle. Near the middle gives opacity 1, toward the top and bottom edges fades to 0, with a small translateY drift (about 6% of the distance). Works in both scroll directions. Use will-change: opacity, transform.
+
+QUALITY RULES
+- Respect prefers-reduced-motion (no fade, no transforms, normal scroll).
+- If Lenis fails to load, fall back to a normal scroll listener running update().
+- Text stays fully visible with JavaScript disabled.
+- Don't break forms, modals, or inner scroll containers (add data-lenis-prevent). No unnecessary packages. Preserve all links and routes.
+
+At the end: list every file changed, which elements got .fx, a checklist of what was verified at 320, 768, 1024, 1440 and 2560px, and how to undo everything (git revert or delete the branch).
