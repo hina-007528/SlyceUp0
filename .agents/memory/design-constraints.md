@@ -1,13 +1,13 @@
 ---
 name: SlyceUp design constraints
-description: User's requirement for coded, responsive background compositions
+description: Clean backgrounds, responsive section sizing, and preserving complete product content
 ---
 
-Recreate the Figma background using independent HTML/CSS/SVG/React layers. Individual product or food assets may be used, but never place a full Figma frame or screenshot as the page background.
+Use plain backgrounds with no decorative leaves, glass, fabric, lighting, textures, or artificial shadows. Keep the bowl and phone product assets; never place a full Figma frame or screenshot as a page background.
 
-**Why:** The user explicitly requires every element to remain independently responsive and animatable, with different mobile and desktop compositions.
+**Why:** On 2026-10-08 the user explicitly requested removal of all background decoration, superseding the earlier layered-background reconstruction.
 
-**How to apply:** Preserve separate shapes, lighting, shadows, textures and product objects when editing or extending the landing page. Do not replace the scene with a flattened export to simplify future changes.
+**How to apply:** Keep meaningful diagram annotations and product imagery independently responsive. Do not restore removed decorations from older visual references. Imagery inside a phone screen is product content, not background decoration.
 
 Check original image dimensions before extracting individual objects. The image viewer may display a resized reference, so visible preview coordinates are not necessarily source-pixel coordinates.
 
@@ -15,11 +15,11 @@ Check original image dimensions before extracting individual objects. The image 
 
 **How to apply:** Inspect the original dimensions and scale reference coordinates before cropping; visually verify the resulting asset itself, not only its file size or successful load.
 
-Treat the latest desktop and mobile screenshots as the primary visual source of truth, including when a supplied individual phone asset shows a different screen variant.
+Use Figma references for structure and typography, and the latest supplied full-resolution individual assets for product screens. Preserve each bowl and phone's identity.
 
-**Why:** The user explicitly states that the latest Figma reference wins over conflicting implementation details.
+**Why:** The user repeatedly requested keeping the bowl and mobile frames the same while removing their surroundings, and supplied full-resolution replacements for the blurry Insights screen.
 
-**How to apply:** Compare each screen variant to its corresponding desktop or mobile reference; do not assume that all uploaded phone cutouts are interchangeable.
+**How to apply:** Keep the Hero and Philosophy bowls distinct. Use the appropriate Capture, Understand, and Insights cutouts on both desktop and mobile; never revert the new Insights image to a smaller extraction from an older reference.
 
 Mobile philosophy must keep the bowl and four nodes first, followed by the entire desktop “Food is a relationship” philosophy text, like the hero’s image-first/text-below order.
 
@@ -27,26 +27,38 @@ Mobile philosophy must keep the bowl and four nodes first, followed by the entir
 
 **How to apply:** Do not hide the philosophy copy on mobile to match an image-only reference; preserve all paragraphs, the divider, and the closing statement beneath the scene.
 
-Preserve the approved desktop philosophy composition when correcting tablet annotation spacing.
+Keep the philosophy bowl proportionate rather than oversized, while retaining the complete copy and four annotations.
 
-**Why:** The user explicitly confirmed the 1440×747 layout is “perfect” and scoped the tablet correction to the right-side Preparation and You nodes.
+**Why:** On 2026-10-08 the user said the second section image was too huge, superseding the previous approval of its desktop proportions.
 
-**How to apply:** Keep desktop and mobile unchanged for this correction; adapt the right annotation columns and their connectors within tablet-specific rules.
+**How to apply:** Balance the diagram against the text at each viewport. Preserve the full mobile philosophy text below the diagram rather than hiding it to fit a frame.
 
 Center the navbar logo, navigation text, CTA, and menu toggle vertically within the whole header at every screen size.
 
 **Why:** The user explicitly requested equal space above and below the navbar content, superseding the earlier reference’s bottom-heavy positioning.
 
-**How to apply:** Preserve the existing header dimensions but do not restore the older desktop/mobile top offsets when matching earlier screenshots.
+**How to apply:** The user requested a smaller sticky navbar on 2026-10-08. Reduce its dimensions while preserving vertical centering and mobile navigation.
 
-Remove the mirror/glass background decorations from Philosophy and How It Works.
+Remove all glass decorations, including the Hero glass.
 
-**Why:** The user explicitly requested their removal, overriding those decorations in the visual references.
+**Why:** The 2026-10-08 request extends removal to all background decorations across the page.
 
-**How to apply:** Do not restore decorative glass in either section when refining the design, including the mobile Philosophy pseudo-elements. This request does not remove the Hero glass or unrelated background objects.
+**How to apply:** Do not restore decorative glass or shadows from older screenshots or mobile pseudo-elements.
 
 At 768px, keep the Hero's desktop-style side-by-side alignment and two-line headline. The desktop Hero phone mockup must leave a clearly visible strip of background beyond its right edge at 100% browser zoom, not appear flush with the screen.
 
 **Why:** The user requested desktop-like tablet alignment and repeatedly clarified that the desktop phone needs visible right-side background space without reducing browser zoom.
 
 **How to apply:** Preserve the mobile image-first layout, and check phone clearance around responsive breakpoints with both overlay and reserved-space scrollbars.
+
+Keep the hero bowl and phone stationary, retain Lenis scrolling, and size each section to fit one screen at normal viewport sizes.
+
+**Why:** The user explicitly requested these behaviors on 2026-10-08.
+
+**How to apply:** Do not reintroduce hero floating/parallax animations. Use available viewport height to scale imagery and spacing while preserving legibility and complete content; do not force fitting by clipping content or hiding text.
+
+Screen-fit verification must include visible content, not only section height.
+
+**Why:** Absolutely positioned diagram labels can extend beyond an otherwise correctly sized section without increasing its measured height.
+
+**How to apply:** Check the full bounds of text, diagram annotations, forms, and product frames against their section at short tablet sizes as well as normal phone and desktop sizes.

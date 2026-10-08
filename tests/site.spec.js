@@ -121,7 +121,7 @@ test('smooth anchor scrolling and glass-free section backgrounds', async ({ page
       getComputedStyle(el,'::after').content,
     ])).toEqual(['none','none']);
   }
-  await expect(page.locator('#early .glass')).toHaveCount(1);
+  await expect(page.locator('#early .glass')).toHaveCount(0);
   await page.emulateMedia({ reducedMotion:'reduce' });
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
 });
@@ -211,5 +211,88 @@ test('tablet hero keeps desktop alignment and phone keeps a right margin', async
         expect(layout.formBottom).toBeLessThan(523);
       }
     }
+  }
+});
+
+test('clean static hero, restored benefits and compact sticky header', async ({ page }) => {
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  await page.setViewportSize({width:1366,height:768});
+  await page.goto('/');
+  await page.evaluate(()=>document.fonts.ready);
+  await expect(page.locator('.hero .eyebrow')).toContainText('Reading your meal', {ignoreCase:true});
+  for (const copy of [
+    'Real meals, real context',
+    'Understand patterns over time',
+    'Insights for a more balanced you',
+    'MEALS MEAN MORE WITH CONTEXT',
+  ]) {
+    await expect(page.locator('.hero')).toContainText(copy);
+  }
+  await expect(page.locator(
+    'main .leafsh, main .glass, main .rays, main .napkin, main .stripe, main .cast, main .cloth-prop, main .stick, main .plant',
+  )).toHaveCount(0);
+  const styles = await page.evaluate(()=>({
+    hero: [...document.querySelectorAll('.hero .bowl, .hero .phone')].map(el=>({
+      animation:getComputedStyle(el).animationName,
+      filter:getComputedStyle(el).filter,
+    })),
+    height:document.querySelector('header').getBoundingClientRect().height,
+    position:getComputedStyle(document.querySelector('header')).position,
+    backgrounds:[...document.querySelectorAll('.hero,.philo,.how')].map(el=>({
+      image:getComputedStyle(el).backgroundImage,
+      texture:getComputedStyle(el,'::before').content,
+    })),
+  }));
+  expect(styles.hero).toEqual([
+    {animation:'none',filter:'none'},
+    {animation:'none',filter:'none'},
+  ]);
+  expect(styles.height).toBeLessThan(80);
+  expect(styles.position).toBe('sticky');
+  for(const background of styles.backgrounds) {
+    expect(background.image).toBe('none');
+    expect(background.texture).toBe('none');
+  }
+  await page.mouse.move(700,350);
+  await page.mouse.wheel(0,500);
+  await expect.poll(()=>page.locator('header').evaluate(el=>Math.abs(el.getBoundingClientRect().top)))
+    .toBeLessThanOrEqual(1);
+  await expect(page.locator('header')).toHaveClass(/stuck/);
+});
+
+test('sections fit their viewport and product screens use full-resolution assets', async ({ page }) => {
+  await page.goto('/');
+  for(const [width,height] of sizes) {
+    await page.setViewportSize({width,height});
+    await page.evaluate(()=>document.fonts.ready);
+    for(let step=0;step<3;step++) {
+      await page.locator('.step').nth(step).click();
+      await expect.poll(()=>page.evaluate(()=>Math.max(
+        ...[...document.querySelectorAll('main > section')].map(el=>el.getBoundingClientRect().height),
+      )),{message:`Every section fits ${width}×${height}, step ${step}`})
+        .toBeLessThanOrEqual(height+2);
+      const active = page.locator('.main-phone img');
+      await active.scrollIntoViewIfNeeded();
+      await active.evaluate(el=>el.decode());
+      expect(await active.evaluate(el=>el.naturalWidth)).toBeGreaterThanOrEqual(650);
+      const frame = await active.evaluate(el=>{
+        const phone=el.getBoundingClientRect();
+        const section=el.closest('section').getBoundingClientRect();
+        return {fits:phone.top>=section.top-1&&phone.bottom<=section.bottom+1};
+      });
+      expect(frame.fits,`Full phone stays within its section at ${width}×${height}`).toBe(true);
+      const clippedContent = await page.evaluate(()=>[
+        ...document.querySelectorAll(
+          '.hero h1,.hero .sub,.form,.benefits,.hero-caption,.philo-copy,.node,.steps,.lead,.preview,.main-phone',
+        ),
+      ].filter(el=>{
+        const bounds=el.getBoundingClientRect();
+        const section=el.closest('section').getBoundingClientRect();
+        return bounds.height>0&&getComputedStyle(el).display!=='none'&&
+          (bounds.top<section.top-1||bounds.bottom>section.bottom+1);
+      }).map(el=>el.className||el.tagName));
+      expect(clippedContent,`All content stays inside its frame at ${width}×${height}, step ${step}`).toEqual([]);
+    }
+    await expect(page.locator('.hero')).toContainText('MEALS MEAN MORE WITH CONTEXT');
   }
 });
