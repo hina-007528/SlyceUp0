@@ -123,11 +123,11 @@ test('smooth anchors, flat backgrounds, static hero and compact sticky navigatio
       })))).toEqual(Array(6).fill({color:'rgb(247, 242, 230)',image:'none'}));
     expect(await page.locator('.hero .bowl, .hero .phone').evaluateAll(elements =>
       elements.map(el=>getComputedStyle(el).animationName))).toEqual(['none','none']);
-    expect(await page.locator('header').evaluate(el=>({
+    await expect.poll(()=>page.locator('header').evaluate(el=>({
       height:el.getBoundingClientRect().height,
       top:el.getBoundingClientRect().top,
       position:getComputedStyle(el).position,
-    }))).toEqual({height:56,top:0,position:'sticky'});
+    }))).toEqual({height:width>900?48:56,top:0,position:'sticky'});
     expect(await page.locator('.stage').evaluate(el=>[
       getComputedStyle(el,'::before').content,
       getComputedStyle(el,'::after').content,
@@ -182,11 +182,11 @@ test('full-page wheel easing, scroll limits and reduced-motion switching', async
     requestAnimationFrame(sample);
   });
   await page.mouse.wheel(0,650);
-  await expect.poll(()=>page.evaluate(()=>Math.abs(scrollY-650))).toBeLessThanOrEqual(2);
+  await expect.poll(()=>page.evaluate(()=>Math.abs(scrollY-487.5))).toBeLessThanOrEqual(2);
   const trace = await page.evaluate(()=>window.wheelTrace);
-  expect(new Set(trace.filter(y=>y>2&&y<648)).size).toBeGreaterThan(8);
+  expect(new Set(trace.filter(y=>y>2&&y<485)).size).toBeGreaterThan(8);
   await page.mouse.wheel(0,-200);
-  await expect.poll(()=>page.evaluate(()=>Math.abs(scrollY-450))).toBeLessThanOrEqual(2);
+  await expect.poll(()=>page.evaluate(()=>Math.abs(scrollY-337.5))).toBeLessThanOrEqual(2);
   await page.mouse.wheel(0,10000);
   await expect.poll(()=>page.evaluate(()=>Math.abs(
     document.documentElement.scrollHeight-innerHeight-scrollY))).toBeLessThanOrEqual(2);

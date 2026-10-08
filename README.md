@@ -45,7 +45,10 @@ or every physical device.
 The original top-of-page desktop scene, fonts, copy and images remain unchanged.
 The background is `#f7f2e6`; the bowl and hero phone remain static. A three-column
 feature strip and caption sit beneath the hero scene. The existing header shrinks
-from 64px to 56px within a reserved sticky slot, restoring its size at the top.
+from 56px to 48px on desktop, and 64px to 56px on mobile/tablet, within a reserved
+sticky slot. The desktop row uses the requested logo and navigation spacing.
+All three feature points remain side-by-side on phones, with responsive sizes.
+The native scrollbar uses the page's cream and muted-green palette.
 
 New layout and motion rules are isolated in `src/scroll-upgrade.css`. The only
 existing styling-rule changes for this upgrade are removing competing native
@@ -53,7 +56,9 @@ smooth scrolling and restricting the existing hover effects to hover-capable
 devices. Additive overrides adjust narrow-screen type/spacing, safe-area padding
 and minimum touch targets only where needed.
 
-Lenis uses one active instance with `lerp: 0.08` and native touch scrolling.
+Lenis uses one active instance with `lerp: 0.06`, `wheelMultiplier: 0.75`, and native
+touch scrolling. Wheel easing is slower; native scrollbar dragging remains direct
+and usable, and reduced-motion scrolling remains native.
 `useTextFade` progressively enhances `.fx` text without affecting header, forms
 or images. The top-of-page appearance stays unchanged; reduced motion or effect
 failure restores fully visible, untransformed text. Native scrolling handles a

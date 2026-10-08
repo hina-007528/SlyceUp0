@@ -9,7 +9,7 @@ const inspectLayout = () => {
   };
   const text = [...document.querySelectorAll('h1,h2,.hero-copy,.philo-copy,.form,.node b,.node p,.feature-text,.caption-text')].filter(visible);
   const controls = [...document.querySelectorAll('button,.nav a,.form input')].filter(visible);
-  const clipped = text.filter(el => {
+  const clipped = [...text,...controls].filter(el => {
     const r = el.getBoundingClientRect();
     return r.left < -1 || r.right > width+1 || el.scrollWidth > el.clientWidth+2;
   }).map(el => el.className || el.tagName);
@@ -88,23 +88,65 @@ test('hero features have the requested content, columns and sizes', async ({page
   })).toBe(true);
 });
 
+test('all three mobile feature points stay on one row at every phone width', async ({page}) => {
+  await page.goto('/');
+  for(const width of [280,320,360,393,414,600,760]) {
+    await page.setViewportSize({width,height:900});
+    expect(await page.locator('.logo img').evaluate(el=>[
+      getComputedStyle(el).width,getComputedStyle(el).height,
+    ])).toEqual(['120px','31px']);
+    await expect.poll(() => page.locator('.feature-item').evaluateAll(elements => {
+      const bounds=elements.map(el=>el.getBoundingClientRect());
+      return bounds.length===3 && bounds.every(r=>Math.abs(r.top-bounds[0].top)<1) &&
+        bounds.slice(1).every((r,i)=>r.left>=bounds[i].right);
+    }), {message:`Three columns at ${width}px`}).toBe(true);
+    expect(await page.locator('.feature-text').evaluateAll(elements=>elements.every(el=>
+      el.scrollWidth<=el.clientWidth+1 && parseFloat(getComputedStyle(el).fontSize)>=11))).toBe(true);
+  }
+});
+
+test('desktop header matches the requested top spacing and themed scrollbar', async ({page}) => {
+  await page.setViewportSize({width:1440,height:900});
+  await page.goto('/');
+  await expect(page.locator('html')).toHaveClass(/js/);
+  expect(await page.evaluate(() => {
+    const header=document.querySelector('header');
+    const row=header.querySelector('.in');
+    const logo=header.querySelector('.logo img');
+    const pill=header.querySelector('.pill');
+    return {
+      height:header.getBoundingClientRect().height,
+      rowWidth:row.getBoundingClientRect().width,
+      rowHeight:row.getBoundingClientRect().height,
+      logo:[logo.getBoundingClientRect().width,logo.getBoundingClientRect().height],
+      gap:getComputedStyle(row).gap,
+      linksGap:getComputedStyle(header.querySelector('ul')).gap,
+      ctaHeight:pill.getBoundingClientRect().height,
+      scrollbarColor:getComputedStyle(document.documentElement).scrollbarColor,
+    };
+  })).toEqual({
+    height:56,rowWidth:1280,rowHeight:56,logo:[168,44],gap:'48px',
+    linksGap:'32px',ctaHeight:48,scrollbarColor:'rgb(138, 148, 131) rgb(247, 242, 230)',
+  });
+});
+
 test('header shrinks smoothly, restores at top and never moves section layout', async ({page}) => {
   await page.emulateMedia({reducedMotion:'no-preference'});
   await page.goto('/');
   await expect(page.locator('header')).not.toHaveClass(/stuck/);
-  await expect.poll(() => page.locator('header').evaluate(el=>el.getBoundingClientRect().height)).toBe(64);
+  await expect.poll(() => page.locator('header').evaluate(el=>el.getBoundingClientRect().height)).toBe(56);
   const positions = () => [...document.querySelectorAll('.hero-inner,.philo-inner,.how-inner')]
     .map(el=>Math.round((el.getBoundingClientRect().top+scrollY)*100)/100);
   const before = await page.evaluate(positions);
   expect(await page.locator('header').evaluate(el=>getComputedStyle(el).transitionDuration)).toContain('0.4s');
   await page.evaluate(() => window.scrollTo(0,350));
   await expect(page.locator('header')).toHaveClass(/stuck/);
-  await expect.poll(() => page.locator('header').evaluate(el=>el.getBoundingClientRect().height)).toBe(56);
-  expect(await page.locator('.header-slot').evaluate(el=>el.getBoundingClientRect().height)).toBe(64);
+  await expect.poll(() => page.locator('header').evaluate(el=>el.getBoundingClientRect().height)).toBe(48);
+  expect(await page.locator('.header-slot').evaluate(el=>el.getBoundingClientRect().height)).toBe(56);
   expect(await page.evaluate(positions)).toEqual(before);
   expect(await page.locator('header').evaluate(el=>getComputedStyle(el).backgroundColor)).toBe('rgb(247, 242, 230)');
   await page.evaluate(() => window.scrollTo(0,0));
-  await expect.poll(() => page.locator('header').evaluate(el=>el.getBoundingClientRect().height)).toBe(64);
+  await expect.poll(() => page.locator('header').evaluate(el=>el.getBoundingClientRect().height)).toBe(56);
   expect(await page.evaluate(positions)).toEqual(before);
 });
 

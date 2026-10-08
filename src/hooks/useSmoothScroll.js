@@ -14,7 +14,8 @@ export default function useSmoothScroll() {
         try {
           scrollRef.current = new Lenis({
             autoRaf: true,
-            lerp: 0.08,
+            lerp: 0.06,
+            wheelMultiplier: 0.75,
             smoothWheel: true,
             syncTouch: false,
             overscroll: false,

@@ -27,6 +27,12 @@ Preserve the Philosophy annotation arrangement when correcting tablet spacing or
 
 **How to apply:** For tablet annotation corrections, adjust the right columns and connectors within tablet-specific rules. For overall section sizing requests, preserve the diagram relationships and mobile image-first flow while compacting the layout.
 
+Keep navbar sizing independent from the hero's original artwork offset.
+
+**Why:** The latest sizing request changes the header, not the previously approved hero composition. Reusing the new header height for artwork positioning would also move the bowl and phone.
+
+**How to apply:** Adjust dedicated header dimensions and the reserved sticky slot while preserving the hero artwork's existing offsets.
+
 Center the navbar logo, navigation text, CTA, and menu toggle vertically within the whole header at every screen size.
 
 **Why:** The user explicitly requested equal space above and below the navbar content, superseding the earlier reference’s bottom-heavy positioning.
