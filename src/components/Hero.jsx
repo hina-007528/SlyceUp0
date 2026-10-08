@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import bowlImg from '../assets/img/uploaded-hero-bowl.webp';
 import phoneImg from '../assets/img/uploaded-hero-phone.webp';
-import desktopFoliage from '../assets/img/hero-foliage-desktop.webp';
-import mobileFoliage from '../assets/img/hero-foliage-mobile.webp';
 
 export default function Hero() {
   const [hint, setHint] = useState('Be the first to try SlyceUp.');
@@ -23,18 +21,8 @@ export default function Hero() {
 
   return (
     <section className="hero" id="early" aria-labelledby="h1">
-      <div className="layer rays"></div>
-      <picture className="layer plant" aria-hidden="true">
-        <source media="(max-width:760px)" srcSet={mobileFoliage} />
-        <img src={desktopFoliage} width="159" height="113" alt="" />
-      </picture>
-      <div className="layer glass" aria-hidden="true" />
-      <div className="layer napkin"></div>
-      <div className="layer stripe"></div>
-      
       <div className="hero-inner">
       <div className="art" aria-label="A meal and SlyceUp meal-reading app">
-        <div className="layer cast"></div>
         <img className="bowl" src={bowlImg} width="1137" height="1052" alt="Bowl of ramen with shiitake, corn, nori, bok choy and a soft-boiled egg" fetchPriority="high" />
         <img className="phone" src={phoneImg} width="674" height="1400" alt="SlyceUp meal reading for ramen, with context and personal insights" fetchPriority="high" />
       </div>

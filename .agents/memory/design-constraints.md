@@ -3,12 +3,6 @@ name: SlyceUp design constraints
 description: User's requirement for coded, responsive background compositions
 ---
 
-Recreate the Figma background using independent HTML/CSS/SVG/React layers. Individual product or food assets may be used, but never place a full Figma frame or screenshot as the page background.
-
-**Why:** The user explicitly requires every element to remain independently responsive and animatable, with different mobile and desktop compositions.
-
-**How to apply:** Preserve separate shapes, lighting, shadows, textures and product objects when editing or extending the landing page. Do not replace the scene with a flattened export to simplify future changes.
-
 Check original image dimensions before extracting individual objects. The image viewer may display a resized reference, so visible preview coordinates are not necessarily source-pixel coordinates.
 
 **Why:** Preview-coordinate crops produced incorrect hero and desktop product assets until scaled against the source image dimensions.
@@ -37,13 +31,7 @@ Center the navbar logo, navigation text, CTA, and menu toggle vertically within 
 
 **Why:** The user explicitly requested equal space above and below the navbar content, superseding the earlier reference’s bottom-heavy positioning.
 
-**How to apply:** Preserve the existing header dimensions but do not restore the older desktop/mobile top offsets when matching earlier screenshots.
-
-Remove the mirror/glass background decorations from Philosophy and How It Works.
-
-**Why:** The user explicitly requested their removal, overriding those decorations in the visual references.
-
-**How to apply:** Do not restore decorative glass in either section when refining the design, including the mobile Philosophy pseudo-elements. This request does not remove the Hero glass or unrelated background objects.
+**How to apply:** Keep the content vertically centered when making the header more compact; do not restore the older desktop/mobile top offsets when matching earlier screenshots. The current background and hero-motion direction is recorded in replit.md and supersedes decorative scene references.
 
 At 768px, keep the Hero's desktop-style side-by-side alignment and two-line headline. The desktop Hero phone mockup must leave a clearly visible strip of background beyond its right edge at 100% browser zoom, not appear flush with the screen.
 

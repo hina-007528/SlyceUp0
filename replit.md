@@ -15,7 +15,7 @@ Existing React 19 + Vite 8 landing page. Keep this project at the repository roo
 
 Three sections: meal reading, philosophy, and the Capture / Understand / Learn story. The header is sticky with stable geometry. Desktop, tablet, and mobile use intentionally different layouts within bounded, centered containers.
 
-Full Figma frames must **not** be used as page backgrounds. Tabletop light, texture, glass, linen, chopsticks, foliage and cast shadows are separate CSS/SVG layers. Only individual bowls and product screens are image assets.
+Full Figma frames must **not** be used as page backgrounds. The latest direction is a uniform `#f3e8dd` page with only individual bowl and phone-frame assets: no decorative leaves, glass, fabric, lighting or textured backgrounds. Hero bowl and phone must remain static. Keep the compact navbar sticky, and preserve Lenis scrolling with natural touch and reduced-motion support.
 
 The live Figma file required sign-in during implementation. The supplied desktop/mobile exports were used as the visual references. Individual phone objects were extracted from those exports; `scripts/extract-design-assets.mjs` reproduces those extractions from the original files in `attached_assets/`. Bowls use the supplied transparent object assets.
 

@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import imgCapture from '../assets/img/uploaded-capture.webp';
 import imgUnderstand from '../assets/img/uploaded-understand.webp';
-import imgLearn from '../assets/img/reference-learn.webp';
+import imgLearn from '../assets/img/insights-phone.webp';
 import mobileCapture from '../assets/img/mobile-capture.webp';
 import mobileUnderstand from '../assets/img/mobile-understand.webp';
-import mobileLearn from '../assets/img/mobile-learn.webp';
-import clothImage from '../assets/img/cloth.png';
 
 const steps = [
   {
@@ -35,7 +33,7 @@ const steps = [
     caption: 'Notice impact and patterns over time.',
     alt: 'SlyceUp insights screen showing meal patterns over time',
     image: imgLearn,
-    mobileImage: mobileLearn,
+    mobileImage: imgLearn,
     label: 'Learn',
   },
 ];
@@ -47,19 +45,14 @@ export default function HowItWorks() {
 
   return (
     <section className="how" id="how" aria-labelledby="how-heading">
-      <svg className="layer leafsh" viewBox="0 0 200 260" aria-hidden="true"><use href="#lf" /></svg>
-      <div className="layer rays" aria-hidden="true" />
-      <div className="layer cast" aria-hidden="true" />
-      <img className="cloth-prop" src={clothImage} width="130" height="320" alt="" aria-hidden="true" />
-
       <div className="how-inner">
         <div className="phone-feature">
           <picture className="main-phone" data-step={activeIndex}>
             <source media="(max-width: 760px)" srcSet={activeStep.mobileImage} />
             <img
             src={activeStep.image}
-            width="280"
-            height="576"
+            width={activeIndex === 2 ? 852 : 280}
+            height={activeIndex === 2 ? 1791 : 576}
             alt={activeStep.alt}
             key={activeStep.image}
             loading="lazy"
@@ -106,7 +99,7 @@ export default function HowItWorks() {
                   <span className="preview-phone">
                     <picture>
                       <source media="(max-width: 760px)" srcSet={step.mobileImage} />
-                      <img src={step.image} width="280" height="576" alt="" loading="lazy" />
+                      <img src={step.image} width={step.label === 'Learn' ? 852 : 280} height={step.label === 'Learn' ? 1791 : 576} alt="" loading="lazy" />
                     </picture>
                   </span>
                   <span className="preview-caption">

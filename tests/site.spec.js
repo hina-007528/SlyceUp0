@@ -91,7 +91,7 @@ test('keyboard menu, navigation and honest email validation', async ({ page }) =
   await expect(page.locator('#hint')).toContainText("isn't connected");
 });
 
-test('smooth anchor scrolling and glass-free section backgrounds', async ({ page }) => {
+test('smooth anchors, flat backgrounds, static hero and compact sticky navigation', async ({ page }) => {
   await page.emulateMedia({ reducedMotion:'no-preference' });
   await page.setViewportSize({ width:1280, height:720 });
   await page.goto('/');
@@ -115,15 +115,45 @@ test('smooth anchor scrolling and glass-free section backgrounds', async ({ page
   await expect(page.locator('header')).toHaveClass(/stuck/);
   for (const width of [393,1440]) {
     await page.setViewportSize({width,height:852});
-    await expect(page.locator('#philosophy .glass, #how .glass')).toHaveCount(0);
+    await expect(page.locator('.leafsh, .glass, .plant, .rays, .napkin, .stripe, .cloth-prop, .cast, .stick')).toHaveCount(0);
+    expect(await page.locator('html, body, header, .hero, .philo, .how').evaluateAll(elements =>
+      elements.map(el => ({
+        color:getComputedStyle(el).backgroundColor,
+        image:getComputedStyle(el).backgroundImage,
+      })))).toEqual(Array(6).fill({color:'rgb(243, 232, 221)',image:'none'}));
+    expect(await page.locator('.hero .bowl, .hero .phone').evaluateAll(elements =>
+      elements.map(el=>getComputedStyle(el).animationName))).toEqual(['none','none']);
+    expect(await page.locator('header').evaluate(el=>({
+      height:el.getBoundingClientRect().height,
+      top:el.getBoundingClientRect().top,
+      position:getComputedStyle(el).position,
+    }))).toEqual({height:64,top:0,position:'sticky'});
     expect(await page.locator('.stage').evaluate(el=>[
       getComputedStyle(el,'::before').content,
       getComputedStyle(el,'::after').content,
     ])).toEqual(['none','none']);
   }
-  await expect(page.locator('#early .glass')).toHaveCount(1);
+  await expect(page.locator('#early .glass')).toHaveCount(0);
   await page.emulateMedia({ reducedMotion:'reduce' });
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
+});
+
+test('desktop bowl reduction and sharp Insight frame keep mobile and tablet layout', async ({ page }) => {
+  await page.goto('/');
+  for (const width of [393,820,1440]) {
+    await page.setViewportSize({width,height:852});
+    await expect.poll(()=>page.locator('.stage').evaluate(el =>
+      getComputedStyle(el).getPropertyValue('--bw').trim())).toBe(
+      width <= 760 ? '53%' : width <= 900 ? '57.5%' : '52.3%');
+    await page.locator('.step').nth(2).click();
+    const insight=page.locator('.main-phone img');
+    await insight.evaluate(img=>img.decode());
+    expect(await insight.evaluate(img=>({
+      width:img.naturalWidth,height:img.naturalHeight,
+      correctSource:img.currentSrc.includes('insights-phone'),
+    }))).toEqual({width:852,height:1791,correctSource:true});
+    await expect(insight).toHaveAttribute('alt',/insights screen/);
+  }
 });
 
 test('direct section links settle at the requested section', async ({ page }) => {
