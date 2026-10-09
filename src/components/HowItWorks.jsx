@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import useClientReady from '../hooks/useClientReady';
 import imgCapture from '../assets/img/hi-res-hero.png';
-import imgUnderstand from '../assets/img/hi-res-hero.png';
+import imgUnderstand from '../assets/img/hi-res-capture.png';
 import imgLearn from '../assets/img/insights-phone.webp';
 import mobileCapture from '../assets/img/hi-res-hero.png';
-import mobileUnderstand from '../assets/img/hi-res-hero.png';
+import mobileUnderstand from '../assets/img/hi-res-capture.png';
 import mobileLearn from '../assets/img/insights-phone.webp';
 
 const steps = [
