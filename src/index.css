@@ -608,7 +608,7 @@ a {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transform: scale(var(--zoom, 1)) translateZ(0);
+  transform: translateZ(0);
   backface-visibility: hidden;
   animation: phone-enter .3s ease-out;
 }
@@ -748,12 +748,8 @@ a {
 
 .preview-phone img {
   width: 100%;
-  height: 100%;
-  aspect-ratio: 280 / 576;
-  object-fit: contain;
+  height: auto;
   align-self: flex-start;
-  transform: scale(var(--zoom, 1)) translateZ(0);
-  backface-visibility: hidden;
   filter: drop-shadow(0 12px 15px rgba(60, 42, 21, .18));
 }
 
@@ -1105,7 +1101,7 @@ a {
 
   .hero-inner {
     min-height: 0;
-    padding: 40px 0 20px;
+    padding: 90px 0 20px;
     display: flex;
     flex-direction: column;
   }

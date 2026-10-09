@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import useClientReady from '../hooks/useClientReady';
 import imgCapture from '../assets/img/hi-res-hero.png';
-import imgUnderstand from '../assets/img/hi-res-understand.png';
+import imgUnderstand from '../assets/img/hi-res-hero.png';
 import imgLearn from '../assets/img/insights-phone.webp';
 import mobileCapture from '../assets/img/hi-res-hero.png';
-import mobileUnderstand from '../assets/img/hi-res-understand.png';
+import mobileUnderstand from '../assets/img/hi-res-hero.png';
 import mobileLearn from '../assets/img/insights-phone.webp';
 
 const steps = [
   {
-    zoom: 1.20,
     title: 'Capture what you actually eat.',
     titleMobile: 'A photo\nis enough to begin.',
     lead: 'A photo is enough to begin. SlyceUp reads your meal\njust as it is — real, simple and in your everyday life.',
@@ -20,7 +19,6 @@ const steps = [
     label: 'Capture',
   },
   {
-    zoom: 1.10,
     title: 'Understand what shaped your meal.',
     titleMobile: 'Understand what\nshaped your meal.',
     lead: 'See how food, preparation, context and you\ncome together to form a personal reading.',
@@ -31,7 +29,6 @@ const steps = [
     label: 'Understand',
   },
   {
-    zoom: 1.04,
     title: 'See what changes over time.',
     titleMobile: 'See what changes\nover time.',
     lead: 'SlyceUp notices your impact and patterns\nover time, helping you learn what works for you.',
@@ -53,7 +50,7 @@ export default function HowItWorks() {
     <section className="how" id="how" aria-labelledby="how-heading">
       <div className="how-inner">
         <div className="phone-feature">
-          <picture className="main-phone" data-step={activeIndex} style={{ '--zoom': activeStep.zoom, overflow: 'hidden' }}>
+          <picture className="main-phone" data-step={activeIndex}>
             <source media="(max-width: 760px)" srcSet={activeStep.mobileImage} />
             <img
             src={activeStep.image}
@@ -105,7 +102,7 @@ export default function HowItWorks() {
                   aria-label={`Show step ${number + 1}: ${step.label}. ${step.caption}`}
                 >
                   <span className="preview-phone">
-                    <picture style={{ '--zoom': step.zoom, overflow: 'hidden', display: 'flex', width: '100%', height: '100%' }}>
+                    <picture>
                       <source media="(max-width: 760px)" srcSet={step.mobileImage} />
                       <img src={step.image} width={280} height={576} alt="" loading="lazy" />
                     </picture>
