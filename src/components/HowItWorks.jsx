@@ -1,11 +1,6 @@
 import { useState } from 'react';
 import useClientReady from '../hooks/useClientReady';
-import imgCapture from '../assets/img/hi-res-hero.png';
-import imgUnderstand from '../assets/img/hi-res-capture.png';
-import imgLearn from '../assets/img/insights-phone.webp';
-import mobileCapture from '../assets/img/hi-res-hero.png';
-import mobileUnderstand from '../assets/img/hi-res-capture.png';
-import mobileLearn from '../assets/img/insights-phone.webp';
+import PhoneMockup from './PhoneMockup';
 
 const steps = [
   {
@@ -14,8 +9,7 @@ const steps = [
     lead: 'A photo is enough to begin. SlyceUp reads your meal\njust as it is — real, simple and in your everyday life.',
     caption: 'A photo is enough to begin.',
     alt: 'SlyceUp camera view framing a bowl of ramen',
-    image: imgCapture,
-    mobileImage: mobileCapture,
+    type: 's2',
     label: 'Capture',
   },
   {
@@ -24,8 +18,7 @@ const steps = [
     lead: 'See how food, preparation, context and you\ncome together to form a personal reading.',
     caption: 'See the imprint shaped by food, preparation, context and you.',
     alt: 'SlyceUp meal reading with context and details for ramen',
-    image: imgUnderstand,
-    mobileImage: mobileUnderstand,
+    type: 's3',
     label: 'Understand',
   },
   {
@@ -34,8 +27,7 @@ const steps = [
     lead: 'SlyceUp notices your impact and patterns\nover time, helping you learn what works for you.',
     caption: 'Notice impact and patterns over time.',
     alt: 'SlyceUp insights screen showing meal patterns over time',
-    image: imgLearn,
-    mobileImage: mobileLearn,
+    type: 's4',
     label: 'Learn',
   },
 ];
@@ -50,17 +42,9 @@ export default function HowItWorks() {
     <section className="how" id="how" aria-labelledby="how-heading">
       <div className="how-inner">
         <div className="phone-feature">
-          <picture className="main-phone" data-step={activeIndex}>
-            <source media="(max-width: 760px)" srcSet={activeStep.mobileImage} />
-            <img
-            src={activeStep.image}
-            width={280}
-            height={576}
-            alt={activeStep.alt}
-            key={activeStep.image}
-            loading="lazy"
-          />
-          </picture>
+          <div className="main-phone" data-step={activeIndex}>
+            <PhoneMockup type={activeStep.type} />
+          </div>
         </div>
 
         <div className="how-copy">
@@ -102,10 +86,7 @@ export default function HowItWorks() {
                   aria-label={`Show step ${number + 1}: ${step.label}. ${step.caption}`}
                 >
                   <span className="preview-phone">
-                    <picture>
-                      <source media="(max-width: 760px)" srcSet={step.mobileImage} />
-                      <img src={step.image} width={280} height={576} alt="" loading="lazy" />
-                    </picture>
+                    <PhoneMockup type={step.type} />
                   </span>
                   <span className="preview-caption">
                     <strong><i>0{number + 1}</i>{step.label}</strong>

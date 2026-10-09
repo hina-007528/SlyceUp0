@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import bowlImg from '../assets/img/uploaded-hero-bowl.webp';
-import phoneImg from '../assets/img/hi-res-understand.png';
+import PhoneMockup from './PhoneMockup';
 import FeatureItem from './FeatureItem';
 import useClientReady from '../hooks/useClientReady';
 
@@ -28,7 +28,9 @@ export default function Hero() {
       <div className="hero-inner">
         <div className="art" aria-label="A meal and SlyceUp meal-reading app">
           <img className="bowl" src={bowlImg} width="1137" height="1052" alt="Bowl of ramen with shiitake, corn, nori, bok choy and a soft-boiled egg" fetchPriority="high" />
-          <img className="phone" src={phoneImg} width="674" height="1400" alt="SlyceUp meal reading for ramen, with context and personal insights" fetchPriority="high" />
+          <div className="phone">
+            <PhoneMockup type="s1" />
+          </div>
         </div>
 
         <div className="hero-copy">

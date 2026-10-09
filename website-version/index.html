@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>App screens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1ea;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101513}}
+:root[data-theme="dark"]{--bg:#101513}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,3vw,44px);max-width:1380px;margin:0 auto;padding:clamp(24px,5vw,64px) clamp(16px,4vw,48px)}
+@media(max-width:1099px){.row{grid-template-columns:repeat(2,minmax(0,1fr));max-width:760px}}
+@media(max-width:600px){.row{grid-template-columns:minmax(0,1fr);max-width:360px}}
+.ph>*{--u:calc(100cqw/1000)}
+.ph{container-type:inline-size;position:relative;width:100%;aspect-ratio:1000/2083}
+.fr{position:absolute;inset:0;border-radius:calc(var(--u)*140);background:linear-gradient(135deg,#a2a4a9,#2b2c2f 28%,#4b4c50 55%,#1c1d1f 80%,#707277);box-shadow:0 calc(var(--u)*50) calc(var(--u)*90) calc(var(--u)*-40) rgba(20,30,25,.45)}
+.fr::after{content:"";position:absolute;inset:calc(var(--u)*7);border-radius:calc(var(--u)*133);background:#08080a}
+.bt{position:absolute;width:calc(var(--u)*9);background:#2b2c2f;border-radius:calc(var(--u)*4)}
+.scr{position:absolute;inset:calc(var(--u)*46);border-radius:calc(var(--u)*92);overflow:hidden;font-size:0}
+.scr *{position:absolute}
+.scr svg,.scr svg *{position:static}
+.scr svg{position:absolute}
+.scr *::before,.scr *::after{position:absolute;display:block}
+.isl{background:#000;border-radius:calc(var(--u)*60);width:calc(var(--u)*312);height:calc(var(--u)*86);left:calc(var(--u)*298);top:calc(var(--u)*21);z-index:5}
+.isl::after{content:"";width:calc(var(--u)*34);height:calc(var(--u)*34);border-radius:50%;right:calc(var(--u)*22);top:calc(var(--u)*26);background:radial-gradient(circle at 40% 40%,#2c3558,#0a0d1a 65%)}
+.sb{top:calc(var(--u)*34);z-index:5;font:600 calc(var(--u)*40)/calc(var(--u)*60) Inter,sans-serif;left:calc(var(--u)*100);color:#111}
+.st{top:calc(var(--u)*42);right:calc(var(--u)*64);height:calc(var(--u)*44);z-index:5;color:#111;display:flex;gap:calc(var(--u)*14);align-items:center}
+.st svg{position:static;height:calc(var(--u)*30)}
+.st .a{width:calc(var(--u)*42)}.st .b2{width:calc(var(--u)*44)}.st .c2{width:calc(var(--u)*62);height:calc(var(--u)*30)}
+.hm{height:calc(var(--u)*14);border-radius:calc(var(--u)*8);left:calc(var(--u)*293);width:calc(var(--u)*310);top:calc(var(--u)*1960);z-index:6}
+.t{white-space:nowrap}
+.sr{font-family:"Source Serif 4",Georgia,serif}
+svg.i{fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+/* screen 1 */
+.s1{background:#FAF8F4;color:#143029}
+.s1 .sh{inset:0 0 auto 0;height:calc(var(--u)*900);background:linear-gradient(115deg,rgba(231,220,203,.7),rgba(250,248,244,0) 45%)}
+.s1 .bowl{left:calc(var(--u)*88);top:calc(var(--u)*51);width:calc(var(--u)*788);height:auto;filter:drop-shadow(0 calc(var(--u)*30) calc(var(--u)*34) rgba(120,90,50,.22))}
+.s1 .fade{left:0;right:0;top:calc(var(--u)*620);height:calc(var(--u)*180);background:linear-gradient(rgba(250,248,244,0),#FAF8F4 88%)}
+.s1 .leaf{left:calc(var(--u)*-10);top:calc(var(--u)*120);width:calc(var(--u)*300);height:calc(var(--u)*680)}
+.cb{width:calc(var(--u)*93);height:calc(var(--u)*93);border-radius:50%;background:#fbf9f6;display:grid;place-items:center;box-shadow:0 calc(var(--u)*4) calc(var(--u)*18) rgba(0,0,0,.08);z-index:4}
+.cb svg{position:static;width:calc(var(--u)*44);height:calc(var(--u)*44);stroke-width:4;color:#111}
+.ib{width:calc(var(--u)*82);height:calc(var(--u)*82);border-radius:50%;border:calc(var(--u)*3.5) solid #143029;display:grid;place-items:center;z-index:4;font:italic 600 calc(var(--u)*52)/1 "Source Serif 4",serif;color:#143029;padding-bottom:calc(var(--u)*4)}
+.s1 h1{left:calc(var(--u)*57);top:calc(var(--u)*742);font:700 calc(var(--u)*140)/1 "Source Serif 4",serif;letter-spacing:-.025em;color:#143029;z-index:2}
+.mr{left:calc(var(--u)*50);top:calc(var(--u)*921);height:calc(var(--u)*62);display:flex;align-items:center;gap:calc(var(--u)*14);z-index:2;color:#143029;font:400 calc(var(--u)*34)/1 Inter,sans-serif}
+.mr svg{position:static;width:calc(var(--u)*54);height:calc(var(--u)*54);stroke-width:2.2}
+.mr span{position:static;color:#5d6b64}
+.mr i{position:static;width:calc(var(--u)*15);height:calc(var(--u)*15);border-radius:50%;background:#f28c38;margin:0 calc(var(--u)*14) 0 calc(var(--u)*10);flex:none}
+.s1 h2{left:calc(var(--u)*57);top:calc(var(--u)*1036);font:600 calc(var(--u)*81)/calc(var(--u)*90) "Source Serif 4",serif;letter-spacing:-.02em;color:#143029;z-index:2}
+.c1{left:calc(var(--u)*25);top:calc(var(--u)*1272);width:calc(var(--u)*849);height:calc(var(--u)*636);border-radius:calc(var(--u)*34);border:calc(var(--u)*1.5) solid #dbe5d8;background:radial-gradient(ellipse 70% 40% at 45% 33%,rgba(90,160,95,.2),transparent 70%),linear-gradient(#f1f5ee,#ecf2e8)}
+.c1 *{color:#143029}
+.c1 .ft{left:calc(var(--u)*43);top:calc(var(--u)*24);font:500 calc(var(--u)*68)/calc(var(--u)*76) "Source Serif 4",serif;letter-spacing:-.01em}
+.c1 .ul{left:calc(var(--u)*43);top:calc(var(--u)*111);width:calc(var(--u)*64);height:calc(var(--u)*5);background:#2f6b3a;border-radius:calc(var(--u)*3)}
+.c1 .lb{left:calc(var(--u)*43);top:calc(var(--u)*141);font:500 calc(var(--u)*27)/1 Inter,sans-serif;letter-spacing:.2em}
+.c1 svg.cv{left:calc(var(--u)*30);top:calc(var(--u)*176);width:calc(var(--u)*790);height:calc(var(--u)*100)}
+.c1 h3{top:calc(var(--u)*322);font:700 calc(var(--u)*36)/1 Inter,sans-serif;letter-spacing:-.01em}
+.c1 p{font:400 calc(var(--u)*31)/calc(var(--u)*43) Inter,sans-serif;color:#46544c;white-space:nowrap}
+.c1 .ln{left:calc(var(--u)*38);width:calc(var(--u)*778);top:calc(var(--u)*478);height:calc(var(--u)*1.5);background:#d3ddd0}
+.c1 .vd{left:calc(var(--u)*432);top:calc(var(--u)*526);height:calc(var(--u)*62);width:calc(var(--u)*1.5);background:#d3ddd0}
+.c1 .ic{width:calc(var(--u)*89);height:calc(var(--u)*89);border:calc(var(--u)*3) solid #1e5a36;border-radius:50%;display:grid;place-items:center;top:calc(var(--u)*512)}
+.c1 .ic svg{position:static;width:calc(var(--u)*60);height:calc(var(--u)*60);color:#1e5a36;stroke-width:2.6}
+.c1 .ic svg *{stroke:#1e5a36}
+.c1 .tx{top:calc(var(--u)*524);font:400 calc(var(--u)*28)/calc(var(--u)*38) Inter,sans-serif;color:#46544c;white-space:nowrap}
+.s1 .hm{background:#111}
+/* screen 2 */
+.s2{background:#c9b49c}
+.s2 img,.s3 img{left:-4%;top:-4%;width:108%;height:108%;object-fit:cover}
+.s2 .isl::before{content:"";position:absolute;left:calc(var(--u)*340);top:calc(var(--u)*30);width:calc(var(--u)*12);height:calc(var(--u)*12);border-radius:50%;background:#2fe65a;box-shadow:0 0 calc(var(--u)*8) #2fe65a}
+.s2 .gdot{left:calc(var(--u)*635);top:calc(var(--u)*56);width:calc(var(--u)*12);height:calc(var(--u)*12);border-radius:50%;background:#2fe65a;z-index:5}
+.s2 .ct{color:#fff;z-index:4}
+.s2 .ct svg{position:static;width:calc(var(--u)*46);height:calc(var(--u)*70);stroke-width:3;filter:drop-shadow(0 calc(var(--u)*2) calc(var(--u)*6) rgba(0,0,0,.25))}
+.br{width:calc(var(--u)*172);height:calc(var(--u)*189);border:calc(var(--u)*2.4) solid rgba(255,255,255,.92);z-index:3}
+.br.a{left:calc(var(--u)*37);top:calc(var(--u)*283);border-width:calc(var(--u)*2.4) 0 0 calc(var(--u)*2.4);border-top-left-radius:calc(var(--u)*28)}
+.br.b{left:calc(var(--u)*701);top:calc(var(--u)*283);border-width:calc(var(--u)*2.4) calc(var(--u)*2.4) 0 0;border-top-right-radius:calc(var(--u)*28)}
+.br.c{left:calc(var(--u)*37);top:calc(var(--u)*1294);border-width:0 0 calc(var(--u)*2.4) calc(var(--u)*2.4);border-bottom-left-radius:calc(var(--u)*28)}
+.br.d{left:calc(var(--u)*701);top:calc(var(--u)*1294);border-width:0 calc(var(--u)*2.4) calc(var(--u)*2.4) 0;border-bottom-right-radius:calc(var(--u)*28)}
+.gb{width:calc(var(--u)*134);height:calc(var(--u)*134);top:calc(var(--u)*1733);border-radius:50%;background:rgba(236,226,216,.55);backdrop-filter:blur(8px);display:grid;place-items:center;color:#fff;z-index:4}
+.gb svg{position:static;width:calc(var(--u)*64);height:calc(var(--u)*64);stroke-width:2.2}
+.sh2{left:calc(var(--u)*355);top:calc(var(--u)*1703);width:calc(var(--u)*194);height:calc(var(--u)*194);border-radius:50%;border:calc(var(--u)*5.5) solid #fff;z-index:4}
+.sh2::after{content:"";position:absolute;inset:calc(var(--u)*11);border-radius:50%;background:#e8e2de}
+/* screen 3 */
+.s3{background:#FBF9F5;color:#0f1a3c}
+.s3 .pw{left:0;top:0;width:100%;height:calc(var(--u)*812);overflow:hidden}
+.s3 .pw img{left:-6%;top:-6%;width:112%;height:112%}
+.s3 .sheet{left:0;right:0;top:calc(var(--u)*809);bottom:0;background:#FBF9F5;border-radius:calc(var(--u)*48) calc(var(--u)*48) 0 0}
+.s3 .cb{width:calc(var(--u)*90);height:calc(var(--u)*90);background:#f8f4ee;top:calc(var(--u)*121)}
+.s3 .cb svg{width:calc(var(--u)*40);height:calc(var(--u)*40);stroke-width:3.4}
+.s3 .ib2{width:calc(var(--u)*90);height:calc(var(--u)*90);left:calc(var(--u)*769);top:calc(var(--u)*121);border-radius:50%;background:#f8f4ee;border:0;display:grid;place-items:center;z-index:4}
+.s3 .ib2 svg{position:static;width:calc(var(--u)*54);height:calc(var(--u)*54);color:#0f1a3c}
+.s3 h1{left:calc(var(--u)*55);top:calc(var(--u)*853);font:500 calc(var(--u)*104)/1 "Source Serif 4",serif;letter-spacing:-.02em;color:#0f1a3c}
+.s3 .mt{left:calc(var(--u)*50);top:calc(var(--u)*978);height:calc(var(--u)*70);display:flex;align-items:center;gap:0;font:400 calc(var(--u)*39)/1 "Source Serif 4",serif;color:#5d6785}
+.s3 .mt svg{position:static;width:calc(var(--u)*56);height:calc(var(--u)*56);color:#0f1a3c;margin-right:calc(var(--u)*14);stroke-width:2.4}
+.s3 .mt span{position:static;margin-right:calc(var(--u)*56)}
+.s3 .k{left:calc(var(--u)*55);top:calc(var(--u)*1118);font:400 calc(var(--u)*41)/1 "Source Serif 4",serif;color:#8b909c}
+.s3 .hl{left:calc(var(--u)*55);top:calc(var(--u)*1186);font:600 calc(var(--u)*54)/1 "Source Serif 4",serif;letter-spacing:-.015em;color:#0f5c47}
+.s3 svg.cv{left:calc(var(--u)*51);top:calc(var(--u)*1262);width:calc(var(--u)*806);height:calc(var(--u)*170)}
+.s3 .ln{left:calc(var(--u)*53);width:calc(var(--u)*791);height:calc(var(--u)*1.5);background:#e6e2da}
+.s3 h4{left:calc(var(--u)*53);top:calc(var(--u)*1478);font:500 calc(var(--u)*46)/1 "Source Serif 4",serif;color:#0f1a3c}
+.s3 .rw{left:calc(var(--u)*53);width:calc(var(--u)*791);height:calc(var(--u)*80);border-bottom:calc(var(--u)*1.5) solid #e6e2da;display:flex;align-items:center;font:400 calc(var(--u)*36)/1 "Source Serif 4",serif}
+.s3 .rw b{position:static;width:calc(var(--u)*380);padding-left:calc(var(--u)*23);font-weight:600;color:#0f1a3c;font-size:calc(var(--u)*34)}
+.s3 .rw span{position:static;color:#7b839d}
+.s3 .hm{background:#0f1a3c;height:calc(var(--u)*11)}
+/* screen 4 */
+.s4{background:#F4F6F2;color:#14302a;font-family:Inter,sans-serif}
+.s4 .sb{left:calc(var(--u)*103)}
+.s4 h1{left:calc(var(--u)*58);top:calc(var(--u)*140);font:700 calc(var(--u)*98)/1 "Source Serif 4",serif;letter-spacing:-.02em}
+.seg{left:calc(var(--u)*462);top:calc(var(--u)*151);width:calc(var(--u)*417);height:calc(var(--u)*97);border-radius:50px;background:#fdecea}
+.seg b{top:0;height:calc(var(--u)*97);display:grid;place-items:center;font:500 calc(var(--u)*34)/1 Inter,sans-serif;color:#6b756e}
+.seg b.on{left:0;width:calc(var(--u)*126);border-radius:50px;background:#ff6445;color:#fff}
+.pg{left:calc(var(--u)*58);top:calc(var(--u)*287);font:400 calc(var(--u)*30)/1 Inter,sans-serif;color:#8f9892}
+.dt{height:calc(var(--u)*11);border-radius:50%;top:calc(var(--u)*296);background:#dfe3dd;width:calc(var(--u)*11)}
+.s4 .ey{left:calc(var(--u)*58);top:calc(var(--u)*364);font:600 calc(var(--u)*31)/1 Inter,sans-serif;letter-spacing:.06em;color:#1f5a3d;height:calc(var(--u)*34);display:flex;align-items:center;gap:calc(var(--u)*20)}
+.s4 .ey svg{position:static;width:calc(var(--u)*40);height:calc(var(--u)*40);stroke-width:2.6}
+.cd{left:calc(var(--u)*46);width:calc(var(--u)*818);border-radius:calc(var(--u)*34);border:calc(var(--u)*1.5) solid #dfe5dc;background:#f6f8f4}
+.lbl{font:600 calc(var(--u)*31)/calc(var(--u)*39) Inter,sans-serif;letter-spacing:.045em;color:#1f4d3a;white-space:nowrap}
+.hd{font:600 calc(var(--u)*62)/calc(var(--u)*74) "Source Serif 4",serif;letter-spacing:-.025em;color:#1a2a26;white-space:nowrap}
+.rg{left:calc(var(--u)*508);top:calc(var(--u)*538);width:calc(var(--u)*324);height:calc(var(--u)*324);border-radius:50%;background:radial-gradient(circle,#fff 0 calc(var(--u)*12),#4f8f55 calc(var(--u)*12) calc(var(--u)*33),#6faa73 calc(var(--u)*33) calc(var(--u)*70),#8fbd8f calc(var(--u)*70) calc(var(--u)*105),#b2d1b0 calc(var(--u)*105) calc(var(--u)*133),#d3e5d0 calc(var(--u)*133) calc(var(--u)*162))}
+.pb{height:calc(var(--u)*5);border-radius:calc(var(--u)*3);background:#e4e8e1}
+.pb::after{content:"";left:0;top:0;height:calc(var(--u)*5);width:calc(var(--u)*100);border-radius:calc(var(--u)*3);background:#6aa56f}
+.rw4{left:0;width:100%;height:calc(var(--u)*210)}
+.rw4 .ci{left:calc(var(--u)*93);top:calc(var(--u)*3);width:calc(var(--u)*121);height:calc(var(--u)*121);border-radius:50%;display:grid;place-items:center}
+.rw4 .ci svg{position:static;width:calc(var(--u)*60);height:calc(var(--u)*60);stroke-width:2.4}
+.rw4 .n{left:calc(var(--u)*267);top:0;font:600 calc(var(--u)*34)/calc(var(--u)*40) Inter,sans-serif;color:#0e1a17}
+.rw4 .d{left:calc(var(--u)*267);top:calc(var(--u)*41);font:400 calc(var(--u)*29)/calc(var(--u)*36) Inter,sans-serif;color:#8a928b;white-space:nowrap}
+.rw4 .p{left:calc(var(--u)*704);top:calc(var(--u)*57);font:600 calc(var(--u)*40)/calc(var(--u)*40) Inter,sans-serif;white-space:nowrap}
+.rw4 .c{left:calc(var(--u)*804);top:calc(var(--u)*60);width:calc(var(--u)*30);height:calc(var(--u)*30);border-right:calc(var(--u)*3.4) solid #1a2a26;border-top:calc(var(--u)*3.4) solid #1a2a26;transform:rotate(45deg) scale(.55)}
+.rw4 .b{left:calc(var(--u)*267);top:calc(var(--u)*171);width:calc(var(--u)*510);height:calc(var(--u)*14);border-radius:calc(var(--u)*8);background:#e4e7e2}
+.rw4 .b::after{content:"";left:0;top:0;height:calc(var(--u)*14);border-radius:calc(var(--u)*8);width:var(--w);background:var(--f)}
+.sp{left:calc(var(--u)*58);width:calc(var(--u)*790);height:calc(var(--u)*1.5);background:#e5e9e2}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="sun" viewBox="0 0 48 48"><circle cx="24" cy="24" r="9"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6M10 10l4 4M34 34l4 4M38 10l-4 4M14 34l-4 4"/></symbol>
+<symbol id="wave" viewBox="0 0 48 48"><path d="M9 24a15 15 0 0 1 30 0M6 30c4-5 8-5 12 0s8 5 12 0 8-5 12 0M6 39c4-5 8-5 12 0s8 5 12 0 8-5 12 0"/></symbol>
+<symbol id="drop" viewBox="0 0 48 48"><path d="M24 5C24 5 11 20 11 30a13 13 0 0 0 26 0C37 20 24 5 24 5zM17 31a7 7 0 0 0 6 7"/></symbol>
+<symbol id="rise" viewBox="0 0 48 48"><path d="M5 34h38M11 41h26M24 6v6M9 15l4 4M39 15l-4 4M14 30a10 10 0 0 1 20 0M5 27h5M38 27h5"/></symbol>
+<symbol id="pin" viewBox="0 0 48 48"><path d="M24 45s14-14 14-25a14 14 0 0 0-28 0c0 11 14 25 14 25z"/><circle cx="24" cy="20" r="5"/></symbol>
+<symbol id="cal" viewBox="0 0 48 48"><rect x="6" y="10" width="36" height="32" rx="6"/><path d="M6 21h36M16 5v9M32 5v9"/></symbol>
+<symbol id="leaf" viewBox="0 0 48 48"><path d="M8 40C5 20 18 7 41 7c1 22-12 35-33 33zM8 40L28 20"/></symbol>
+<symbol id="flower" viewBox="0 0 48 48"><circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="12"/><path d="M24 19v10M19.5 21.5l9 5M28.5 21.5l-9 5"/></symbol>
+<symbol id="torii" viewBox="0 0 48 48"><path d="M4 11h40M9 18h30M15 11v32M33 11v32M15 27h18"/></symbol>
+<symbol id="bolt" viewBox="0 0 48 48"><path d="M30 3L14 26h11l-4 19 16-24H26z"/></symbol>
+<symbol id="img" viewBox="0 0 48 48"><rect x="6" y="6" width="36" height="36" rx="5"/><circle cx="17" cy="17" r="3"/><path d="M6 36l11-10 8 8 6-6 11 10"/></symbol>
+<symbol id="flip" viewBox="0 0 48 48"><path d="M8 24a16 16 0 0 1 28-10l4 5M40 24a16 16 0 0 1-28 10l-4-5M40 10v9h-9M8 38v-9h9"/><circle cx="24" cy="24" r="4" /></symbol>
+<symbol id="sig" viewBox="0 0 38 26"><path d="M3 20v3M12 15v8M21 9v14M30 3v20" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></symbol>
+<symbol id="wifi" viewBox="0 0 38 26"><path d="M2 9a24 24 0 0 1 34 0M7 15a16 16 0 0 1 24 0M12.5 20.5a8 8 0 0 1 13 0" stroke="currentColor" stroke-width="3.6" fill="none" stroke-linecap="round"/><circle cx="19" cy="23" r="2.4" fill="currentColor"/></symbol>
+<symbol id="bat" viewBox="0 0 54 26"><rect x="1.5" y="1.5" width="46" height="23" rx="7" fill="none" stroke="currentColor" stroke-opacity=".4" stroke-width="2.4"/><rect x="5" y="5" width="39" height="16" rx="4.5" fill="currentColor"/><path d="M50 9v8" stroke="currentColor" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"/></symbol>
+</defs>
+</svg>
+<main class="row">
+
+<!-- 1 RAMEN RESULT -->
+<figure class="cell" aria-label="Ramen result screen"><div class="ph"><div class="fr"></div>
+<i class="bt" style="left:-5px;top:17%;height:3.2%"></i><i class="bt" style="left:-5px;top:25%;height:7%"></i><i class="bt" style="left:-5px;top:34%;height:7%"></i><i class="bt" style="right:-5px;top:27%;height:11%"></i>
+<div class="scr s1">
+<div class="sh"></div>
+<svg class="leaf" viewBox="0 0 230 520"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5c9a49"/><stop offset="1" stop-color="#2e6a33"/></linearGradient></defs><path d="M150 40C120 160 70 300 30 500" stroke="#7a5a2c" stroke-width="5" fill="none"/><g fill="url(#lg)"><path d="M150 40C185 60 196 105 160 130C130 105 128 65 150 40z"/><path d="M125 150C85 140 55 175 70 215C110 225 135 190 125 150z"/><path d="M108 210C150 195 190 225 175 262C135 272 105 245 108 210z"/><path d="M85 300C40 290 10 325 25 362C70 372 95 335 85 300z"/><path d="M62 380C110 365 140 400 122 440C80 448 52 418 62 380z"/><path d="M40 440C10 450 -5 485 15 515C45 505 55 470 40 440z"/></g></svg>
+<img class="bowl" src="img/bowl.webp" alt="Ramen bowl" width="900" height="900">
+<div class="fade"></div>
+<div class="isl"></div><div class="sb">9:41</div><div class="st"><svg class="a" viewBox="0 0 38 26"><use href="#sig"/></svg><svg class="b2" viewBox="0 0 38 26"><use href="#wifi"/></svg><svg class="c2" viewBox="0 0 54 26"><use href="#bat"/></svg></div>
+<div class="cb" style="left:calc(var(--u)*31);top:calc(var(--u)*135)"><svg class="i" viewBox="0 0 48 48"><path d="M30 8L14 24l16 16"/></svg></div>
+<div class="ib" style="left:calc(var(--u)*781);top:calc(var(--u)*141)">i</div>
+<h1>Ramen</h1>
+<div class="mr"><svg class="i"><use href="#sun"/></svg><span>Morning</span><i></i><svg class="i"><use href="#wave"/></svg><span>Coastal humidity</span><i></i><svg class="i"><use href="#drop"/></svg><span>Winter</span></div>
+<h2>Warm, comforting,<br>with layered depth</h2>
+<div class="c1">
+<div class="ft">For you</div><div class="ul"></div><div class="lb">DIGESTIVE RHYTHM</div>
+<svg class="cv" viewBox="0 0 790 100" fill="none"><g fill="#2f6b3a"><circle cx="14" cy="38" r="3"/><circle cx="26" cy="22" r="3"/><circle cx="14" cy="64" r="2.6"/><circle cx="34" cy="86" r="2.6"/><circle cx="44" cy="14" r="2.6"/></g><circle cx="39" cy="62" r="11" fill="#f4f7f1" stroke="#1e5a36" stroke-width="4.5"/><path d="M52 62C58 52 64 52 70 62C76 72 84 54 94 56C102 58 106 68 114 64C124 58 130 48 144 52C152 55 158 66 168 62C180 56 186 40 208 38C230 36 240 50 256 46C280 40 300 18 346 12C400 6 440 32 490 56C530 74 580 78 640 78L722 78" stroke="#2c6a3a" stroke-width="5.5" stroke-linecap="round"/><path d="M520 70C560 78 600 80 660 78" stroke="#1d5a35" stroke-width="7" stroke-linecap="round"/><circle cx="722" cy="78" r="46" fill="rgba(47,107,58,.1)"/><circle cx="722" cy="78" r="35" fill="none" stroke="rgba(47,107,58,.28)" stroke-width="3"/><circle cx="722" cy="78" r="26" fill="#f4f7f1"/><circle cx="722" cy="78" r="21" fill="#1f5a35"/></svg>
+<h3 style="left:calc(var(--u)*43)">Starts light</h3><p style="left:calc(var(--u)*43);top:calc(var(--u)*363)">Fermentation and spice<br>support the early phase.</p>
+<h3 style="left:calc(var(--u)*560)">Settles slower</h3><p style="left:calc(var(--u)*560);top:calc(var(--u)*363)">Lentils and oil add<br>density later.</p>
+<div class="ln"></div>
+<div class="ic" style="left:calc(var(--u)*38)"><svg class="i" viewBox="0 0 48 48"><circle cx="24" cy="24" r="4.5" fill="#1e5a36"/><circle cx="24" cy="11" r="1.8"/><circle cx="24" cy="37" r="1.8"/><circle cx="11" cy="24" r="1.8"/><circle cx="37" cy="24" r="1.8"/><circle cx="15" cy="15" r="1.8"/><circle cx="33" cy="15" r="1.8"/><circle cx="15" cy="33" r="1.8"/><circle cx="33" cy="33" r="1.8"/></svg></div>
+<div class="tx" style="left:calc(var(--u)*158)">Tends to feel slower<br>and slightly heavier</div>
+<div class="vd"></div>
+<div class="ic" style="left:calc(var(--u)*469)"><svg class="i" viewBox="0 0 48 48"><path d="M8 17c4-5 8-5 12 0s8 5 12 0 8-5 8 0M8 25c4-5 8-5 12 0s8 5 12 0 8-5 8 0M8 33c4-5 8-5 12 0s8 5 12 0 8-5 8 0"/></svg></div>
+<div class="tx" style="left:calc(var(--u)*587)">Spice may register<br>more strongly</div>
+</div>
+<div class="hm"></div>
+</div></div></figure>
+
+<!-- 2 CAMERA -->
+<figure class="cell" aria-label="Camera scan screen"><div class="ph"><div class="fr"></div>
+<i class="bt" style="left:-5px;top:18%;height:2.8%"></i><i class="bt" style="left:-5px;top:24%;height:6.5%"></i><i class="bt" style="left:-5px;top:32%;height:6.5%"></i><i class="bt" style="right:-5px;top:27%;height:9%"></i>
+<div class="scr s2">
+<img src="img/scan.webp" alt="Ramen bowl in camera view" width="633" height="1480">
+<div class="isl"></div><div class="gdot"></div>
+<div class="ct" style="left:calc(var(--u)*30);top:calc(var(--u)*132)"><svg class="i" viewBox="0 0 48 48"><path d="M32 6L14 24l18 18"/></svg></div>
+<div class="ct" style="left:calc(var(--u)*808);top:calc(var(--u)*136)"><svg class="i" viewBox="0 0 48 48" style="fill:#fff;stroke-width:1.5"><use href="#bolt"/></svg></div>
+<div class="br a"></div><div class="br b"></div><div class="br c"></div><div class="br d"></div>
+<div class="gb" style="left:calc(var(--u)*36)"><svg class="i" viewBox="0 0 48 48"><use href="#img"/></svg></div>
+<div class="sh2"></div>
+<div class="gb" style="left:calc(var(--u)*737)"><svg class="i" viewBox="0 0 48 48"><use href="#flip"/></svg></div>
+</div></div></figure>
+
+<!-- 3 DETAIL -->
+<figure class="cell" aria-label="Ramen meal detail screen"><div class="ph"><div class="fr"></div>
+<i class="bt" style="left:-5px;top:17%;height:3.2%"></i><i class="bt" style="left:-5px;top:25%;height:7%"></i><i class="bt" style="left:-5px;top:34%;height:7%"></i><i class="bt" style="right:-5px;top:27%;height:11%"></i>
+<div class="scr s3">
+<div class="pw"><img src="img/detail.webp" alt="Ramen bowl" width="695" height="627"></div>
+<div class="sheet"></div>
+<div class="isl"></div><div class="sb" style="color:#1a1a1a">9:41</div><div class="st"><svg class="a" viewBox="0 0 38 26"><use href="#sig"/></svg><svg class="b2" viewBox="0 0 38 26"><use href="#wifi"/></svg><svg class="c2" viewBox="0 0 54 26"><use href="#bat"/></svg></div>
+<div class="cb" style="left:calc(var(--u)*35)"><svg class="i" viewBox="0 0 48 48"><path d="M30 8L14 24l16 16"/></svg></div>
+<div class="ib2"><svg class="i" viewBox="0 0 48 48"><circle cx="24" cy="24" r="19"/><text x="24" y="33" text-anchor="middle" font-family="Source Serif 4,serif" font-style="italic" font-weight="600" font-size="27" fill="currentColor" stroke="none">i</text></svg></div>
+<h1>Ramen</h1>
+<div class="mt"><svg class="i"><use href="#rise"/></svg><span>Lunch</span><svg class="i"><use href="#pin"/></svg><span>Tokyo, Jpn</span><svg class="i"><use href="#cal"/></svg><span style="margin:0">Mar 12, 2026</span></div>
+<div class="k">This meal’s imprint</div>
+<div class="hl">Rich, savory, warming &amp; satisfying.</div>
+<svg class="cv" viewBox="0 0 806 170" preserveAspectRatio="none"><defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4f9a86" stop-opacity=".55"/><stop offset="1" stop-color="#4f9a86" stop-opacity="0"/></linearGradient></defs><path d="M0 100C60 80 100 48 160 48C220 48 250 100 316 100C380 100 410 62 480 62C520 62 540 76 570 70C620 60 650 6 700 6C760 6 790 70 806 98L806 170L0 170Z" fill="url(#cg)"/><path d="M0 100C60 80 100 48 160 48C220 48 250 100 316 100C380 100 410 62 480 62C520 62 540 76 570 70C620 60 650 6 700 6C760 6 790 70 806 98" fill="none" stroke="#14604d" stroke-width="4" stroke-linecap="round"/></svg>
+<div class="ln" style="top:calc(var(--u)*1450)"></div>
+<h4>What shaped this</h4>
+<div class="ln" style="top:calc(var(--u)*1561)"></div>
+<div class="rw" style="top:calc(var(--u)*1561)"><b>Substance</b><span>Noodles, broth, egg</span></div>
+<div class="rw" style="top:calc(var(--u)*1641)"><b>Warmth</b><span>Garlic, miso, sesame</span></div>
+<div class="rw" style="top:calc(var(--u)*1721)"><b>Flow</b><span>Steady, balanced</span></div>
+<div class="rw" style="top:calc(var(--u)*1801)"><b>Stimulation</b><span>Umami-rich spices</span></div>
+<div class="hm"></div>
+</div></div></figure>
+
+<!-- 4 INSIGHTS -->
+<figure class="cell" aria-label="Insights screen"><div class="ph"><div class="fr"></div>
+<i class="bt" style="left:-5px;top:17%;height:3.2%"></i><i class="bt" style="left:-5px;top:25%;height:7%"></i><i class="bt" style="left:-5px;top:34%;height:7%"></i><i class="bt" style="right:-5px;top:27%;height:11%"></i>
+<div class="scr s4">
+<div class="isl"></div><div class="sb">9:41</div><div class="st"><svg class="a" viewBox="0 0 38 26"><use href="#sig"/></svg><svg class="b2" viewBox="0 0 38 26"><use href="#wifi"/></svg><svg class="c2" viewBox="0 0 54 26"><use href="#bat"/></svg></div>
+<h1>Insights</h1>
+<div class="seg"><b class="on">7D</b><b style="left:calc(var(--u)*162);width:calc(var(--u)*130)">15D</b><b style="left:calc(var(--u)*292);width:calc(var(--u)*125)">30D</b></div>
+<div class="pg">1 of 5</div><i style="left:calc(var(--u)*162);top:calc(var(--u)*296);width:calc(var(--u)*40);height:calc(var(--u)*11);border-radius:calc(var(--u)*6);background:#6aa56f"></i>
+<i class="dt" style="left:calc(var(--u)*222)"></i><i class="dt" style="left:calc(var(--u)*251)"></i><i class="dt" style="left:calc(var(--u)*280)"></i><i class="dt" style="left:calc(var(--u)*309)"></i>
+<div class="ey"><svg class="i" viewBox="0 0 48 48"><use href="#leaf"/></svg><span style="position:static">YOUR FOOD INTELLIGENCE</span></div>
+<div class="cd" style="top:calc(var(--u)*438);height:calc(var(--u)*490)">
+<div class="lbl" style="left:calc(var(--u)*62);top:calc(var(--u)*46)">WHAT APPEARED IN<br>YOUR FOOD</div>
+<div class="hd" style="left:calc(var(--u)*62);top:calc(var(--u)*130)">Fibre<br>appeared less<br>consistently<br>this week.</div>
+<div class="rg" style="left:calc(var(--u)*462);top:calc(var(--u)*100)"></div>
+<div class="pb" style="left:calc(var(--u)*64);top:calc(var(--u)*482);width:calc(var(--u)*204);height:calc(var(--u)*5)"></div>
+</div>
+<div class="cd" style="top:calc(var(--u)*975);height:calc(var(--u)*963)">
+<div class="lbl" style="left:calc(var(--u)*56);top:calc(var(--u)*46);font-size:calc(var(--u)*33)">WHERE YOUR MEALS DREW FROM</div>
+<div class="hd" style="left:calc(var(--u)*56);top:calc(var(--u)*112);font-size:calc(var(--u)*58);line-height:calc(var(--u)*70)">A mix of food traditions<br>shaped your meals.</div>
+</div>
+<div class="rw4" style="top:calc(var(--u)*1265)"><div class="ci" style="background:#f9d8d5;color:#c8402f"><svg class="i" viewBox="0 0 48 48"><use href="#flower"/></svg></div><div class="n">South Indian</div><div class="d">Rice-and-lentil preparations<br>shaped several of your<br>meals.</div><div class="p" style="color:#b8402e">32%</div><div class="c"></div><div class="b" style="--w:calc(var(--u)*143);--f:#d9503a"></div></div>
+<div class="sp" style="top:calc(var(--u)*1470)"></div>
+<div class="rw4" style="top:calc(var(--u)*1494)"><div class="ci" style="background:#f6e8be;color:#b88a1e"><svg class="i" viewBox="0 0 48 48"><use href="#leaf"/></svg></div><div class="n">Levantine</div><div class="d">Chickpeas, tahini and fresh<br>vegetables added another<br>root.</div><div class="p" style="color:#b0821a">27%</div><div class="c"></div><div class="b" style="--w:calc(var(--u)*131);--f:#d4a73c"></div></div>
+<div class="sp" style="top:calc(var(--u)*1700)"></div>
+<div class="rw4" style="top:calc(var(--u)*1723)"><div class="ci" style="background:#ddd5f5;color:#5d49b0"><svg class="i" viewBox="0 0 48 48"><use href="#torii"/></svg></div><div class="n">East Asian</div><div class="d">Steamed grains, vegetables<br>and broths appeared in some<br>meals.</div><div class="p" style="color:#5d49b0">22%</div><div class="c"></div><div class="b" style="--w:calc(var(--u)*123);--f:#7f6bd0"></div></div>
+</div></div></figure>
+
+</main>
+</body>
+</html>
