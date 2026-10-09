@@ -6,6 +6,7 @@
 .ph .bt { display: none !important; position: absolute; width: calc(var(--u)*9); background: #2b2c2f; border-radius: calc(var(--u)*4); }
 .ph .scr { position: absolute; inset: calc(var(--u)*46); border-radius: calc(var(--u)*92); overflow: hidden; font-size: 0; background: #000; }
 .ph .scr * { position: absolute; font-family: Inter, sans-serif; }
+.ph .scr br { position: static !important; }
 .ph .scr svg, .ph .scr svg * { position: static; }
 .ph .scr svg { position: absolute; }
 .ph .scr *::before, .ph .scr *::after { position: absolute; display: block; }
