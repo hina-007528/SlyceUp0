@@ -243,7 +243,7 @@ a {
   width: min(100%, var(--content));
   min-height: min(900px, 100vh);
   margin-inline: auto;
-  padding: 210px 0 80px;
+  padding: 90px 0 40px;
 }
 
 .hero-copy {
@@ -392,7 +392,7 @@ a {
   width: min(100%, 1440px);
   min-height: clamp(645px, 51.75vw, 745px);
   margin-inline: auto;
-  padding: 75px 62px 55px;
+  padding: 40px 62px 40px;
 }
 
 .philo-copy {
@@ -581,7 +581,7 @@ a {
   width: min(100%, 1440px);
   min-height: 948px;
   margin: auto;
-  padding: 110px 48px 44px;
+  padding: 50px 48px 40px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   column-gap: 35px;
@@ -806,8 +806,9 @@ a {
   }
 
   .hero-inner {
-    min-height: min(680px, 100svh);
-    padding-top: 100px;
+    min-height: 480px;
+    padding-top: 40px;
+    padding-bottom: 0px;
     padding-inline: 32px;
   }
 
@@ -831,9 +832,19 @@ a {
     line-height: 1.22;
   }
 
+  .philo-inner {
+    min-height: 480px;
+  }
+
+  .how-inner {
+    min-height: 0px;
+  }
+
   .philo-inner,
   .how-inner {
     padding-inline: 36px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
 
   .philo-copy {
@@ -949,6 +960,23 @@ a {
 @media (max-width:900px) {
   :root {
     --nav-height: 64px;
+  }
+
+  .hero-inner {
+    min-height: 380px;
+  }
+
+  .philo-inner {
+    min-height: 320px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .how-inner {
+    min-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: -100px;
   }
 
   .nav {
@@ -1077,7 +1105,7 @@ a {
 
   .hero-inner {
     min-height: min(852px, 100svh);
-    padding: 84px 0 30px;
+    padding: 40px 0 30px;
     display: flex;
     flex-direction: column;
   }
@@ -1187,7 +1215,7 @@ a {
   .philo-inner {
     min-height: 0;
     height: auto;
-    padding: 76px 0 40px;
+    padding: 40px 0 40px;
     display: flex;
     flex-direction: column;
   }
@@ -1331,7 +1359,7 @@ a {
 
   .how-inner {
     min-height: 0;
-    padding: 106px 24px 18px;
+    padding: 40px 24px 18px;
     display: flex;
     flex-direction: column;
     align-items: stretch;

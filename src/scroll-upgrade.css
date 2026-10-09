@@ -555,9 +555,9 @@ body {
 }
 
 html[data-scroll-fx] main .fx {
-  opacity: var(--fx-opacity, 1);
-  transform: translateY(var(--fx-shift, 0px));
-  will-change: opacity, transform;
+  opacity: 1 !important;
+  transform: none !important;
+  will-change: auto;
 }
 
 .noscript-note {

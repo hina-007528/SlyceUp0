@@ -2,9 +2,10 @@ import { useState } from 'react';
 import useClientReady from '../hooks/useClientReady';
 import imgCapture from '../assets/img/uploaded-capture.webp';
 import imgUnderstand from '../assets/img/uploaded-understand.webp';
-import imgLearn from '../assets/img/insights-phone.webp';
+import imgLearn from '../assets/img/uploaded-learn.webp';
 import mobileCapture from '../assets/img/mobile-capture.webp';
 import mobileUnderstand from '../assets/img/mobile-understand.webp';
+import mobileLearn from '../assets/img/mobile-learn.webp';
 
 const steps = [
   {
@@ -34,7 +35,7 @@ const steps = [
     caption: 'Notice impact and patterns over time.',
     alt: 'SlyceUp insights screen showing meal patterns over time',
     image: imgLearn,
-    mobileImage: imgLearn,
+    mobileImage: mobileLearn,
     label: 'Learn',
   },
 ];
@@ -53,8 +54,8 @@ export default function HowItWorks() {
             <source media="(max-width: 760px)" srcSet={activeStep.mobileImage} />
             <img
             src={activeStep.image}
-            width={activeIndex === 2 ? 852 : 280}
-            height={activeIndex === 2 ? 1791 : 576}
+            width={280}
+            height={576}
             alt={activeStep.alt}
             key={activeStep.image}
             loading="lazy"
@@ -103,7 +104,7 @@ export default function HowItWorks() {
                   <span className="preview-phone">
                     <picture>
                       <source media="(max-width: 760px)" srcSet={step.mobileImage} />
-                      <img src={step.image} width={step.label === 'Learn' ? 852 : 280} height={step.label === 'Learn' ? 1791 : 576} alt="" loading="lazy" />
+                      <img src={step.image} width={280} height={576} alt="" loading="lazy" />
                     </picture>
                   </span>
                   <span className="preview-caption">
