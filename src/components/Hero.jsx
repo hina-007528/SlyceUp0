@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import bowlImg from '../assets/img/uploaded-hero-bowl.webp';
-import phoneImg from '../assets/img/uploaded-hero-phone.webp';
+import phoneImg from '../assets/img/hi-res-capture.png';
 import FeatureItem from './FeatureItem';
 import useClientReady from '../hooks/useClientReady';
 

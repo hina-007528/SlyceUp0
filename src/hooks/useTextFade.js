@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 // Progressive enhancement: .fx does nothing unless this hook is working.
 export default function useTextFade(scrollRef) {
   useEffect(() => {
+    return; // Disabled by user request.
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
     let frame = 0;
     let instance = null;

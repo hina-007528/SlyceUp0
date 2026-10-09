@@ -243,7 +243,7 @@ a {
   width: min(100%, var(--content));
   min-height: min(900px, 100vh);
   margin-inline: auto;
-  padding: 90px 0 40px;
+  padding: 210px 0 80px;
 }
 
 .hero-copy {
@@ -392,7 +392,7 @@ a {
   width: min(100%, 1440px);
   min-height: clamp(645px, 51.75vw, 745px);
   margin-inline: auto;
-  padding: 40px 62px 40px;
+  padding: 75px 62px 55px;
 }
 
 .philo-copy {
@@ -581,7 +581,7 @@ a {
   width: min(100%, 1440px);
   min-height: 948px;
   margin: auto;
-  padding: 50px 48px 40px;
+  padding: 110px 48px 44px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   column-gap: 35px;
@@ -597,14 +597,19 @@ a {
 }
 
 .phone-feature .main-phone {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: clamp(225px, 25.2vw, 363px);
-  filter: drop-shadow(0 22px 23px rgba(60, 42, 21, .28));
+  aspect-ratio: 280 / 576;
 }
 
 .main-phone img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(var(--zoom, 1)) translateZ(0);
+  backface-visibility: hidden;
   animation: phone-enter .3s ease-out;
 }
 
@@ -743,8 +748,12 @@ a {
 
 .preview-phone img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  aspect-ratio: 280 / 576;
+  object-fit: contain;
   align-self: flex-start;
+  transform: scale(var(--zoom, 1)) translateZ(0);
+  backface-visibility: hidden;
   filter: drop-shadow(0 12px 15px rgba(60, 42, 21, .18));
 }
 
@@ -806,7 +815,7 @@ a {
   }
 
   .hero-inner {
-    min-height: 480px;
+    min-height: 0;
     padding-top: 40px;
     padding-bottom: 0px;
     padding-inline: 32px;
@@ -832,19 +841,9 @@ a {
     line-height: 1.22;
   }
 
-  .philo-inner {
-    min-height: 480px;
-  }
-
-  .how-inner {
-    min-height: 0px;
-  }
-
   .philo-inner,
   .how-inner {
     padding-inline: 36px;
-    padding-top: 0px;
-    padding-bottom: 0px;
   }
 
   .philo-copy {
@@ -963,20 +962,21 @@ a {
   }
 
   .hero-inner {
-    min-height: 380px;
+    min-height: 0;
   }
 
   .philo-inner {
-    min-height: 320px;
-    padding-top: 0;
-    padding-bottom: 0;
+    min-height: 0px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    margin-top: -20px;
   }
 
   .how-inner {
-    min-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-top: -100px;
+    min-height: 0px;
+    padding-top: 0px;
+    padding-bottom: 20px;
+    margin-top: -50px;
   }
 
   .nav {
@@ -1104,8 +1104,8 @@ a {
   }
 
   .hero-inner {
-    min-height: min(852px, 100svh);
-    padding: 40px 0 30px;
+    min-height: 0;
+    padding: 40px 0 20px;
     display: flex;
     flex-direction: column;
   }
@@ -1215,7 +1215,7 @@ a {
   .philo-inner {
     min-height: 0;
     height: auto;
-    padding: 40px 0 40px;
+    padding: 30px 0 30px;
     display: flex;
     flex-direction: column;
   }
@@ -1353,13 +1353,24 @@ a {
     letter-spacing: 2px;
   }
 
+  .philo-inner {
+    min-height: 0;
+    margin-top: 0px;
+    padding-bottom: 10px;
+  }
+
+  .how-inner {
+    min-height: 0px;
+    margin-top: -20px;
+    padding-top: 10px;
+  }
+
   .how {
     min-height: 0;
   }
 
   .how-inner {
-    min-height: 0;
-    padding: 40px 24px 18px;
+    padding: 0px 24px 0px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -1627,7 +1638,7 @@ a {
     min-height: 34px;
     margin: 0;
   }
-  
+
   .form input {
     padding: 6px;
     font-size: 15px;
@@ -1748,6 +1759,7 @@ body,
 }
 
 @media (min-width: 1180px) {
+
   .nav .in,
   .hero-inner,
   .philo-inner,
@@ -1756,7 +1768,7 @@ body,
     padding-left: 0;
     padding-right: 0;
   }
-  
+
   .phone-feature {
     padding-left: 0;
   }
