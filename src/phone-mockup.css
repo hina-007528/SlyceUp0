@@ -38,7 +38,7 @@
 .ph .cb { width: calc(var(--u)*93); height: calc(var(--u)*93); border-radius: 50%; background: #fbf9f6; display: grid; place-items: center; box-shadow: 0 calc(var(--u)*4) calc(var(--u)*18) rgba(0,0,0,.08); z-index: 4; }
 .ph .cb svg { position: static; width: calc(var(--u)*44); height: calc(var(--u)*44); stroke-width: 4; color: #111; }
 .ph .ib { width: calc(var(--u)*82); height: calc(var(--u)*82); border-radius: 50%; border: calc(var(--u)*3.5) solid #143029; display: grid; place-items: center; z-index: 4; font: italic 600 calc(var(--u)*52)/1 "Source Serif 4", serif; color: #143029; padding-bottom: calc(var(--u)*4); margin: 0; }
-.ph .s1 h1 { left: calc(var(--u)*57); top: calc(var(--u)*560); font: 700 calc(var(--u)*140)/1 "Source Serif 4", serif; letter-spacing: -.025em; color: #143029; z-index: 2; }
+.ph .s1 h1 { left: calc(var(--u)*57); top: calc(var(--u)*600); font: 700 calc(var(--u)*140)/1 "Source Serif 4", serif; letter-spacing: -.025em; color: #143029; z-index: 2; }
 .ph .mr { left: calc(var(--u)*36); top: calc(var(--u)*936); height: calc(var(--u)*68); display: flex; align-items: center; gap: calc(var(--u)*8); z-index: 2; color: #143029; font: 400 calc(var(--u)*34)/1 Inter, sans-serif; }
 .ph .mr svg { position: static; width: calc(var(--u)*60); height: calc(var(--u)*60); stroke-width: 2.6; flex: none; }
 .ph .mr span { position: static; color: #143029; font-family: Inter, sans-serif; font-size: calc(var(--u)*36); font-weight: 600; line-height: 1; transform: translateZ(0); letter-spacing: -0.01em; white-space: nowrap; }
